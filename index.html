@@ -1,2326 +1,688 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="light">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#0f172a" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="الهواتف الذكية الأولى" />
-  <title>عروض الاتصالات - الهواتف الذكية الأولى</title>
-
-  <!-- Google Fonts & FontAwesome -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Noto+Sans+Bengali:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Ethiopic:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- Tailwind CSS & Vue 3 & QRious -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Cairo', 'Noto Sans Bengali', 'Noto Sans Devanagari', 'Noto Sans Ethiopic', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    * { -webkit-tap-highlight-color: transparent; }
-    body {
-      font-family: 'Cairo', 'Noto Sans Bengali', 'Noto Sans Devanagari', 'Noto Sans Ethiopic', sans-serif;
-      overscroll-behavior-y: contain;
-    }
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.4); border-radius: 10px; }
-
-    /* Table Watermark Style - ( الهواتف الذكية ) */
-    .table-watermark-container {
-      position: relative;
-      overflow: hidden;
-    }
-    .table-watermark-layer {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-around;
-      opacity: 0.085;
-      user-select: none;
-      overflow: hidden;
-    }
-    .dark .table-watermark-layer {
-      opacity: 0.11;
-    }
-    .watermark-stamp {
-      transform: rotate(-22deg);
-      font-size: 1.55rem;
-      font-weight: 900;
-      white-space: nowrap;
-      padding: 1.5rem 2.2rem;
-      color: currentColor;
-      letter-spacing: 1px;
-    }
-    .watermark-center-big {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-18deg);
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 900;
-      white-space: nowrap;
-      opacity: 0.09;
-      pointer-events: none;
-      z-index: 1;
-      border: 4px dashed currentColor;
-      padding: 0.4rem 1.8rem;
-      border-radius: 1rem;
-    }
-    .table-content-layer {
-      position: relative;
-      z-index: 2;
-    }
-
-    @media print {
-      .no-print { display: none !important; }
-      .print-only { display: block !important; }
-      body { background: white !important; color: black !important; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0f766e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="الهواتف الذكية الأولى">
+<title>باقات الاتصالات - الهواتف الذكية الأولى</title>
+<style>
+:root{--bg:#f3f7f6;--card:#fff;--ink:#10211c;--mut:#5b6f69;--line:#dbe6e2;--acc:#0f766e;--acc2:#14b8a6;--soft:#e3f3f0;--gold:#b45309;--goldbg:#fef3c7;--sh:0 1px 2px rgba(16,33,28,.06),0 6px 18px rgba(16,33,28,.06)}
+[data-theme=dark]{--bg:#0c1413;--card:#14201e;--ink:#e8f3f0;--mut:#93aaa4;--line:#243633;--acc:#2dd4bf;--acc2:#14b8a6;--soft:#12302c;--gold:#fcd34d;--goldbg:#3a2e0b;--sh:none}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;-ms-touch-action:manipulation;touch-action:manipulation}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,system-ui,"Segoe UI",Roboto,"Noto Sans","Noto Sans Arabic","Noto Sans Bengali","Noto Sans Devanagari","Noto Sans Ethiopic",Tahoma,sans-serif;font-size:15px;line-height:1.5;padding-bottom:76px;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+button,select,input{font:inherit;color:inherit}
+button,select,input{-webkit-appearance:none;appearance:none}
+select{background-repeat:no-repeat}
+input[type=checkbox]{-webkit-appearance:checkbox}
+button{cursor:pointer;border:0;background:none;padding:0}
+#top{position:-webkit-sticky;position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line)}
+header{padding:8px 7px 6px;padding-top:calc(8px + env(safe-area-inset-top));display:flex;align-items:center}
+header>*{margin:0 3px}
+#langbar{display:flex;padding:0 5px 8px}
+#langbar button{flex:1;margin:0 3px;padding:7px 0;border-radius:10px;background:var(--soft);font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#langbar button.on{background:var(--acc);color:#fff}
+[data-theme=dark] #langbar button.on{color:#06201c}
+.brand{display:flex;align-items:center;flex:1;min-width:0;cursor:pointer}
+.brand>*{margin:0 4px}
+.brand svg{width:36px;height:36px;flex:none;border-radius:10px}
+.brand b{font-size:14px;font-weight:800;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hb{width:36px;height:36px;border-radius:12px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+.hb:active{transform:scale(.94)}
+#instBtn{width:auto;padding:0 12px;background:var(--acc);color:#fff;font-weight:700;font-size:13px}
+#instBtn span+span{margin:0 4px}
+[data-theme=dark] #instBtn{color:#06201c}
+main{max-width:720px;margin:0 auto;padding:14px 14px 10px}
+h2{font-size:19px;margin:6px 2px 4px;font-weight:800}
+.sub{color:var(--mut);margin:0 2px 14px;font-size:13.5px}
+.grid{display:flex;flex-wrap:wrap;margin:0 -6px}
+.co{width:calc(33.333% - 12px);margin:0 6px 12px;background:var(--card);border-radius:20px;padding:14px 6px 12px;text-align:center;box-shadow:var(--sh);border:1px solid var(--line);cursor:pointer}
+.co:active{transform:scale(.97)}
+.ic{width:58px;height:58px;border-radius:18px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:22px;letter-spacing:-.5px;position:relative;overflow:hidden}
+.ic::after{content:"";position:absolute;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);right:-14px;top:-16px;z-index:1}
+[dir=rtl] .ic::after{right:auto;left:-14px}
+.ic img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#fff;padding:5px;z-index:2}
+.ic.sm{width:40px;height:40px;border-radius:13px;font-size:16px;margin:0}
+.ic.sm img{padding:3px}
+.co b{display:block;font-size:13.5px;line-height:1.25}
+.co small{color:var(--mut);font-size:11.5px}
+.bar{display:flex;align-items:center;margin-bottom:10px}
+.bar>*{margin:0 5px}
+.bar .back{width:38px;height:38px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:18px;flex:none}
+.bar h2{margin:0}
+.chips{display:flex;overflow-x:auto;padding:2px 0 10px;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;margin:0 4px;padding:6px 13px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:13px;font-weight:600}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+[data-theme=dark] .chip.on{color:#06201c}
+.tools{display:flex;flex-wrap:wrap;margin:0 -4px 6px}
+.tools>*{margin:0 4px 8px;flex:1;min-width:120px}
+.tools input,.tools select{padding:9px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+.offer{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 13px;margin-bottom:10px;box-shadow:var(--sh)}
+.oh{display:flex;align-items:center;margin-bottom:8px}
+.oh>*{margin:0 5px}
+.oh .t{flex:1;min-width:0}
+.oh b{font-size:15.5px;display:block;line-height:1.25}
+.oh small{color:var(--mut);font-size:12px}
+.star{font-size:21px;line-height:1;width:34px;height:34px;border-radius:10px;color:var(--mut);flex:none}
+.star.on{color:#f59e0b}
+.fx{display:flex;flex-wrap:wrap;margin:0 -3px 4px}
+.fx span{margin:0 3px 6px;background:var(--soft);border-radius:9px;padding:4px 9px;font-size:12.8px}
+.fx span b{color:var(--acc)}
+.pr{display:flex;margin:0 -4px}
+.pr div{flex:1;margin:0 4px;border-radius:11px;padding:6px 10px;background:var(--goldbg);color:var(--gold);display:flex;justify-content:space-between;align-items:baseline;font-size:12px}
+.pr div b{font-size:17px}
+.pr div.c{background:var(--soft);color:var(--acc)}
+.note{font-size:12px;color:var(--mut);background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:8px 11px;margin-top:6px;white-space:pre-line}
+.empty{text-align:center;color:var(--mut);padding:36px 10px}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:0;padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;padding:8px 2px 7px;font-size:11.5px;color:var(--mut);display:flex;flex-direction:column;align-items:center;font-weight:600}
+nav button i{font-style:normal;font-size:20px}
+nav button.on{color:var(--acc)}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:6px 14px;margin-bottom:14px}
+.sec h3{margin:10px 0 4px;font-size:14px;color:var(--mut)}
+.row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-top:1px solid var(--line)}
+.row>*{margin:0 5px}
+.row:first-of-type{border-top:0}
+.seg{display:flex;background:var(--soft);border-radius:11px;padding:3px}
+.seg button{padding:5px 11px;border-radius:9px;font-size:13px;font-weight:600}
+.seg button.on{background:var(--acc);color:#fff}
+[data-theme=dark] .seg button.on{color:#06201c}
+.btn{background:var(--acc);color:#fff;padding:9px 16px;border-radius:12px;font-weight:700;font-size:14px}
+[data-theme=dark] .btn{color:#06201c}
+.btn.g{background:var(--soft);color:var(--acc)}
+.sw{width:46px;height:26px;border-radius:99px;background:var(--line);position:relative;flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff}
+[dir=rtl] .sw::after{left:auto;right:3px}
+.sw.on{background:var(--acc)}
+.sw.on::after{left:23px}
+[dir=rtl] .sw.on::after{left:auto;right:23px}
+.lnk{width:100%;text-align:start;padding:12px 0;border-top:1px solid var(--line);font-weight:600;display:flex;justify-content:space-between}
+.lnk:first-of-type{border-top:0}
+.ov{position:fixed;top:0;left:0;right:0;bottom:0;z-index:50;background:rgba(5,15,12,.55);display:flex;align-items:center;justify-content:center;padding:18px}
+.md{background:var(--card);border-radius:22px;padding:18px;max-width:380px;width:100%;max-height:86vh;overflow:auto;text-align:center}
+.md h3{margin:0 0 8px;font-size:17px}
+.md p{margin:8px 0;color:var(--mut);font-size:13.5px}
+.md canvas{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+.md input{width:100%;padding:9px 11px;border-radius:11px;border:1px solid var(--line);background:var(--bg);direction:ltr;margin:6px 0;font-size:13px}
+.md .acts{display:flex;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.md .acts>*{margin:4px}
+#banner{display:none;background:var(--acc);color:#fff;padding:9px 14px;font-size:13.5px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+[data-theme=dark] #banner{color:#06201c}
+#banner button{background:#fff;color:var(--acc);padding:5px 12px;border-radius:99px;font-weight:700;font-size:13px;margin:2px}
+#toast{position:fixed;bottom:90px;bottom:calc(90px + env(safe-area-inset-bottom));left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);max-width:86vw;background:#10211c;color:#fff;padding:9px 16px;border-radius:99px;font-size:13.5px;z-index:60;display:none;text-align:center}
+.pg p{line-height:1.8;color:var(--ink)}
+@media(min-width:520px){.hide-sm{display:inline}}
+@media(max-width:519px){.hide-sm{display:none}}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.wm{position:relative;overflow:hidden}
+.wm::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background-image:var(--wm);background-size:220px 120px;pointer-events:none;z-index:0}
+.wm>*{position:relative;z-index:1}
+.acts2{display:flex;margin:9px -4px 0}
+.acts2 button{flex:1;margin:0 4px;padding:8px 6px;border-radius:11px;font-size:12.8px;font-weight:700;background:var(--soft);color:var(--acc)}
+.acts2 button.w{background:#128c4a;color:#fff}
+.acts2 button.on{background:var(--acc);color:#fff}
+[data-theme=dark] .acts2 button.on{color:#06201c}
+.cmpw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+table.cmp{border-collapse:collapse;width:100%;font-size:13px}
+table.cmp td,table.cmp th{padding:8px 8px;border-top:1px solid var(--line);text-align:center;min-width:104px;vertical-align:middle}
+table.cmp th{border-top:0;font-weight:700}
+table.cmp td:first-child,table.cmp th:first-child{position:-webkit-sticky;position:sticky;left:0;background:var(--soft);min-width:78px;color:var(--mut);font-size:12px;font-weight:700;z-index:2}
+[dir=rtl] table.cmp td:first-child,[dir=rtl] table.cmp th:first-child{left:auto;right:0}
+table.cmp td.best{background:#dcfce7;color:#14532d;font-weight:800}
+[data-theme=dark] table.cmp td.best{background:#12351f;color:#86efac}
+table.cmp td small{color:var(--mut)}
+table.cmp td:first-child b{font-size:12.5px;color:var(--ink)}
+.cmp .ic.sm{margin:0 auto 4px}
+.rm{font-size:15px;color:var(--mut);width:26px;height:26px}
+</style>
 </head>
-<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen pb-24 transition-colors duration-200">
-
-<div id="app" v-cloak :dir="currentLangObj.dir">
-
-  <!-- ================= HEADER (ثابت حسب السياسة) ================= -->
-  <header class="sticky top-0 z-40 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-lg border-b border-indigo-500/30 no-print">
-    <div class="max-w-7xl mx-auto px-3 py-2.5 flex items-center justify-between gap-2">
-      
-      <!-- App Icon + Title -->
-      <div class="flex items-center gap-2.5 min-w-0">
-        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 via-orange-500 to-rose-600 flex items-center justify-center shadow-md shadow-orange-500/20 shrink-0 border border-white/20">
-          <i class="fa-solid fa-Sim-card text-xl text-white"></i>
-          <i class="fa-solid fa-tower-cell text-lg text-white"></i>
-        </div>
-        <div class="truncate">
-          <h1 class="font-black text-sm sm:text-base md:text-lg leading-tight text-amber-300 truncate">
-            {{ t('appTitle') }}
-          </h1>
-          <p class="text-[11px] sm:text-xs text-slate-300 font-semibold truncate flex items-center gap-1.5">
-            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            {{ t('appSubtitle') }}
-          </p>
-        </div>
-      </div>
-
-      <!-- Header Action Buttons (زر التحميل الذكي + زرين يخدمان التطبيق: الكيو آر كود والمشاركة) -->
-      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-        
-        <!-- 1. Smart Install Button (يختفي برمجياً بعد التثبيت أو الحفظ كاختصار) -->
-        <button
-          v-if="!isAppInstalled"
-          @click="triggerInstallPrompt"
-          class="flex items-center gap-1.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-xs sm:text-sm px-3 py-2 rounded-xl shadow-md shadow-emerald-600/30 active:scale-95 transition-all animate-bounce"
-          :title="t('installApp')"
-        >
-          <i class="fa-solid fa-download"></i>
-          <span class="hidden xs:inline sm:inline">{{ t('installApp') }}</span>
-        </button>
-
-        <!-- 2. Service Button A: QR Code Modal Button -->
-        <button
-          @click="openQrModal"
-          class="flex items-center gap-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 font-bold text-xs sm:text-sm px-2.5 sm:px-3 py-2 rounded-xl active:scale-95 transition-all"
-          :title="t('qrCodeBtn')"
-        >
-          <i class="fa-solid fa-qrcode text-base"></i>
-          <span class="hidden md:inline">{{ t('qrCodeBtn') }}</span>
-        </button>
-
-        <!-- 3. Service Button B: Share Button -->
-        <button
-          @click="shareApp"
-          class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/15 text-white font-bold text-xs sm:text-sm px-2.5 sm:px-3 py-2 rounded-xl active:scale-95 transition-all"
-          :title="t('shareBtn')"
-        >
-          <i class="fa-solid fa-share-nodes text-base"></i>
-          <span class="hidden md:inline">{{ t('shareBtn') }}</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Quick 6-Language Switcher Bar -->
-    <div class="bg-slate-950/70 border-t border-white/10 px-2 py-1.5 overflow-x-auto">
-      <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
-        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
-          <span class="text-[11px] text-slate-400 font-bold px-1 shrink-0">
-            <i class="fa-solid fa-globe text-amber-400"></i> {{ t('langLabel') }}:
-          </span>
-          <button
-            v-for="l in languages"
-            :key="l.code"
-            @click="setLanguage(l.code)"
-            :class="[
-              'px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 shrink-0 transition-all',
-              currentLang === l.code
-                ? 'bg-amber-400 text-slate-950 shadow-sm scale-105'
-                : 'bg-slate-800/90 text-slate-300 hover:bg-slate-700'
-            ]"
-          >
-            <span>{{ l.flag }}</span>
-            <span>{{ l.nativeName }}</span>
-          </button>
-        </div>
-
-        <!-- Theme quick toggle -->
-        <button
-          @click="toggleDarkMode"
-          class="w-7 h-7 rounded-lg bg-slate-800 text-amber-300 flex items-center justify-center shrink-0 hover:bg-slate-700 text-xs"
-        >
-          <i :class="isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Update Available Notification Banner -->
-  <div v-if="updateAvailable" class="bg-indigo-600 text-white px-4 py-2 text-xs sm:text-sm font-bold flex items-center justify-between gap-2 shadow-md no-print">
-    <div class="flex items-center gap-2">
-      <i class="fa-solid fa-arrows-rotate animate-spin"></i>
-      <span>{{ t('updateReady') }}</span>
-    </div>
-    <button @click="applyUpdate" class="bg-white text-indigo-700 px-3 py-1 rounded-lg font-black text-xs">
-      {{ t('updateNow') }}
-    </button>
-  </div>
-
-  <!-- QR Scan Welcome Install Banner (يظهر لمن مسح الكيو آر كود ولم يثبت التطبيق بعد) -->
-  <div v-if="scannedFromQr && !isAppInstalled" class="max-w-7xl mx-auto mt-3 px-3 no-print">
-    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-3.5 rounded-2xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-3 border border-emerald-400/40">
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl shrink-0">
-          <i class="fa-solid fa-mobile-screen-button"></i>
-        </div>
-        <div>
-          <h3 class="font-black text-sm sm:text-base">{{ t('qrWelcomeTitle') }}</h3>
-          <p class="text-xs text-emerald-100">{{ t('qrWelcomeDesc') }}</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-        <button @click="triggerInstallPrompt" class="flex-1 sm:flex-initial bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-4 py-2 rounded-xl text-xs sm:text-sm shadow">
-          <i class="fa-solid fa-download me-1"></i> {{ t('installNowBtn') }}
-        </button>
-        <button @click="scannedFromQr = false" class="text-white/80 hover:text-white px-2 py-1">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= MAIN CONTENT ================= -->
-  <main class="max-w-7xl mx-auto px-3 pt-3 pb-6">
-
-    <!-- ================= TAB 1: COMPANIES & OFFERS (الشركات والباقات) ================= -->
-    <section v-if="activeTab === 'offers'">
-      
-      <!-- Telecom Companies Selector Grid (كل شركة بأيقونة وهوية مستقلة) -->
-      <div class="mb-4">
-        <div class="flex items-center justify-between mb-2">
-          <h2 class="text-xs sm:text-sm font-black text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
-            <i class="fa-solid fa-building-columns text-indigo-600 dark:text-amber-400"></i>
-            {{ t('selectOperator') }}
-          </h2>
-          <span class="text-[11px] font-bold bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 px-2.5 py-0.5 rounded-full">
-            {{ totalVisiblePackages }} {{ t('packageCountUnit') }}
-          </span>
-        </div>
-
-        <div class="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-10 gap-1.5 sm:gap-2">
-          <!-- All Operators Button -->
-          <button
-            @click="selectedCompany = 'all'"
-            :class="[
-              'flex flex-col items-center justify-center p-2 rounded-2xl border transition-all duration-200',
-              selectedCompany === 'all'
-                ? 'bg-slate-900 dark:bg-amber-400 text-white dark:text-slate-950 border-slate-900 dark:border-amber-400 shadow-md scale-[1.03]'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-400'
-            ]"
-          >
-            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 text-white flex items-center justify-center font-black text-sm shadow-sm mb-1">
-              <i class="fa-solid fa-layer-group"></i>
-            </div>
-            <span class="text-[11px] font-extrabold truncate w-full text-center">{{ t('allCompanies') }}</span>
-          </button>
-
-          <!-- Individual Operator Cards with Custom SVG Icons -->
-          <button
-            v-for="comp in companies"
-            :key="comp.id"
-            @click="selectedCompany = comp.id"
-            :class="[
-              'flex flex-col items-center justify-center p-2 rounded-2xl border transition-all duration-200 relative overflow-hidden',
-              selectedCompany === comp.id
-                ? 'ring-2 ring-offset-1 dark:ring-offset-slate-950 shadow-lg scale-[1.03] font-black ' + comp.activeCardClass
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-400'
-            ]"
-          >
-            <!-- Company Distinct SVG Icon Badge -->
-            <div :class="['w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shadow-sm mb-1 text-white shrink-0', comp.iconBg]">
-              <span v-html="comp.svgIcon" class="w-6 h-6 flex items-center justify-center"></span>
-            </div>
-            <span class="text-[11px] font-extrabold truncate w-full text-center leading-tight">
-              {{ getCompanyName(comp) }}
-            </span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Category & Quick Filter Bar -->
-      <div class="bg-white dark:bg-slate-900 p-2.5 rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800 mb-4 flex flex-col sm:flex-row gap-2 items-center justify-between">
-        <!-- Category Pills -->
-        <div class="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
-          <button
-            v-for="cat in categories"
-            :key="cat.id"
-            @click="selectedCategory = cat.id"
-            :class="[
-              'px-3 py-1.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shrink-0 transition-all',
-              selectedCategory === cat.id
-                ? 'bg-indigo-600 text-white shadow-sm'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
-            ]"
-          >
-            <i :class="cat.icon"></i>
-            <span>{{ t(cat.labelKey) }}</span>
-          </button>
-        </div>
-
-        <!-- Quick Search Input -->
-        <div class="relative w-full sm:w-64">
-          <i class="fa-solid fa-magnifying-glass absolute top-1/2 -translate-y-1/2 start-3 text-slate-400 text-xs"></i>
-          <input
-            v-model="searchQuery"
-            type="text"
-            :placeholder="t('searchPlaceholder')"
-            class="w-full ps-8 pe-7 py-1.5 text-xs font-bold rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-          <button v-if="searchQuery" @click="searchQuery = ''" class="absolute top-1/2 -translate-y-1/2 end-2.5 text-slate-400 hover:text-slate-600 text-xs">
-            <i class="fa-solid fa-circle-xmark"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- ================= OPERATOR SECTIONS & WATERMARKED TABLES ================= -->
-      <div class="space-y-6">
-        <div
-          v-for="comp in filteredCompanies"
-          :key="comp.id"
-          class="space-y-4"
-        >
-          <!-- Company Banner Header -->
-          <div :class="['rounded-2xl p-3 sm:p-4 text-white shadow-md flex items-center justify-between', comp.bannerGradient]">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-inner shrink-0">
-                <span v-html="comp.svgIcon" class="w-8 h-8 flex items-center justify-center"></span>
-              </div>
-              <div>
-                <h3 class="font-black text-base sm:text-xl flex items-center gap-2">
-                  <span>{{ getCompanyName(comp) }}</span>
-                  <span class="text-[11px] bg-black/25 px-2.5 py-0.5 rounded-full font-bold">
-                    {{ comp.tag }}
-                  </span>
-                </h3>
-                <p class="text-xs text-white/85 font-semibold">{{ t('watermarkText') }} - {{ t('exclusiveOffers') }}</p>
-              </div>
-            </div>
-            <div class="text-end hidden sm:block">
-              <span class="text-xs bg-white/20 px-3 py-1 rounded-xl font-bold backdrop-blur-sm">
-                <i class="fa-solid fa-tags me-1"></i> {{ comp.tables.length }} {{ t('tablesCount') }}
-              </span>
-            </div>
-          </div>
-
-          <!-- Sub-Tables for Each Company -->
-          <div
-            v-for="(tbl, tIdx) in comp.tables"
-            :key="tIdx"
-            class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 overflow-hidden table-watermark-container"
-          >
-            <!-- WATERMARK LAYER (علامة مائية: الهواتف الذكية على كل جدول) -->
-            <div class="table-watermark-layer" :style="{ color: comp.brandHex }">
-              <span v-for="n in 12" :key="n" class="watermark-stamp">
-                الهواتف الذكية
-              </span>
-            </div>
-            <div class="watermark-center-big" :style="{ color: comp.brandHex }">
-              الهواتف الذكية
-            </div>
-
-            <!-- Table Content Layer -->
-            <div class="table-content-layer">
-              <!-- Table Sub-Header -->
-              <div class="px-4 py-2.5 bg-slate-50/90 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-2">
-                  <span :class="['w-3 h-3 rounded-full', comp.iconBg]"></span>
-                  <h4 class="font-black text-sm sm:text-base text-slate-800 dark:text-slate-100">
-                    {{ translateDynamic(tbl.title) }}
-                  </h4>
-                </div>
-                <span class="text-[11px] font-black text-slate-500 dark:text-slate-400 bg-slate-200/70 dark:bg-slate-700/70 px-2.5 py-0.5 rounded-lg">
-                  <i class="fa-solid fa-shield-halved text-amber-500 me-1"></i> الهواتف الذكية
-                </span>
-              </div>
-
-              <!-- Responsive Table -->
-              <div class="overflow-x-auto">
-                <table class="w-full text-xs sm:text-sm text-right border-collapse" :dir="currentLangObj.dir">
-                  <thead>
-                    <tr :class="['text-white font-extrabold text-[11px] sm:text-xs uppercase', comp.tableHeaderClass]">
-                      <th class="py-3 px-2.5 sm:px-4 text-start">{{ t('colPackage') }}</th>
-                      <th v-if="tbl.hasCalls" class="py-3 px-2 sm:px-3 text-center">{{ t('colCalls') }}</th>
-                      <th v-if="tbl.hasData" class="py-3 px-2 sm:px-3 text-center">{{ t('colData') }}</th>
-                      <th v-if="tbl.hasSocial" class="py-3 px-2 sm:px-3 text-center">{{ t('colSocial') }}</th>
-                      <th v-if="tbl.hasValidity" class="py-3 px-2 sm:px-3 text-center">{{ t('colValidity') }}</th>
-                      <th class="py-3 px-2 sm:px-3 text-center">{{ t('colOfficialPrice') }}</th>
-                      <!-- استبدال كلمة التكلفة بـ سعر العرض -->
-                      <th class="py-3 px-2.5 sm:px-4 text-center bg-amber-400 text-slate-950 font-black">
-                        <i class="fa-solid fa-fire text-rose-600 me-0.5"></i> {{ t('colOfferPrice') }}
-                      </th>
-                      <th v-if="showSavingsCol" class="py-3 px-2 text-center hidden md:table-cell">{{ t('colSavings') }}</th>
-                      <th class="py-3 px-2 text-center no-print">{{ t('colShare') }}</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-slate-200/75 dark:divide-slate-800/80">
-                    <tr
-                      v-for="(row, rIdx) in tbl.rows"
-                      :key="rIdx"
-                      class="hover:bg-amber-50/60 dark:hover:bg-slate-800/60 transition-colors"
-                    >
-                      <!-- الباقة -->
-                      <td class="py-2.5 px-2.5 sm:px-4 font-black text-slate-900 dark:text-white text-start whitespace-nowrap">
-                        <div class="flex items-center gap-1.5">
-                          <span :class="['w-1.5 h-5 rounded-full shrink-0', comp.iconBg]"></span>
-                          <span>{{ translateDynamic(row.name) }}</span>
-                        </div>
-                      </td>
-
-                      <!-- الاتصال -->
-                      <td v-if="tbl.hasCalls" class="py-2.5 px-2 sm:px-3 text-center font-bold text-slate-700 dark:text-slate-200">
-                        <span :class="isUnlimited(row.calls) ? 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-lg font-black' : ''">
-                          {{ translateDynamic(row.calls || '-') }}
-                        </span>
-                      </td>
-
-                      <!-- البيانات -->
-                      <td v-if="tbl.hasData" class="py-2.5 px-2 sm:px-3 text-center font-bold text-indigo-700 dark:text-indigo-300">
-                        <span :class="isUnlimited(row.data) ? 'bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 px-2 py-0.5 rounded-lg font-black' : ''">
-                          {{ translateDynamic(row.data || '-') }}
-                        </span>
-                      </td>
-
-                      <!-- السوشيال -->
-                      <td v-if="tbl.hasSocial" class="py-2.5 px-2 sm:px-3 text-center font-bold text-purple-700 dark:text-purple-300">
-                        <span :class="isUnlimited(row.social) ? 'bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-300 px-2 py-0.5 rounded-lg font-black' : ''">
-                          {{ translateDynamic(row.social || '-') }}
-                        </span>
-                      </td>
-
-                      <!-- الصلاحية -->
-                      <td v-if="tbl.hasValidity" class="py-2.5 px-2 sm:px-3 text-center font-bold text-slate-600 dark:text-slate-300">
-                        {{ translateDynamic(row.validity || '-') }}
-                      </td>
-
-                      <!-- البيع الرسمي -->
-                      <td class="py-2.5 px-2 sm:px-3 text-center font-bold text-slate-400 dark:text-slate-500">
-                        <span :class="getEffectiveOfferPrice(comp.id, tIdx, rIdx, row.offer) < row.official ? 'line-through decoration-rose-500/80' : 'text-slate-700 dark:text-slate-300'">
-                          {{ row.official }}
-                        </span>
-                        <span class="text-[10px] ms-0.5">{{ t('sar') }}</span>
-                      </td>
-
-                      <!-- سعر العرض (بدل التكلفة) -->
-                      <td class="py-2.5 px-2.5 sm:px-4 text-center bg-amber-50/70 dark:bg-amber-950/25">
-                        <div class="inline-flex items-center justify-center gap-1 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black text-sm sm:text-base px-3 py-1 rounded-xl shadow-sm">
-                          <span>{{ getEffectiveOfferPrice(comp.id, tIdx, rIdx, row.offer) }}</span>
-                          <span class="text-[10px] font-bold opacity-90">{{ t('sar') }}</span>
-                        </div>
-                      </td>
-
-                      <!-- التوفير -->
-                      <td v-if="showSavingsCol" class="py-2.5 px-2 text-center hidden md:table-cell">
-                        <span
-                          v-if="row.official - getEffectiveOfferPrice(comp.id, tIdx, rIdx, row.offer) > 0"
-                          class="text-[11px] font-black bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 px-2 py-0.5 rounded-full"
-                        >
-                          {{ t('saveWord') }} {{ row.official - getEffectiveOfferPrice(comp.id, tIdx, rIdx, row.offer) }} {{ t('sar') }}
-                        </span>
-                        <span v-else class="text-slate-400 text-xs">-</span>
-                      </td>
-
-                      <!-- مشاركة الباقة للعميل -->
-                      <td class="py-2.5 px-2 text-center no-print">
-                        <button
-                          @click="shareSingleOffer(comp, tbl, row, tIdx, rIdx)"
-                          class="w-7 h-7 rounded-lg bg-emerald-500/15 hover:bg-emerald-500 text-emerald-600 hover:text-white inline-flex items-center justify-center transition-colors"
-                          :title="t('shareOfferWhatsApp')"
-                        >
-                          <i class="fa-brands fa-whatsapp text-sm"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <!-- Footnote if table has international countries or social notes -->
-              <div v-if="tbl.note" class="px-4 py-2.5 bg-amber-50/90 dark:bg-slate-800/90 border-t border-amber-200/70 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300 flex items-start gap-2">
-                <i class="fa-solid fa-circle-info text-amber-500 mt-0.5 shrink-0"></i>
-                <span>{{ translateDynamic(tbl.note) }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= TAB 2: SMART COMPARE & BUDGET FINDER (مقارنة وبحث ذكي) ================= -->
-    <section v-if="activeTab === 'compare'" class="space-y-4">
-      <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800">
-        <h2 class="font-black text-base sm:text-lg mb-3 flex items-center gap-2 text-indigo-600 dark:text-amber-400">
-          <i class="fa-solid fa-sliders"></i>
-          <span>{{ t('smartAdvisorTitle') }}</span>
-        </h2>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <!-- Max Offer Price Filter -->
-          <div class="bg-slate-50 dark:bg-slate-800/70 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
-            <label class="text-xs font-extrabold text-slate-500 dark:text-slate-400 block mb-1">
-              {{ t('maxBudgetLabel') }}: <span class="text-emerald-600 dark:text-emerald-400 font-black text-sm">{{ maxPriceFilter }} {{ t('sar') }}</span>
-            </label>
-            <input type="range" v-model.number="maxPriceFilter" min="20" max="1200" step="5" class="w-full accent-indigo-600" />
-            <div class="flex justify-between text-[10px] text-slate-400 font-bold mt-1">
-              <span>20 {{ t('sar') }}</span>
-              <span>150 {{ t('sar') }}</span>
-              <span>300 {{ t('sar') }}</span>
-              <span>1200 {{ t('sar') }}</span>
-            </div>
-          </div>
-
-          <!-- Package Feature Filter -->
-          <div class="bg-slate-50 dark:bg-slate-800/70 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
-            <label class="text-xs font-extrabold text-slate-500 dark:text-slate-400 block mb-1.5">
-              {{ t('featureFilterLabel') }}
-            </label>
-            <div class="flex flex-wrap gap-1.5">
-              <button
-                @click="onlyUnlimitedSocial = !onlyUnlimitedSocial"
-                :class="['px-2.5 py-1 rounded-lg text-xs font-bold border transition', onlyUnlimitedSocial ? 'bg-purple-600 text-white border-purple-600' : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700']"
-              >
-                <i class="fa-solid fa-hashtag me-1"></i> {{ t('unlimitedSocialBtn') }}
-              </button>
-              <button
-                @click="onlyIntlCalls = !onlyIntlCalls"
-                :class="['px-2.5 py-1 rounded-lg text-xs font-bold border transition', onlyIntlCalls ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700']"
-              >
-                <i class="fa-solid fa-earth-asia me-1"></i> {{ t('intlCallsBtn') }}
-              </button>
-            </div>
-          </div>
-
-          <!-- Sort Order -->
-          <div class="bg-slate-50 dark:bg-slate-800/70 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
-            <label class="text-xs font-extrabold text-slate-500 dark:text-slate-400 block mb-1.5">
-              {{ t('sortByLabel') }}
-            </label>
-            <select v-model="sortMode" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs font-bold">
-              <option value="priceAsc">{{ t('sortCheapest') }}</option>
-              <option value="savingsDesc">{{ t('sortHighestSavings') }}</option>
-              <option value="priceDesc">{{ t('sortHighestPackage') }}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Comparison Watermarked Table -->
-      <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 overflow-hidden table-watermark-container">
-        <div class="table-watermark-layer text-indigo-600">
-          <span v-for="n in 12" :key="n" class="watermark-stamp">الهواتف الذكية</span>
-        </div>
-        <div class="watermark-center-big text-indigo-600">الهواتف الذكية</div>
-
-        <div class="table-content-layer">
-          <div class="px-4 py-3 bg-slate-900 text-white flex items-center justify-between">
-            <span class="font-black text-sm"><i class="fa-solid fa-scale-balanced text-amber-400 me-1.5"></i> {{ t('comparisonResults') }} ({{ flatFilteredOffers.length }})</span>
-            <span class="text-xs text-amber-300 font-bold">الهواتف الذكية</span>
-          </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-xs sm:text-sm border-collapse">
-              <thead>
-                <tr class="bg-slate-800 text-white font-extrabold text-xs">
-                  <th class="py-2.5 px-3 text-start">{{ t('colCompany') }}</th>
-                  <th class="py-2.5 px-3 text-start">{{ t('colPackage') }}</th>
-                  <th class="py-2.5 px-2 text-center">{{ t('colCalls') }}</th>
-                  <th class="py-2.5 px-2 text-center">{{ t('colData') }}</th>
-                  <th class="py-2.5 px-2 text-center">{{ t('colSocial') }}</th>
-                  <th class="py-2.5 px-2 text-center">{{ t('colOfficialPrice') }}</th>
-                  <th class="py-2.5 px-3 text-center bg-amber-400 text-slate-950 font-black">{{ t('colOfferPrice') }}</th>
-                  <th class="py-2.5 px-2 text-center">{{ t('colSavings') }}</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
-                <tr v-for="(item, idx) in flatFilteredOffers" :key="idx" class="hover:bg-amber-50/50 dark:hover:bg-slate-800/60">
-                  <td class="py-2.5 px-3 font-black whitespace-nowrap">
-                    <div class="flex items-center gap-2">
-                      <span :class="['w-7 h-7 rounded-lg flex items-center justify-center text-white shrink-0', item.comp.iconBg]" v-html="item.comp.svgIcon"></span>
-                      <span>{{ getCompanyName(item.comp) }}</span>
-                    </div>
-                  </td>
-                  <td class="py-2.5 px-3 font-bold">{{ translateDynamic(item.row.name) }}</td>
-                  <td class="py-2.5 px-2 text-center font-semibold">{{ translateDynamic(item.row.calls || '-') }}</td>
-                  <td class="py-2.5 px-2 text-center font-bold text-indigo-600 dark:text-indigo-400">{{ translateDynamic(item.row.data || item.row.validity || '-') }}</td>
-                  <td class="py-2.5 px-2 text-center font-bold text-purple-600 dark:text-purple-400">{{ translateDynamic(item.row.social || '-') }}</td>
-                  <td class="py-2.5 px-2 text-center text-slate-400 line-through">{{ item.row.official }}</td>
-                  <td class="py-2.5 px-3 text-center font-black">
-                    <span class="bg-emerald-600 text-white px-2.5 py-1 rounded-xl text-sm">{{ item.effectiveOffer }} {{ t('sar') }}</span>
-                  </td>
-                  <td class="py-2.5 px-2 text-center">
-                    <span v-if="item.savings > 0" class="bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 font-black text-xs px-2 py-0.5 rounded-full">
-                      {{ item.savings }} {{ t('sar') }}
-                    </span>
-                    <span v-else>-</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= TAB 3: QR CODE & CUSTOMER INSTALL STAND (باركود التطبيق) ================= -->
-    <section v-if="activeTab === 'qr'" class="max-w-xl mx-auto">
-      <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-xl border-2 border-amber-400/60 overflow-hidden p-5 text-center relative">
-        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 text-white flex items-center justify-center mx-auto mb-3 shadow-lg text-2xl">
-          <i class="fa-solid fa-qrcode"></i>
-        </div>
-        <h2 class="font-black text-xl sm:text-2xl text-slate-900 dark:text-white mb-1">
-          {{ t('appTitle') }}
-        </h2>
-        <p class="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400 mb-4">
-          {{ t('qrStandSubtitle') }}
-        </p>
-
-        <!-- QR Canvas Box -->
-        <div class="bg-white p-4 rounded-3xl inline-block shadow-inner border-4 border-slate-900 mb-4">
-          <canvas id="mainQrCanvas" class="w-56 h-56 sm:w-64 sm:h-64 mx-auto"></canvas>
-          <div class="mt-2 font-black text-slate-900 text-xs tracking-wider uppercase">
-            الهواتف الذكية الأولى
-          </div>
-        </div>
-
-        <!-- 6 Languages Flags Banner on Stand -->
-        <div class="flex flex-wrap justify-center gap-2 mb-4">
-          <span v-for="l in languages" :key="l.code" class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-bold">
-            {{ l.flag }} {{ l.nativeName }}
-          </span>
-        </div>
-
-        <!-- Custom URL input for QR (in case hosted on GitHub Pages) -->
-        <div class="text-start bg-slate-50 dark:bg-slate-800/70 p-3 rounded-2xl border border-slate-200 dark:border-slate-700 mb-4 no-print">
-          <label class="text-xs font-black text-slate-600 dark:text-slate-300 block mb-1">
-            <i class="fa-solid fa-link me-1 text-indigo-500"></i> {{ t('qrUrlLabel') }}
-          </label>
-          <div class="flex gap-2">
-            <input
-              v-model="qrTargetUrl"
-              @input="renderAllQrCodes"
-              type="url"
-              dir="ltr"
-              class="flex-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs font-mono"
-            />
-            <button @click="copyQrLink" class="bg-indigo-600 text-white px-3 py-1.5 rounded-xl text-xs font-bold">
-              <i class="fa-solid fa-copy"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="grid grid-cols-2 gap-2.5 no-print">
-          <button @click="printQrStand" class="bg-slate-900 dark:bg-amber-400 text-white dark:text-slate-950 font-black py-3 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 shadow">
-            <i class="fa-solid fa-print"></i>
-            <span>{{ t('printQrPoster') }}</span>
-          </button>
-          <button @click="downloadQrImage" class="bg-emerald-600 text-white font-black py-3 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 shadow">
-            <i class="fa-solid fa-image"></i>
-            <span>{{ t('downloadQrImg') }}</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= TAB 4: SETTINGS & LANGUAGES (الإعدادات واللغات) ================= -->
-    <section v-if="activeTab === 'settings'" class="max-w-2xl mx-auto space-y-4">
-      <!-- Language Selector Card -->
-      <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800">
-        <h3 class="font-black text-sm sm:text-base mb-3 flex items-center gap-2 text-indigo-600 dark:text-amber-400">
-          <i class="fa-solid fa-language text-lg"></i>
-          <span>{{ t('chooseAppLanguage') }}</span>
-        </h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-          <button
-            v-for="l in languages"
-            :key="l.code"
-            @click="setLanguage(l.code)"
-            :class="[
-              'p-3 rounded-2xl border text-start transition-all flex items-center gap-2.5',
-              currentLang === l.code
-                ? 'bg-indigo-600 text-white border-indigo-600 shadow-md font-black'
-                : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 font-bold'
-            ]"
-          >
-            <span class="text-2xl">{{ l.flag }}</span>
-            <div>
-              <div class="text-xs sm:text-sm">{{ l.nativeName }}</div>
-              <div class="text-[10px] opacity-75">{{ l.arLabel }}</div>
-            </div>
-          </button>
-        </div>
-      </div>
-
-      <!-- Display & Store Controls -->
-      <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 space-y-3">
-        <h3 class="font-black text-sm sm:text-base mb-2 flex items-center gap-2 text-indigo-600 dark:text-amber-400">
-          <i class="fa-solid fa-Sliders text-lg"></i>
-          <span>{{ t('displaySettings') }}</span>
-        </h3>
-
-        <!-- Toggle Dark Mode -->
-        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60">
-          <div class="flex items-center gap-2.5">
-            <i class="fa-solid fa-moon text-indigo-500"></i>
-            <span class="text-xs sm:text-sm font-bold">{{ t('darkModeLabel') }}</span>
-          </div>
-          <button @click="toggleDarkMode" :class="['w-12 h-6 rounded-full p-1 transition-colors', isDark ? 'bg-indigo-600' : 'bg-slate-300']">
-            <div :class="['w-4 h-4 rounded-full bg-white transition-transform', isDark ? '-translate-x-6' : 'translate-x-0']"></div>
-          </button>
-        </div>
-
-        <!-- Toggle Savings Column -->
-        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60">
-          <div class="flex items-center gap-2.5">
-            <i class="fa-solid fa-piggy-bank text-emerald-500"></i>
-            <span class="text-xs sm:text-sm font-bold">{{ t('showSavingsToggle') }}</span>
-          </div>
-          <button @click="showSavingsCol = !showSavingsCol" :class="['w-12 h-6 rounded-full p-1 transition-colors', showSavingsCol ? 'bg-emerald-600' : 'bg-slate-300']">
-            <div :class="['w-4 h-4 rounded-full bg-white transition-transform', showSavingsCol ? '-translate-x-6' : 'translate-x-0']"></div>
-          </button>
-        </div>
-
-        <!-- Install Status Reset / Check -->
-        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60">
-          <div>
-            <div class="text-xs sm:text-sm font-bold">{{ t('installStatusLabel') }}</div>
-            <div class="text-[11px] text-slate-400">
-              {{ isAppInstalled ? t('appInstalledText') : t('appNotInstalledText') }}
-            </div>
-          </div>
-          <button
-            v-if="isAppInstalled"
-            @click="resetInstallButton"
-            class="text-xs bg-slate-200 dark:bg-slate-700 px-3 py-1.5 rounded-xl font-bold"
-          >
-            {{ t('showInstallBtnAgain') }}
-          </button>
-          <button
-            v-else
-            @click="markAsShortcutSaved"
-            class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold"
-          >
-            {{ t('hideInstallBtnManual') }}
-          </button>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ================= QR CODE MODAL (نافذة الكيو آر كود السريعة) ================= -->
-  <div v-if="showQrModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 no-print" @click.self="showQrModal = false">
-    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-sm w-full p-5 text-center shadow-2xl border border-amber-400/50 animate-fadeIn">
-      <div class="flex items-center justify-between mb-3">
-        <h3 class="font-black text-base text-slate-900 dark:text-white flex items-center gap-2">
-          <i class="fa-solid fa-qrcode text-amber-500"></i>
-          <span>{{ t('qrModalTitle') }}</span>
-        </h3>
-        <button @click="showQrModal = false" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 flex items-center justify-center">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <p class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-3">
-        {{ t('qrStandSubtitle') }}
-      </p>
-
-      <div class="bg-white p-3.5 rounded-2xl inline-block border-4 border-slate-900 shadow mb-3">
-        <canvas id="modalQrCanvas" class="w-48 h-48 mx-auto"></canvas>
-        <div class="text-[11px] font-black text-slate-900 mt-1">عروض الاتصالات - الهواتف الذكية الأولى</div>
-      </div>
-
-      <div class="flex flex-wrap justify-center gap-1 mb-4">
-        <span v-for="l in languages" :key="l.code" class="text-[11px] px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded-full font-bold">
-          {{ l.flag }} {{ l.nativeName }}
-        </span>
-      </div>
-
-      <div class="flex gap-2">
-        <button @click="shareApp" class="flex-1 bg-indigo-600 text-white font-black py-2.5 rounded-xl text-xs">
-          <i class="fa-solid fa-share-nodes me-1"></i> {{ t('shareBtn') }}
-        </button>
-        <button @click="showQrModal = false; activeTab = 'qr'" class="flex-1 bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl text-xs">
-          <i class="fa-solid fa-expand me-1"></i> {{ t('fullScreenQr') }}
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= iOS / MANUAL INSTALL INSTRUCTIONS MODAL ================= -->
-  <div v-if="showInstallHelpModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 no-print" @click.self="showInstallHelpModal = false">
-    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-sm w-full p-5 shadow-2xl border border-emerald-500/40">
-      <div class="flex items-center justify-between mb-3">
-        <h3 class="font-black text-base text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
-          <i class="fa-solid fa-mobile-screen"></i>
-          <span>{{ t('installGuideTitle') }}</span>
-        </h3>
-        <button @click="showInstallHelpModal = false" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div class="space-y-3 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 mb-4">
-        <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center gap-3">
-          <i class="fa-solid fa-arrow-up-from-bracket text-xl text-indigo-500"></i>
-          <span>1. {{ t('iosStep1') }}</span>
-        </div>
-        <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center gap-3">
-          <i class="fa-regular fa-square-plus text-xl text-emerald-500"></i>
-          <span>2. {{ t('iosStep2') }}</span>
-        </div>
-      </div>
-
-      <button
-        @click="markAsShortcutSaved"
-        class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-3 rounded-2xl text-xs sm:text-sm shadow"
-      >
-        <i class="fa-solid fa-check-circle me-1"></i> {{ t('confirmShortcutSaved') }}
-      </button>
-    </div>
-  </div>
-
-  <!-- ================= 4-SECTION FOOTER (الفوتر الرباعي الثابت حسب السياسة) ================= -->
-  <footer class="fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 shadow-2xl no-print">
-    <div class="max-w-7xl mx-auto grid grid-cols-4 h-16">
-      
-      <!-- 1. الشركات والباقات -->
-      <button
-        @click="activeTab = 'offers'"
-        :class="[
-          'flex flex-col items-center justify-center gap-1 transition-all relative',
-          activeTab === 'offers' ? 'text-indigo-600 dark:text-amber-400 font-black' : 'text-slate-400 hover:text-slate-600 font-bold'
-        ]"
-      >
-        <span v-if="activeTab === 'offers'" class="absolute top-0 w-10 h-1 rounded-b-full bg-indigo-600 dark:bg-amber-400"></span>
-        <i class="fa-solid fa-sim-card text-lg"></i>
-        <span class="text-[11px]">{{ t('navOffers') }}</span>
-      </button>
-
-      <!-- 2. المقارنة والبحث -->
-      <button
-        @click="activeTab = 'compare'"
-        :class="[
-          'flex flex-col items-center justify-center gap-1 transition-all relative',
-          activeTab === 'compare' ? 'text-indigo-600 dark:text-amber-400 font-black' : 'text-slate-400 hover:text-slate-600 font-bold'
-        ]"
-      >
-        <span v-if="activeTab === 'compare'" class="absolute top-0 w-10 h-1 rounded-b-full bg-indigo-600 dark:bg-amber-400"></span>
-        <i class="fa-solid fa-scale-balanced text-lg"></i>
-        <span class="text-[11px]">{{ t('navCompare') }}</span>
-      </button>
-
-      <!-- 3. الكيو آر كود -->
-      <button
-        @click="activeTab = 'qr'; $nextTick(() => renderAllQrCodes())"
-        :class="[
-          'flex flex-col items-center justify-center gap-1 transition-all relative',
-          activeTab === 'qr' ? 'text-indigo-600 dark:text-amber-400 font-black' : 'text-slate-400 hover:text-slate-600 font-bold'
-        ]"
-      >
-        <span v-if="activeTab === 'qr'" class="absolute top-0 w-10 h-1 rounded-b-full bg-indigo-600 dark:bg-amber-400"></span>
-        <i class="fa-solid fa-qrcode text-lg"></i>
-        <span class="text-[11px]">{{ t('navQr') }}</span>
-      </button>
-
-      <!-- 4. الإعدادات واللغات -->
-      <button
-        @click="activeTab = 'settings'"
-        :class="[
-          'flex flex-col items-center justify-center gap-1 transition-all relative',
-          activeTab === 'settings' ? 'text-indigo-600 dark:text-amber-400 font-black' : 'text-slate-400 hover:text-slate-600 font-bold'
-        ]"
-      >
-        <span v-if="activeTab === 'settings'" class="absolute top-0 w-10 h-1 rounded-b-full bg-indigo-600 dark:bg-amber-400"></span>
-        <i class="fa-solid fa-sliders text-lg"></i>
-        <span class="text-[11px]">{{ t('navSettings') }}</span>
-      </button>
-
-    </div>
-  </footer>
-
-</div>
-
+<body>
+<div id="top"><header>
+  <div class="brand" data-act="home"><span id="logo"></span><b id="appTitle"></b></div>
+  <button class="hb" id="instBtn" data-act="install" style="display:none"><span>⬇</span><span class="hide-sm" id="instTxt"></span></button>
+  <button class="hb" data-act="favsGo" aria-label="Saved">⭐</button>
+  <button class="hb" data-act="qr" aria-label="QR">▦</button>
+  <button class="hb" data-act="share" aria-label="Share">⤴</button>
+</header>
+<div id="langbar"></div></div>
+<div id="banner"><span id="bnMsg"></span><span><button data-act="doUpdate" id="bnYes"></button> <button data-act="bnLater" id="bnNo" style="background:transparent;color:inherit"></button></span></div>
+<main id="view"></main>
+<nav id="nav"></nav>
+<div id="toast"></div>
 <script>
-const { createApp } = Vue;
+const APP_VERSION="1.4.0";
+const CONTACT={whatsapp:"",email:""}; /* e.g. whatsapp:"966500000000", email:"you@example.com" */
+/* Company logos: paste a data URI per company id, e.g. LOGOS.mobily="data:image/png;base64,...",
+   or put PNG files in the folder LOGO_DIR named <id>.png (mobily, sawa, salam, friendi, virgin, libara, redbull, jawy, zain).
+   If no logo is found, a colored letter tile is shown. */
+const LOGOS={};
+const LOGO_DIR="logos/";
+const LANGS=[["ar","العربية"],["en","English"],["ur","اردو"],["bn","বাংলা"],["hi","हिन्दी"],["am","አማርኛ"]];
+const RTL={ar:1,ur:1};
+/* row = [name, calls, data, social, official, cost, validity]
+   calls: "100" min | "U" unlimited ; suffix a=all networks o=on-net i=all+intl l=local+intl ; "Uo+550"
+   data/social: number GB | "U" | "1TB" | "Us"(unl. Snap/WhatsApp/FB) | "Uc"(unl. communication) ; trailing * kept
+   validity: 3m months, 2w weeks, 14d days */
+const U="U";
+const CO=[
+{id:"mobily",n:{en:"Mobily",ar:"موبايلي"},c:"#2563eb",l:"Mo",cats:{
+ cd:[["Mobily 30","100",1,1,35,35],["Mobily 75","500",23,23,86,75],["Mobily 110","1500",40,65,127,90],["Mobily 150","3000",55,U,173,115],["Mobily 180",U,80,U,207,130],["Mobily 220",U,100,U,253,150],["Mobily 360",U,U,U,395,220],["Mobily 360",U,U,U,1185,595,"3m"],["150 Data Booster","1000",70,U,173,115],["Data Booster 180","1000",90,U,207,130],["Data Booster 220","1000",114,U,253,150],["Extreme","500",40,U,230,140],["Extreme Plus","1000",80,U,276,160]],
+ fx:[["Flex Plus 20","60",3,3,23,25,"1w"],["Flex Plus 30","100",1,1,36,45],["Flex Plus 65","450",10,15,75,65],["Flex Plus 100","1100",35,35,115,85],["Flex Plus 150","1700",60,U,173,115],["Flex Plus 240","2000",100,U,276,160,"56d"],["Flex Plus 320","2000",135,U,368,205,"84d"]],
+ dt:[["","",10,"",109,80,"1m"],["","",10,"",190,120,"3m"],["","",20,"",156,105,"1m"],["","",20,"",253,150,"3m"],["","",50,"",242,145,"2m"],["","",50,"",299,175,"3m"],["","",100,"",184,120,"1m"],["","",100,"",368,205,"3m"],["","",300,"",517,275,"3m"],["","",600,"",1035,525,"6m"],["","",U,"",374,210,"1m"],["","",U,"",1122,565,"3m"]]}},
+{id:"sawa",n:{en:"Sawa",ar:"سوا"},c:"#7c3aed",l:"Sa",cats:{
+ cd:[["Sawa Basic","100a",1,1,35,35],["Sawa Like","530o",10,15,75,65],["Sawa Like Plus","600a",20,20,87,75],["Sawa Share","1150a",40,45,124,95],["Sawa Share Plus","1540a",40,55,133,95],["Sawa 175","1200a",85,U,202,125],["Sawa 150","1180a",70,U,173,115],["Sawa 120","1250a",45,"Us",138,95],["Sawa Post","Uo",70,U,184,120],["Sawa Post Plus","Uo+550",74,U,196,125],["Sawa Star","Uo",113,U,253,150],["Sawa Star Plus","1450a",127,U,276,160],["Sawa Hero","Ua",U,U,414,230]],
+ fx:[["Sawa Flex 25","65i",1,"",25,25],["Sawa Flex Basic","100i",1,1,41,40],["Sawa Flex 65","450i",10,15,75,65],["Sawa Flex 75","600i",10,20,87,115],["Sawa Flex 100","1100i",35,36,115,85],["Sawa Flex 120","1300i",45,U,138,95],["Sawa Flex 150","1500i",60,U,173,115],["Sawa Flex 240","2000i",100,U,276,160],["Sawa Flex 340","2000i",140,U,391,215,"3m"]],
+ dt:[["","",120,"",230,140,"1m"],["","",250,"",460,250,"3m"],["","",350,"",633,335,"3m"],["","",300,"",575,305,"4m"],["","",400,"",748,390,"4m"],["","",600,"",1035,525,"6m"],["Max","",U,"",391,215,"1m"],["Max","",U,"",1139,575,"3m"],["","",70,"",138,130,"1m"],["Dash Cam","",30,"",443,355,"12m"],["Dash Cam","",20,"",265,225,"6m"]]},
+ notes:{en:"Flex packages are valid for 4 weeks. International calls: Yemen, Sudan, Philippines, Egypt, Bangladesh, India, Pakistan, Ethiopia, Indonesia, UAE, Sri Lanka, Kuwait, Nepal, Oman, Bahrain, Qatar, Syria, Jordan, Lebanon, China.",ar:"باقات فليكس صالحة لمدة 4 أسابيع. الدول المشمولة بالمكالمات الدولية: اليمن، السودان، الفلبين، مصر، بنجلاديش، الهند، باكستان، إثيوبيا، إندونيسيا، الإمارات، سريلانكا، الكويت، النيبال، عمان، البحرين، قطر، سوريا، الأردن، لبنان، الصين."}},
+{id:"salam",n:{en:"Salam",ar:"سلام"},c:"#16a34a",l:"Sl",cats:{
+ cd:[["Solo 74","450",20,20,86,70],["Solo 99","1000",35,U,113,85],["Solo 149",U,59,U,172,115],["Solo 179",U,79,U,207,130],["Solo 199","1800",80,U,229,140],["Infinity + extra SIM",U,U,U,413,230],["Solo 160","1000",50,U,184,120,"2m"],["Solo 240","1000",90,U,276,160,"3m"],["Solo 340","1500",135,U,391,215,"6m"]],
+ fx:[["Flex 85","500l",12,12,98,75],["Flex 110","1000l",35,30,127,90],["Flex 150","1200l",55,U,173,115],["Flex 200","1500l",65,U,230,140]],
+ dt:[["","",10,"",80,90],["","",50,"",132,130],["","",100,"",189,170],["","",10,10,132,130,"2m"],["","",30,30,201,180,"3m"],["","",50,50,224,195,"3m"],["","",100,100,343,285,"3m"],["","",150,150,458,370,"3m"],["","",300,"",517,410,"3m"],["","",U,U,373,305]]}},
+{id:"friendi",n:{en:"Friendi",ar:"فرندي"},c:"#0891b2",l:"Fr",cats:{
+ cd:[["","120",1,"",20,20,"14d"],["","250",20,30,81,70],["","500",30,40,98,75],["","700",40,U,113,85],["","1000",45,U,126,90],["",U,55,U,171,115],["","800",100,"",367,300,"3m"]],
+ fx:[["","150l",2,2,48,55],["","150l",3,3,23,40,"7d"],["","300l",6,6,69,65],["","1000l",35,35,115,85],["","1200l",40,U,127,90],["","1500l",100,U,345,285,"3m"]],
+ dt:[["","",50,"",201,125,"3m"],["","",75,"",293,245,"3m"],["","",200,"",370,305,"3m"],["","",300,"",518,415,"3m"],["","",U,"",374,305,"1m"]]}},
+{id:"virgin",n:{en:"Virgin",ar:"فيرجن"},c:"#dc2626",l:"Vi",cats:{
+ cd:[["","250",3,1,52,55],["","350",20,20,81,70],["","750",40,U,115,85],["","745",45,U,124,90],["",U,55,U,173,115],["",U,80,U,226,140],["",U,U,U,410,335]],
+ fx:[["","300l",6,6,70,65],["","1000l",35,35,115,85],["","1500l",100,U,345,285,"3m"]],
+ dt:[["","",50,"",96,110,"1m"],["","",75,75,225,215,"2m"],["","",100,"",173,175,"1m"],["","",100,"",247,235,"6m"],["","",125,100,337,310,"3m"],["","",300,"",518,460,"3m"],["","",300,"",534,470,"6m"],["","",600,"",1011,865,"6m"],["","",U,"",365,330,"1m"]]}},
+{id:"libara",n:{en:"Libara",ar:"ليبارا"},c:"#52525b",l:"Li",cats:{
+ cd:[["Libara 60","400a",6,9,69,70],["Libara 70","350a",15,20,81,80],["Libara 90","600a",35,55,104,105],["Libara 100","900l",30,30,115,115],["Libara 110","1100",40,U,126,125],["Libara 114","",50,U,132,130]]}},
+{id:"redbull",n:{en:"Red Bull",ar:"ريد بول"},c:"#1e3a8a",l:"RB",cats:{
+ cd:[["Mazaji 80","500",25,35,92,75],["Mazaji 95","800",30,U,109,85],["Mazaji 120","1050",50,U,138,95],["Mazaji 130","1200",55,U,150,100],["Mazaji 160 Plus",U,66,U,184,120],["Mazaji 360 Plus",U,U,U,414,230]],
+ fx:[["Flex 200","600l",89,U,230,140],["Flex 300","1300l",100,U,345,195,"90d"],["Flex 350","1450l",145,U,403,225,"120d"]],
+ dt:[["","",12,12,75,65,"1m"],["","",30,30,98,75,"1m"],["","",50,50,150,100,"1m"],["","",U,"",374,210,"1m"],["","",80,80,242,145,"2m"],["","",200,"",345,195,"3m"],["","",250,100,552,295,"3m"]]}},
+{id:"jawy",n:{en:"Jawy",ar:"جوي"},c:"#ea580c",l:"Jw",cats:{
+ cd:[["Jawy 200","1300",101,U,230,140],["Jawy 150","1000",71,U,173,115],["Jawy 110","750",45,U,127,90],["Jawy 90","500",33,U,104,80],["Jawy 70","350",21,20,81,70],["Jawy 45","250",3,1,52,55]],
+ fx:[["Flex 400","3000l",150,150,460,250,"120d"],["Flex 300","1600l",100,U,345,195,"90d"],["Flex 205","1400l",80,U,236,145,"60d"],["Flex 155","1500l",63,U,188,125],["Flex 125","1100l",47,U,144,100],["Flex 105","1010l",40,35,121,90],["Flex 75","400l",14,11,87,70],["Flex 50","100l",4,0,58,60]],
+ dt:[["Data 400","",260,"",460,250],["Data 240","",160,"",276,160],["Data 180","",120,"",207,95]]}},
+{id:"zain",n:{en:"Zain",ar:"زين"},c:"#65a30d",l:"Zn",cats:{
+ cd:[["Shabab 49","100",2,"2**",49,40],["Shabab 79","500",15,"15**",79,60],["Shabab 119","1500",30,"U**",119,70],["Shabab 119","4500",90,"U**",357,90,"12w"],["Shabab 169",U,55,"U**",169,105],["Shabab 409",U,U,"U**",409,196]],
+ fx:[["Flex 29","100*",1,"1**",34,35],["Flex 69","300*",10,"15**",80,70],["Flex 109","800*",35,"U**",126,90],["Flex Sudan 109","2000",25,"U**",126,90],["Flex 139","1000*",50,"U**",160,105],["Flex 169","1250*",60,"U**",195,125],["Flex 329","1000*",135,"U**",379,210,"3m"]],
+ dt:[["","",30,"30**",202,125,"3m"],["","",30,"50**",114,85,"1m"],["80 GB","",75,"75**",229,140,"2m"],["","",125,"100**",344,195,"3m"],["","",150,"150**",459,250,"3m"],["","",105,"",184,120,"1m"],["300 Plus","","1TB","",518,280,"3m"],["","",300,"",518,280,"3m"],["","",U,"",1149,580,"3m"],["","",U,"",374,210,"1m"],["","",U,"",2299,1130,"6m"]],
+ vz:[["Visitors 40","60*",6,"",40,40,"2w"],["Visitors 60","150*",25,"",60,60,"2w"],["Visitors 85","250**",30,"",85,70,"3w"],["Visitors 120","350**",48,"Uc",120,90,"4w"],["Visitors 160","500**",68,"Uc",160,105,"4w"]]},
+ notes:{en:"Flex: * Zain Sudan network, Pakistan, India, Yemen, Bangladesh, Indonesia, Kuwait, Egypt. ** Facebook, YouTube, WhatsApp, Telegram.\nShabab: ** WhatsApp, Snapchat, Twitter, YouTube, Jaco, Facebook, Instagram.\nVisitors: * Yemen, UAE, Nigeria, Bangladesh, Indonesia, Pakistan, India, Egypt, Kuwait, Sudan, Malaysia, China, Thailand, Australia, France, Iraq, USA, Kazakhstan, Libya, Algeria. ** + unlimited calls with visitors.\nData: ** YouTube and Facebook.",
+ ar:"فليكس: * شبكة زين السودان، باكستان، الهند، اليمن، بنجلاديش، إندونيسيا، الكويت، مصر. ** فيسبوك ويوتيوب وواتساب وتليجرام.\nشباب: ** واتساب وسناب وتويتر ويوتيوب وجاكو وفيسبوك وإنستجرام.\nزوار: * اليمن، الإمارات، نيجيريا، بنجلاديش، إندونيسيا، باكستان، الهند، مصر، الكويت، السودان، ماليزيا، الصين، تايلاند، أستراليا، فرنسا، العراق، أمريكا، كازاخستان، ليبيا، الجزائر. ** + مكالمات لا محدودة مع الزوار.\nبيانات: ** يوتيوب وفيسبوك."}}
+];
 
-createApp({
-  data() {
-    return {
-      activeTab: 'offers',
-      currentLang: localStorage.getItem('smartphones_lang') || 'ar',
-      isDark: localStorage.getItem('smartphones_theme') === 'dark',
-      selectedCompany: 'all',
-      selectedCategory: 'all',
-      searchQuery: '',
-      showSavingsCol: true,
-      showQrModal: false,
-      showInstallHelpModal: false,
-      deferredPrompt: null,
-      isAppInstalled: false,
-      scannedFromQr: false,
-      updateAvailable: false,
-      qrTargetUrl: window.location.href.split('?')[0] + '?from=qr',
-      customPrices: JSON.parse(localStorage.getItem('smartphones_custom_prices') || '{}'),
+const T={
+en:{app:"Telecom Offers",tag:"Compare mobile packages in one place",home:"Companies",search:"Search",favs:"Saved",settings:"Settings",install:"Install",share:"Share",lang:"Language",back:"Back",calls:"Calls",data:"Data",social:"Social",official:"Official",cost:"Cost",unl:"Unlimited",min:"min",gb:"GB",tb:"TB",u:["day","days","week","weeks","month","months"],sc_a:"all networks",sc_o:"on-net",sc_i:"all networks + intl",sc_l:"local & intl",usx:"Unlimited Snapchat, WhatsApp & Facebook",uc:"Unlimited communication",cat_all:"All",cat_cd:"Calls + Data",cat_fx:"Flex / Intl",cat_dt:"Data only",cat_vz:"Visitors",sph:"Search package or company…",budget:"Max price",sort:"Sort",s_n:"Default order",s_o:"Price: low to high",s_d:"Data: high to low",nores:"No offers match.",offers:"offers",fav_empty:"Tap ☆ on any offer to save it here.",theme:"Theme",th_auto:"Auto",th_light:"Light",th_dark:"Dark",showcost:"Show cost price",ver:"Version",update:"Check for updates",checking:"Checking…",uptodate:"You have the latest version.",newver:"A new version is available.",updnow:"Update now",later:"Later",backup:"Backup & restore",export:"Export backup",import:"Import backup",imported:"Backup restored.",bad:"Invalid backup file.",pages:"Information",terms:"Terms of Use",privacy:"Privacy Policy",about:"About Us",contact:"Contact Us",ios:"iPhone: open this page in Safari, tap Share, then “Add to Home Screen”.",and:"Android: open in Chrome, tap the ⋮ menu, then “Install app” or “Add to Home screen”.",qr_title:"Scan to open & install",qr_hint:"Scan with any phone camera, then install: iPhone (Safari › Share › Add to Home Screen) or Android (Chrome › Install app).",qr_warn:"This is a local address. Open the app from its hosted https link so the QR works on other phones.",link:"App link",copy:"Copy link",copied:"Copied",close:"Close",share_text:"Compare mobile packages from all companies",cur:"SAR",wa:"WhatsApp",mail:"Email",app_lang:"App language",nolink:"QR could not be created for this link."},
+ar:{app:"باقات الشركات",tag:"قارن باقات الموبايل في مكان واحد",home:"الشركات",search:"بحث",favs:"المحفوظة",settings:"الإعدادات",install:"تثبيت",share:"مشاركة",lang:"اللغة",back:"رجوع",calls:"الاتصال",data:"البيانات",social:"السوشيال",official:"البيع الرسمي",cost:"التكلفة",unl:"لا محدود",min:"دقيقة",gb:"جيجا",tb:"تيرا",u:["يوم","أيام","أسبوع","أسابيع","شهر","شهور"],sc_a:"لكل الشبكات",sc_o:"داخل الشبكة",sc_i:"لكل الشبكات + دولي",sc_l:"محلي ودولي",usx:"سناب وواتساب وفيسبوك لا محدود",uc:"تواصل لا محدود",cat_all:"الكل",cat_cd:"اتصال + بيانات",cat_fx:"فليكس / دولي",cat_dt:"بيانات فقط",cat_vz:"زوار",sph:"ابحث عن باقة أو شركة…",budget:"أقصى سعر",sort:"الترتيب",s_n:"الترتيب الافتراضي",s_o:"السعر: الأقل أولاً",s_d:"البيانات: الأكثر أولاً",nores:"لا توجد عروض مطابقة.",offers:"عرض",fav_empty:"اضغط ☆ على أي عرض لحفظه هنا.",theme:"المظهر",th_auto:"تلقائي",th_light:"فاتح",th_dark:"داكن",showcost:"إظهار التكلفة",ver:"الإصدار",update:"التحقق من التحديثات",checking:"جارٍ التحقق…",uptodate:"أنت تستخدم أحدث إصدار.",newver:"يتوفر إصدار جديد من التطبيق.",updnow:"تحديث الآن",later:"لاحقًا",backup:"النسخ الاحتياطي والاستعادة",export:"تصدير نسخة احتياطية",import:"استيراد نسخة احتياطية",imported:"تمت استعادة النسخة.",bad:"ملف النسخة غير صالح.",pages:"معلومات",terms:"شروط الاستخدام",privacy:"سياسة الخصوصية",about:"من نحن",contact:"اتصل بنا",ios:"آيفون: افتح الصفحة في Safari ثم اضغط مشاركة ثم «إضافة إلى الشاشة الرئيسية».",and:"أندرويد: افتح الصفحة في Chrome ثم قائمة ⋮ ثم «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».",qr_title:"امسح الكود للفتح والتثبيت",qr_hint:"امسحه بكاميرا أي هاتف ثم ثبّت التطبيق: آيفون (Safari › مشاركة › إضافة إلى الشاشة الرئيسية) أو أندرويد (Chrome › تثبيت التطبيق).",qr_warn:"هذا عنوان محلي. افتح التطبيق من رابطه المستضاف (https) ليعمل الكود على الهواتف الأخرى.",link:"رابط التطبيق",copy:"نسخ الرابط",copied:"تم النسخ",close:"إغلاق",share_text:"قارن باقات الموبايل لكل الشركات",cur:"ر.س",wa:"واتساب",mail:"بريد إلكتروني",app_lang:"لغة التطبيق",nolink:"تعذر إنشاء الكود لهذا الرابط."},
+ur:{app:"ٹیلی کام آفرز",tag:"موبائل پیکجز ایک جگہ پر دیکھیں",home:"کمپنیاں",search:"تلاش",favs:"محفوظ",settings:"سیٹنگز",install:"انسٹال",share:"شیئر",lang:"زبان",back:"واپس",calls:"کالز",data:"ڈیٹا",social:"سوشل",official:"سرکاری",cost:"لاگت",unl:"لامحدود",min:"منٹ",gb:"جی بی",tb:"ٹی بی",u:["دن","دن","ہفتہ","ہفتے","مہینہ","مہینے"],sc_a:"تمام نیٹ ورکس",sc_o:"اسی نیٹ ورک میں",sc_i:"تمام نیٹ ورکس + انٹرنیشنل",sc_l:"مقامی اور انٹرنیشنل",usx:"اسنیپ چیٹ، واٹس ایپ اور فیس بک لامحدود",uc:"لامحدود رابطہ",cat_all:"سب",cat_cd:"کالز + ڈیٹا",cat_fx:"فلیکس / انٹرنیشنل",cat_dt:"صرف ڈیٹا",cat_vz:"وزیٹرز",sph:"پیکج یا کمپنی تلاش کریں…",budget:"زیادہ سے زیادہ قیمت",sort:"ترتیب",s_n:"اصل ترتیب",s_o:"قیمت: کم سے زیادہ",s_d:"ڈیٹا: زیادہ سے کم",nores:"کوئی مماثل آفر نہیں ملا۔",offers:"آفرز",fav_empty:"کسی بھی آفر پر ☆ دبائیں تاکہ یہاں محفوظ ہو جائے۔",theme:"تھیم",th_auto:"خودکار",th_light:"روشن",th_dark:"گہرا",showcost:"لاگت دکھائیں",ver:"ورژن",update:"اپ ڈیٹ چیک کریں",checking:"چیک ہو رہا ہے…",uptodate:"آپ کے پاس تازہ ترین ورژن ہے۔",newver:"ایپ کا نیا ورژن دستیاب ہے۔",updnow:"ابھی اپ ڈیٹ کریں",later:"بعد میں",backup:"بیک اپ اور ریسٹور",export:"بیک اپ ایکسپورٹ کریں",import:"بیک اپ امپورٹ کریں",imported:"بیک اپ بحال ہو گیا۔",bad:"بیک اپ فائل درست نہیں۔",pages:"معلومات",terms:"استعمال کی شرائط",privacy:"پرائیویسی پالیسی",about:"ہمارے بارے میں",contact:"رابطہ کریں",ios:"آئی فون: صفحہ Safari میں کھولیں، Share دبائیں، پھر «Add to Home Screen» منتخب کریں۔",and:"اینڈرائیڈ: Chrome میں کھولیں، ⋮ مینو دبائیں، پھر «Install app» یا «Add to Home screen» منتخب کریں۔",qr_title:"کھولنے اور انسٹال کرنے کے لیے اسکین کریں",qr_hint:"کسی بھی فون کے کیمرے سے اسکین کریں، پھر انسٹال کریں: آئی فون (Safari › Share › Add to Home Screen) یا اینڈرائیڈ (Chrome › Install app)۔",qr_warn:"یہ مقامی ایڈریس ہے۔ دوسرے فونز پر QR چلانے کے لیے ایپ اس کے آن لائن https لنک سے کھولیں۔",link:"ایپ لنک",copy:"لنک کاپی کریں",copied:"کاپی ہو گیا",close:"بند کریں",share_text:"تمام کمپنیوں کے موبائل پیکجز کا موازنہ کریں",cur:"SAR",wa:"واٹس ایپ",mail:"ای میل",app_lang:"ایپ کی زبان",nolink:"اس لنک کا QR نہیں بن سکا۔"},
+bn:{app:"টেলিকম অফার",tag:"এক জায়গায় মোবাইল প্যাকেজ তুলনা করুন",home:"কোম্পানি",search:"খুঁজুন",favs:"সংরক্ষিত",settings:"সেটিংস",install:"ইনস্টল",share:"শেয়ার",lang:"ভাষা",back:"পিছনে",calls:"কল",data:"ডেটা",social:"সোশ্যাল",official:"অফিসিয়াল",cost:"খরচ",unl:"আনলিমিটেড",min:"মিনিট",gb:"জিবি",tb:"টিবি",u:["দিন","দিন","সপ্তাহ","সপ্তাহ","মাস","মাস"],sc_a:"সব নেটওয়ার্ক",sc_o:"নিজ নেটওয়ার্কে",sc_i:"সব নেটওয়ার্ক + আন্তর্জাতিক",sc_l:"লোকাল ও আন্তর্জাতিক",usx:"স্ন্যাপচ্যাট, হোয়াটসঅ্যাপ ও ফেসবুক আনলিমিটেড",uc:"আনলিমিটেড যোগাযোগ",cat_all:"সব",cat_cd:"কল + ডেটা",cat_fx:"ফ্লেক্স / আন্তর্জাতিক",cat_dt:"শুধু ডেটা",cat_vz:"ভিজিটর",sph:"প্যাকেজ বা কোম্পানি খুঁজুন…",budget:"সর্বোচ্চ মূল্য",sort:"সাজান",s_n:"মূল ক্রম",s_o:"মূল্য: কম থেকে বেশি",s_d:"ডেটা: বেশি থেকে কম",nores:"কোনো অফার মেলেনি।",offers:"অফার",fav_empty:"যেকোনো অফারে ☆ চাপুন, এখানে সংরক্ষিত হবে।",theme:"থিম",th_auto:"স্বয়ংক্রিয়",th_light:"হালকা",th_dark:"গাঢ়",showcost:"খরচ দেখান",ver:"সংস্করণ",update:"আপডেট খুঁজুন",checking:"যাচাই হচ্ছে…",uptodate:"আপনি সর্বশেষ সংস্করণ ব্যবহার করছেন।",newver:"অ্যাপের নতুন সংস্করণ পাওয়া যাচ্ছে।",updnow:"এখনই আপডেট করুন",later:"পরে",backup:"ব্যাকআপ ও রিস্টোর",export:"ব্যাকআপ এক্সপোর্ট",import:"ব্যাকআপ ইমপোর্ট",imported:"ব্যাকআপ পুনরুদ্ধার হয়েছে।",bad:"ব্যাকআপ ফাইলটি সঠিক নয়।",pages:"তথ্য",terms:"ব্যবহারের শর্তাবলি",privacy:"গোপনীয়তা নীতি",about:"আমাদের সম্পর্কে",contact:"যোগাযোগ",ios:"আইফোন: পেজটি Safari-তে খুলুন, Share চাপুন, তারপর “Add to Home Screen” বেছে নিন।",and:"অ্যান্ড্রয়েড: Chrome-এ খুলুন, ⋮ মেনু চাপুন, তারপর “Install app” বা “Add to Home screen” বেছে নিন।",qr_title:"খুলতে ও ইনস্টল করতে স্ক্যান করুন",qr_hint:"যেকোনো ফোনের ক্যামেরা দিয়ে স্ক্যান করুন, তারপর ইনস্টল করুন: আইফোন (Safari › Share › Add to Home Screen) বা অ্যান্ড্রয়েড (Chrome › Install app)।",qr_warn:"এটি লোকাল ঠিকানা। অন্য ফোনে QR কাজ করার জন্য অ্যাপটি তার অনলাইন https লিংক থেকে খুলুন।",link:"অ্যাপ লিংক",copy:"লিংক কপি",copied:"কপি হয়েছে",close:"বন্ধ",share_text:"সব কোম্পানির মোবাইল প্যাকেজ তুলনা করুন",cur:"SAR",wa:"হোয়াটসঅ্যাপ",mail:"ইমেইল",app_lang:"অ্যাপের ভাষা",nolink:"এই লিংকের QR তৈরি করা যায়নি।"},
+hi:{app:"टेलीकॉम ऑफ़र",tag:"मोबाइल पैकेज एक जगह तुलना करें",home:"कंपनियाँ",search:"खोजें",favs:"सेव किए",settings:"सेटिंग्स",install:"इंस्टॉल",share:"शेयर",lang:"भाषा",back:"वापस",calls:"कॉल",data:"डेटा",social:"सोशल",official:"आधिकारिक",cost:"लागत",unl:"अनलिमिटेड",min:"मिनट",gb:"जीबी",tb:"टीबी",u:["दिन","दिन","सप्ताह","सप्ताह","महीना","महीने"],sc_a:"सभी नेटवर्क",sc_o:"अपने नेटवर्क पर",sc_i:"सभी नेटवर्क + अंतरराष्ट्रीय",sc_l:"लोकल और अंतरराष्ट्रीय",usx:"स्नैपचैट, व्हाट्सऐप और फ़ेसबुक अनलिमिटेड",uc:"अनलिमिटेड संचार",cat_all:"सभी",cat_cd:"कॉल + डेटा",cat_fx:"फ्लेक्स / अंतरराष्ट्रीय",cat_dt:"सिर्फ़ डेटा",cat_vz:"विज़िटर",sph:"पैकेज या कंपनी खोजें…",budget:"अधिकतम कीमत",sort:"क्रम",s_n:"मूल क्रम",s_o:"कीमत: कम से ज़्यादा",s_d:"डेटा: ज़्यादा से कम",nores:"कोई ऑफ़र नहीं मिला।",offers:"ऑफ़र",fav_empty:"किसी भी ऑफ़र पर ☆ दबाएँ, वह यहाँ सेव हो जाएगा।",theme:"थीम",th_auto:"ऑटो",th_light:"लाइट",th_dark:"डार्क",showcost:"लागत दिखाएँ",ver:"वर्ज़न",update:"अपडेट जाँचें",checking:"जाँच हो रही है…",uptodate:"आपके पास नवीनतम वर्ज़न है।",newver:"ऐप का नया वर्ज़न उपलब्ध है।",updnow:"अभी अपडेट करें",later:"बाद में",backup:"बैकअप और रीस्टोर",export:"बैकअप एक्सपोर्ट",import:"बैकअप इम्पोर्ट",imported:"बैकअप बहाल हो गया।",bad:"बैकअप फ़ाइल मान्य नहीं है।",pages:"जानकारी",terms:"उपयोग की शर्तें",privacy:"गोपनीयता नीति",about:"हमारे बारे में",contact:"संपर्क करें",ios:"iPhone: पेज को Safari में खोलें, Share दबाएँ, फिर “Add to Home Screen” चुनें।",and:"Android: Chrome में खोलें, ⋮ मेनू दबाएँ, फिर “Install app” या “Add to Home screen” चुनें।",qr_title:"खोलने और इंस्टॉल करने के लिए स्कैन करें",qr_hint:"किसी भी फ़ोन के कैमरे से स्कैन करें, फिर इंस्टॉल करें: iPhone (Safari › Share › Add to Home Screen) या Android (Chrome › Install app)।",qr_warn:"यह लोकल पता है। दूसरे फ़ोन पर QR चलाने के लिए ऐप को उसके ऑनलाइन https लिंक से खोलें।",link:"ऐप लिंक",copy:"लिंक कॉपी करें",copied:"कॉपी हो गया",close:"बंद करें",share_text:"सभी कंपनियों के मोबाइल पैकेज की तुलना करें",cur:"SAR",wa:"व्हाट्सऐप",mail:"ईमेल",app_lang:"ऐप की भाषा",nolink:"इस लिंक का QR नहीं बन सका।"},
+am:{app:"የቴሌኮም ጥቅሎች",tag:"የሞባይል ጥቅሎችን በአንድ ቦታ ያወዳድሩ",home:"ኩባንያዎች",search:"ፈልግ",favs:"የተቀመጡ",settings:"ቅንብሮች",install:"ጫን",share:"አጋራ",lang:"ቋንቋ",back:"ተመለስ",calls:"ጥሪ",data:"ዳታ",social:"ማህበራዊ",official:"ይፋዊ",cost:"ወጪ",unl:"ያልተገደበ",min:"ደቂቃ",gb:"ጊባ",tb:"ቴባ",u:["ቀን","ቀናት","ሳምንት","ሳምንታት","ወር","ወራት"],sc_a:"ሁሉም ኔትወርኮች",sc_o:"በራሱ ኔትወርክ ውስጥ",sc_i:"ሁሉም ኔትወርኮች + ዓለም አቀፍ",sc_l:"ሀገር ውስጥ እና ዓለም አቀፍ",usx:"ስናፕቻት፣ ዋትስአፕ እና ፌስቡክ ያልተገደበ",uc:"ያልተገደበ ግንኙነት",cat_all:"ሁሉም",cat_cd:"ጥሪ + ዳታ",cat_fx:"ፍሌክስ / ዓለም አቀፍ",cat_dt:"ዳታ ብቻ",cat_vz:"ጎብኚዎች",sph:"ጥቅል ወይም ኩባንያ ፈልግ…",budget:"ከፍተኛ ዋጋ",sort:"ደርድር",s_n:"ዋና ቅደም ተከተል",s_o:"ዋጋ፡ ከዝቅተኛ ወደ ከፍተኛ",s_d:"ዳታ፡ ከብዙ ወደ ጥቂት",nores:"የሚዛመድ ቅናሽ አልተገኘም።",offers:"ቅናሾች",fav_empty:"ማንኛውም ቅናሽ ላይ ☆ ይጫኑ፣ እዚህ ይቀመጣል።",theme:"ገጽታ",th_auto:"ራስ-ሰር",th_light:"ብርሃን",th_dark:"ጨለማ",showcost:"ወጪ አሳይ",ver:"ስሪት",update:"ዝማኔ ፈትሽ",checking:"በመፈተሽ ላይ…",uptodate:"የቅርብ ጊዜው ስሪት አለዎት።",newver:"አዲስ የመተግበሪያ ስሪት አለ።",updnow:"አሁን አዘምን",later:"በኋላ",backup:"ምትኬ እና መልሶ ማግኛ",export:"ምትኬ ላክ",import:"ምትኬ አስገባ",imported:"ምትኬ ተመልሷል።",bad:"የምትኬ ፋይሉ ልክ አይደለም።",pages:"መረጃ",terms:"የአጠቃቀም ደንቦች",privacy:"የግላዊነት ፖሊሲ",about:"ስለ እኛ",contact:"ያግኙን",ios:"አይፎን፡ ገጹን በSafari ይክፈቱ፣ Share ይጫኑ፣ ከዚያ “Add to Home Screen” ይምረጡ።",and:"አንድሮይድ፡ በChrome ይክፈቱ፣ ⋮ ምናሌን ይጫኑ፣ ከዚያ “Install app” ወይም “Add to Home screen” ይምረጡ።",qr_title:"ለመክፈት እና ለመጫን ስካን ያድርጉ",qr_hint:"በማንኛውም ስልክ ካሜራ ስካን ያድርጉ፣ ከዚያ ይጫኑ፦ አይፎን (Safari › Share › Add to Home Screen) ወይም አንድሮይድ (Chrome › Install app)።",qr_warn:"ይህ የአካባቢ አድራሻ ነው። QR በሌሎች ስልኮች እንዲሰራ መተግበሪያውን ከመስመር ላይ https አገናኙ ይክፈቱ።",link:"የመተግበሪያ አገናኝ",copy:"አገናኝ ቅዳ",copied:"ተቀድቷል",close:"ዝጋ",share_text:"የሁሉንም ኩባንያዎች የሞባይል ጥቅሎች ያወዳድሩ",cur:"SAR",wa:"ዋትስአፕ",mail:"ኢሜይል",app_lang:"የመተግበሪያ ቋንቋ",nolink:"ለዚህ አገናኝ QR መፍጠር አልተቻለም።"}
+};
+const PAGES={
+en:{terms:"This app shows a price list of mobile packages for general information only. Prices and offers are set by the telecom companies and may change at any time, so always confirm before you buy. You use the app at your own responsibility.",privacy:"The app has no accounts and sends no personal data anywhere. Your saved offers and settings stay on your device only, and you can export or delete them at any time.",about:"Telecom Offers helps you compare mobile packages from several companies quickly: choose a company, see its offers, and find the best price.",contact:"Questions, or a correction to the price list? Get in touch with us."},
+ar:{terms:"يعرض هذا التطبيق قائمة أسعار باقات الموبايل للاطلاع العام فقط. الأسعار والعروض تحددها شركات الاتصالات وقد تتغير في أي وقت، فتأكد منها قبل الشراء. استخدامك للتطبيق على مسؤوليتك الشخصية.",privacy:"لا يحتوي التطبيق على حسابات ولا يرسل أي بيانات شخصية إلى أي جهة. العروض المحفوظة والإعدادات تبقى على جهازك فقط، ويمكنك تصديرها أو حذفها في أي وقت.",about:"يساعدك تطبيق باقات الشركات على مقارنة باقات الموبايل من عدة شركات بسرعة: اختر الشركة، شاهد عروضها، واعثر على أفضل سعر.",contact:"لديك سؤال أو تصحيح لقائمة الأسعار؟ تواصل معنا."},
+ur:{terms:"یہ ایپ موبائل پیکجز کی قیمتوں کی فہرست صرف عمومی معلومات کے لیے دکھاتی ہے۔ قیمتیں اور آفرز ٹیلی کام کمپنیاں طے کرتی ہیں اور کسی بھی وقت بدل سکتی ہیں، اس لیے خریدنے سے پہلے تصدیق کر لیں۔ ایپ کا استعمال آپ کی اپنی ذمہ داری ہے۔",privacy:"ایپ میں کوئی اکاؤنٹ نہیں اور یہ کوئی ذاتی ڈیٹا کہیں نہیں بھیجتی۔ آپ کے محفوظ کردہ آفرز اور سیٹنگز صرف آپ کے آلے پر رہتی ہیں، اور آپ انہیں کسی بھی وقت ایکسپورٹ یا ڈیلیٹ کر سکتے ہیں۔",about:"ٹیلی کام آفرز آپ کو کئی کمپنیوں کے موبائل پیکجز جلدی سے موازنہ کرنے میں مدد دیتی ہے: کمپنی چنیں، اس کے آفرز دیکھیں اور بہترین قیمت تلاش کریں۔",contact:"کوئی سوال یا قیمتوں کی فہرست میں درستی؟ ہم سے رابطہ کریں۔"},
+bn:{terms:"এই অ্যাপ শুধু সাধারণ তথ্যের জন্য মোবাইল প্যাকেজের মূল্যতালিকা দেখায়। দাম ও অফার টেলিকম কোম্পানিগুলো ঠিক করে এবং যেকোনো সময় বদলাতে পারে, তাই কেনার আগে নিশ্চিত হয়ে নিন। অ্যাপ ব্যবহারের দায়িত্ব আপনার নিজের।",privacy:"অ্যাপে কোনো অ্যাকাউন্ট নেই এবং কোনো ব্যক্তিগত তথ্য কোথাও পাঠানো হয় না। আপনার সংরক্ষিত অফার ও সেটিংস শুধু আপনার ডিভাইসেই থাকে; চাইলে যেকোনো সময় এক্সপোর্ট বা মুছে ফেলতে পারেন।",about:"টেলিকম অফার আপনাকে একাধিক কোম্পানির মোবাইল প্যাকেজ দ্রুত তুলনা করতে সাহায্য করে: কোম্পানি বেছে নিন, অফার দেখুন এবং সেরা দাম খুঁজে নিন।",contact:"কোনো প্রশ্ন বা মূল্যতালিকায় সংশোধন আছে? আমাদের সঙ্গে যোগাযোগ করুন।"},
+hi:{terms:"यह ऐप केवल सामान्य जानकारी के लिए मोबाइल पैकेजों की कीमत सूची दिखाता है। कीमतें और ऑफ़र टेलीकॉम कंपनियाँ तय करती हैं और कभी भी बदल सकते हैं, इसलिए खरीदने से पहले पुष्टि कर लें। ऐप का उपयोग आपकी अपनी ज़िम्मेदारी पर है।",privacy:"ऐप में कोई अकाउंट नहीं है और यह कोई निजी डेटा कहीं नहीं भेजता। आपके सेव किए ऑफ़र और सेटिंग्स सिर्फ़ आपके डिवाइस पर रहती हैं, और आप उन्हें कभी भी एक्सपोर्ट या डिलीट कर सकते हैं।",about:"टेलीकॉम ऑफ़र कई कंपनियों के मोबाइल पैकेज जल्दी से तुलना करने में मदद करता है: कंपनी चुनें, उसके ऑफ़र देखें और सबसे अच्छी कीमत पाएँ।",contact:"कोई सवाल या कीमत सूची में सुधार? हमसे संपर्क करें।"},
+am:{terms:"ይህ መተግበሪያ የሞባይል ጥቅሎችን የዋጋ ዝርዝር ለአጠቃላይ መረጃ ብቻ ያሳያል። ዋጋዎችና ቅናሾች የሚወሰኑት በቴሌኮም ኩባንያዎች ሲሆን በማንኛውም ጊዜ ሊቀየሩ ይችላሉ፤ ከመግዛትዎ በፊት ያረጋግጡ። መተግበሪያውን መጠቀም በራስዎ ኃላፊነት ነው።",privacy:"መተግበሪያው መለያ የለውም፣ የግል መረጃም የትም አይልክም። የተቀመጡ ቅናሾችና ቅንብሮች በመሣሪያዎ ላይ ብቻ ይቆያሉ፤ በማንኛውም ጊዜ ወደ ውጭ መላክ ወይም መሰረዝ ይችላሉ።",about:"የቴሌኮም ጥቅሎች የበርካታ ኩባንያዎችን የሞባይል ጥቅሎች በፍጥነት እንዲያወዳድሩ ይረዳዎታል፦ ኩባንያ ይምረጡ፣ ቅናሾቹን ይመልከቱ እና ምርጡን ዋጋ ያግኙ።",contact:"ጥያቄ ወይም የዋጋ ዝርዝር ማስተካከያ አለዎት? ያግኙን።"}
+};
 
-      // Compare Filters
-      maxPriceFilter: 600,
-      onlyUnlimitedSocial: false,
-      onlyIntlCalls: false,
-      sortMode: 'priceAsc',
 
-      // 6 Supported Languages (عربي، إنجليزي، بنجلاديش، باكستاني، هندي، إثيوبي)
-      languages: [
-        { code: 'ar', nativeName: 'العربية', arLabel: 'العربية', flag: '🇸🇦', dir: 'rtl' },
-        { code: 'en', nativeName: 'English', arLabel: 'الإنجليزية', flag: '🇬🇧', dir: 'ltr' },
-        { code: 'bn', nativeName: 'বাংলা', arLabel: 'بنجلاديش', flag: '🇧🇩', dir: 'ltr' },
-        { code: 'ur', nativeName: 'اردو', arLabel: 'باكستاني', flag: '🇵🇰', dir: 'rtl' },
-        { code: 'hi', nativeName: 'हिन्दी', arLabel: 'هندي', flag: '🇮🇳', dir: 'ltr' },
-        { code: 'am', nativeName: 'አማርኛ', arLabel: 'إثيوبي', flag: '🇪🇹', dir: 'ltr' }
-      ],
+const OV={
+en:{app:"Telecom Packages - First Smart Phones",cost:"Offer price",showcost:"Show offer price",share_text:"Telecom packages - First Smart Phones",cmp:"Compare",cmp_empty:"Pick up to 4 offers to compare them side by side. Tap ⚖ on any offer or use the pickers above.",cmp_clear:"Clear all",cmp_max:"You can compare up to 4 offers",pergb:"Price per GB",wa_share:"Share on WhatsApp",brand:"First Smart Phones",pick_co:"Company",pick_pk:"Package",add:"Add",company:"Company",valid:"Validity",cmp_hint:"Green = best in the row"},
+ar:{app:"باقات الاتصالات - الهواتف الذكية الأولى",cost:"سعر العرض",showcost:"إظهار سعر العرض",share_text:"باقات الاتصالات - الهواتف الذكية الأولى",cmp:"مقارنة",cmp_empty:"اختر حتى 4 عروض لمقارنتها جنبًا إلى جنب. اضغط ⚖ على أي عرض أو استخدم القوائم بالأعلى.",cmp_clear:"مسح الكل",cmp_max:"يمكن مقارنة 4 عروض كحد أقصى",pergb:"سعر الجيجا",wa_share:"مشاركة على واتساب",brand:"الهواتف الذكية الأولى",pick_co:"الشركة",pick_pk:"الباقة",add:"إضافة",company:"الشركة",valid:"المدة",cmp_hint:"الأخضر = الأفضل في الصف"},
+ur:{app:"ٹیلی کام پیکجز - فرسٹ اسمارٹ فونز",cost:"آفر کی قیمت",showcost:"آفر کی قیمت دکھائیں",share_text:"ٹیلی کام پیکجز - فرسٹ اسمارٹ فونز",cmp:"موازنہ",cmp_empty:"موازنے کے لیے زیادہ سے زیادہ 4 آفرز چنیں۔ کسی بھی آفر پر ⚖ دبائیں یا اوپر کی فہرستیں استعمال کریں۔",cmp_clear:"سب صاف کریں",cmp_max:"زیادہ سے زیادہ 4 آفرز کا موازنہ ہو سکتا ہے",pergb:"فی جی بی قیمت",wa_share:"واٹس ایپ پر شیئر کریں",brand:"فرسٹ اسمارٹ فونز",pick_co:"کمپنی",pick_pk:"پیکج",add:"شامل کریں",company:"کمپنی",valid:"مدت",cmp_hint:"سبز = قطار میں بہترین"},
+bn:{app:"টেলিকম প্যাকেজ - ফার্স্ট স্মার্ট ফোনস",cost:"অফার মূল্য",showcost:"অফার মূল্য দেখান",share_text:"টেলিকম প্যাকেজ - ফার্স্ট স্মার্ট ফোনস",cmp:"তুলনা",cmp_empty:"তুলনার জন্য সর্বোচ্চ ৪টি অফার বেছে নিন। যেকোনো অফারে ⚖ চাপুন বা উপরের তালিকা ব্যবহার করুন।",cmp_clear:"সব মুছুন",cmp_max:"সর্বোচ্চ ৪টি অফার তুলনা করা যায়",pergb:"প্রতি জিবি মূল্য",wa_share:"হোয়াটসঅ্যাপে শেয়ার",brand:"ফার্স্ট স্মার্ট ফোনস",pick_co:"কোম্পানি",pick_pk:"প্যাকেজ",add:"যোগ করুন",company:"কোম্পানি",valid:"মেয়াদ",cmp_hint:"সবুজ = সারিতে সেরা"},
+hi:{app:"टेलीकॉम पैकेज - फ़र्स्ट स्मार्ट फ़ोन्स",cost:"ऑफ़र मूल्य",showcost:"ऑफ़र मूल्य दिखाएँ",share_text:"टेलीकॉम पैकेज - फ़र्स्ट स्मार्ट फ़ोन्स",cmp:"तुलना",cmp_empty:"तुलना के लिए अधिकतम 4 ऑफ़र चुनें। किसी भी ऑफ़र पर ⚖ दबाएँ या ऊपर की सूचियाँ इस्तेमाल करें।",cmp_clear:"सब हटाएँ",cmp_max:"अधिकतम 4 ऑफ़र की तुलना हो सकती है",pergb:"प्रति जीबी कीमत",wa_share:"व्हाट्सऐप पर शेयर करें",brand:"फ़र्स्ट स्मार्ट फ़ोन्स",pick_co:"कंपनी",pick_pk:"पैकेज",add:"जोड़ें",company:"कंपनी",valid:"अवधि",cmp_hint:"हरा = पंक्ति में सबसे अच्छा"},
+am:{app:"የቴሌኮም ጥቅሎች - አንደኛ ስማርት ስልኮች",cost:"የቅናሽ ዋጋ",showcost:"የቅናሽ ዋጋ አሳይ",share_text:"የቴሌኮም ጥቅሎች - አንደኛ ስማርት ስልኮች",cmp:"ማወዳደር",cmp_empty:"ለማወዳደር እስከ 4 ቅናሾች ይምረጡ። በማንኛውም ቅናሽ ላይ ⚖ ይጫኑ ወይም ከላይ ያሉትን ዝርዝሮች ይጠቀሙ።",cmp_clear:"ሁሉንም አጥፋ",cmp_max:"እስከ 4 ቅናሾች ብቻ ማወዳደር ይቻላል",pergb:"በጊባ ዋጋ",wa_share:"በዋትስአፕ አጋራ",brand:"አንደኛ ስማርት ስልኮች",pick_co:"ኩባንያ",pick_pk:"ጥቅል",add:"ጨምር",company:"ኩባንያ",valid:"ጊዜ",cmp_hint:"አረንጓዴ = በረድፉ ውስጥ ምርጥ"}
+};
+Object.keys(OV).forEach(l=>Object.assign(T[l],OV[l]));
 
-      categories: [
-        { id: 'all', labelKey: 'catAll', icon: 'fa-solid fa-border-all' },
-        { id: 'combo', labelKey: 'catCombo', icon: 'fa-solid fa-phone-volume' },
-        { id: 'intl', labelKey: 'catIntl', icon: 'fa-solid fa-earth-americas' },
-        { id: 'data', labelKey: 'catData', icon: 'fa-solid fa-wifi' }
-      ],
+const OV2={
+en:{cmp_byprice:"By price",cmp_manual:"Pick manually",price_ph:"Enter the package price to find similar offers",tol_exact:"Exact price",near:"near"},
+ar:{cmp_byprice:"حسب السعر",cmp_manual:"اختيار يدوي",price_ph:"اكتب قيمة الباقة لعرض الباقات المشابهة",tol_exact:"نفس القيمة فقط",near:"قريبة من"},
+ur:{cmp_byprice:"قیمت کے مطابق",cmp_manual:"خود منتخب کریں",price_ph:"ملتے جلتے آفرز دیکھنے کے لیے پیکج کی قیمت لکھیں",tol_exact:"بالکل یہی قیمت",near:"قریب"},
+bn:{cmp_byprice:"মূল্য অনুযায়ী",cmp_manual:"নিজে বেছে নিন",price_ph:"একই রকম অফার দেখতে প্যাকেজের মূল্য লিখুন",tol_exact:"হুবহু একই মূল্য",near:"কাছাকাছি"},
+hi:{cmp_byprice:"कीमत के अनुसार",cmp_manual:"खुद चुनें",price_ph:"मिलते-जुलते ऑफ़र देखने के लिए पैकेज की कीमत लिखें",tol_exact:"बिल्कुल यही कीमत",near:"के आसपास"},
+am:{cmp_byprice:"በዋጋ",cmp_manual:"በእጅ ምረጥ",price_ph:"ተመሳሳይ ቅናሾችን ለማየት የጥቅሉን ዋጋ ይጻፉ",tol_exact:"ትክክለኛ ዋጋ",near:"ቅርብ"}
+};
+Object.keys(OV2).forEach(l=>Object.assign(T[l],OV2[l]));
 
-      // UI Translations for all 6 languages
-      translations: {
-        ar: {
-          appTitle: 'عروض الاتصالات - الهواتف الذكية الأولى',
-          appSubtitle: 'أقوى عروض الشرائح والبيانات والاتصال الدولي',
-          installApp: 'تثبيت التطبيق',
-          qrCodeBtn: 'كيو آر كود',
-          shareBtn: 'مشاركة',
-          langLabel: 'اللغة',
-          selectOperator: 'اختر شركة الاتصالات',
-          allCompanies: 'كل الشركات',
-          packageCountUnit: 'باقة متاحة',
-          catAll: 'جميع الباقات',
-          catCombo: 'اتصال + بيانات',
-          catIntl: 'اتصال دولي وفليكس',
-          catData: 'بيانات وإنترنت',
-          searchPlaceholder: 'ابحث باسم الباقة أو السعر أو الجيجا...',
-          watermarkText: 'الهواتف الذكية',
-          exclusiveOffers: 'عروض خاصة للعملاء',
-          tablesCount: 'جداول باقات',
-          colCompany: 'الشركة',
-          colPackage: 'الباقة',
-          colCalls: 'الاتصال',
-          colData: 'بيانات',
-          colSocial: 'السوشيال',
-          colValidity: 'الصلاحية',
-          colOfficialPrice: 'البيع الرسمي',
-          colOfferPrice: 'سعر العرض',
-          colSavings: 'التوفير',
-          colShare: 'مشاركة',
-          sar: 'ر.س',
-          saveWord: 'وفر',
-          shareOfferWhatsApp: 'إرسال العرض عبر واتساب',
-          smartAdvisorTitle: 'مستشار الباقات والمقارنة الذكية',
-          maxBudgetLabel: 'أقصى سعر للعرض',
-          featureFilterLabel: 'مميزات مطلوبة',
-          unlimitedSocialBtn: 'سوشيال لا محدود',
-          intlCallsBtn: 'مكالمات دولية',
-          sortByLabel: 'ترتيب حسب',
-          sortCheapest: 'الأرخص في سعر العرض',
-          sortHighestSavings: 'الأعلى توفيراً للعميل',
-          sortHighestPackage: 'الأعلى فئة',
-          comparisonResults: 'نتائج المقارنة الفورية',
-          qrModalTitle: 'امسح الكود لفتح وتثبيت التطبيق',
-          qrStandSubtitle: 'وجّه كاميرا الجوال نحو الباركود لفتح قائمة العروض وتثبيت التطبيق فوراً',
-          qrUrlLabel: 'رابط التطبيق المدمج في الباركود:',
-          printQrPoster: 'طباعة ستاند الكاشير',
-          downloadQrImg: 'حفظ صورة الباركود',
-          fullScreenQr: 'تكبير الباركود',
-          chooseAppLanguage: 'اختر لغة التطبيق (6 لغات)',
-          displaySettings: 'إعدادات العرض والتثبيت',
-          darkModeLabel: 'الوضع الليلي (الداكن)',
-          showSavingsToggle: 'إظهار عمود التوفير للعميل',
-          installStatusLabel: 'حالة زر تثبيت التطبيق',
-          appInstalledText: 'تم التثبيت/الحفظ (زر التحميل مخفي تلقائياً)',
-          appNotInstalledText: 'زر التحميل ظاهر في أعلى الشاشة',
-          showInstallBtnAgain: 'إظهار الزر مجدداً',
-          hideInstallBtnManual: 'تم الحفظ كاختصار (إخفاء الزر)',
-          installGuideTitle: 'تثبيت التطبيق على الشاشة الرئيسية',
-          iosStep1: 'اضغط على زر المشاركة (Share) في المتصفح.',
-          iosStep2: 'اختر "إضافة إلى الشاشة الرئيسية" (Add to Home Screen).',
-          confirmShortcutSaved: 'تم الحفظ على الشاشة الرئيسية (إخفاء زر التحميل)',
-          qrWelcomeTitle: 'مرحباً بك في عروض الهواتف الذكية الأولى!',
-          qrWelcomeDesc: 'ثبّت التطبيق الآن على جوالك لتصفح عروض جميع الشركات بدون إنترنت.',
-          installNowBtn: 'تثبيت الآن',
-          updateReady: 'يتوفر تحديث جديد للعروض!',
-          updateNow: 'تحديث الآن',
-          navOffers: 'الشركات',
-          navCompare: 'المقارنة',
-          navQr: 'الباركود QR',
-          navSettings: 'اللغات والإعدادات'
-        },
-        en: {
-          appTitle: 'Telecom Offers - First Smart Phones',
-          appSubtitle: 'Best SIM, Data & International Call Packages',
-          installApp: 'Install App',
-          qrCodeBtn: 'QR Code',
-          shareBtn: 'Share',
-          langLabel: 'Language',
-          selectOperator: 'Select Telecom Operator',
-          allCompanies: 'All Operators',
-          packageCountUnit: 'Packages',
-          catAll: 'All Plans',
-          catCombo: 'Voice + Data',
-          catIntl: 'International / Flex',
-          catData: 'Data Only',
-          searchPlaceholder: 'Search package, GB, or price...',
-          watermarkText: 'الهواتف الذكية',
-          exclusiveOffers: 'Special Customer Discounts',
-          tablesCount: 'Categories',
-          colCompany: 'Operator',
-          colPackage: 'Package',
-          colCalls: 'Calls',
-          colData: 'Data',
-          colSocial: 'Social Media',
-          colValidity: 'Validity',
-          colOfficialPrice: 'Official Price',
-          colOfferPrice: 'Offer Price',
-          colSavings: 'You Save',
-          colShare: 'Share',
-          sar: 'SAR',
-          saveWord: 'Save',
-          shareOfferWhatsApp: 'Share via WhatsApp',
-          smartAdvisorTitle: 'Smart Package Finder & Comparison',
-          maxBudgetLabel: 'Max Offer Price',
-          featureFilterLabel: 'Required Features',
-          unlimitedSocialBtn: 'Unlimited Social',
-          intlCallsBtn: 'International Calls',
-          sortByLabel: 'Sort By',
-          sortCheapest: 'Lowest Offer Price',
-          sortHighestSavings: 'Biggest Discount',
-          sortHighestPackage: 'Premium Plans First',
-          comparisonResults: 'Matching Packages',
-          qrModalTitle: 'Scan QR to Open & Install App',
-          qrStandSubtitle: 'Point your phone camera at the QR Code to browse offers and install the app',
-          qrUrlLabel: 'App Link inside QR Code:',
-          printQrPoster: 'Print Counter Stand',
-          downloadQrImg: 'Save QR Image',
-          fullScreenQr: 'Full QR View',
-          chooseAppLanguage: 'Select App Language (6 Languages)',
-          displaySettings: 'Display & Installation Settings',
-          darkModeLabel: 'Dark Mode',
-          showSavingsToggle: 'Show Customer Savings Column',
-          installStatusLabel: 'Install Button Status',
-          appInstalledText: 'Installed / Saved (Button auto-hidden)',
-          appNotInstalledText: 'Install button is visible in header',
-          showInstallBtnAgain: 'Show Button Again',
-          hideInstallBtnManual: 'Saved as Shortcut (Hide Button)',
-          installGuideTitle: 'Add App to Home Screen',
-          iosStep1: 'Tap the Share button in your browser.',
-          iosStep2: 'Select "Add to Home Screen".',
-          confirmShortcutSaved: 'Added to Home Screen (Hide Install Button)',
-          qrWelcomeTitle: 'Welcome to First Smart Phones Offers!',
-          qrWelcomeDesc: 'Install the app on your phone for instant offline access to all telecom deals.',
-          installNowBtn: 'Install Now',
-          updateReady: 'New offer updates available!',
-          updateNow: 'Update',
-          navOffers: 'Operators',
-          navCompare: 'Compare',
-          navQr: 'QR Code',
-          navSettings: 'Languages'
-        },
-        bn: {
-          appTitle: 'টেলিকম অফার - ফার্স্ট স্মার্ট ফোনস',
-          appSubtitle: 'সেরা সিম, ইন্টারনেট এবং আন্তর্জাতিক কল প্যাকেজ',
-          installApp: 'অ্যাপ ইনস্টল',
-          qrCodeBtn: 'QR কোড',
-          shareBtn: 'শেয়ার',
-          langLabel: 'ভাষা',
-          selectOperator: 'টেলিকম কোম্পানি নির্বাচন করুন',
-          allCompanies: 'সব কোম্পানি',
-          packageCountUnit: 'প্যাকেজ',
-          catAll: 'সব প্যাকেজ',
-          catCombo: 'কল + ইন্টারনেট',
-          catIntl: 'আন্তর্জাতিক কল (Flex)',
-          catData: 'শুধু ইন্টারনেট (Data)',
-          searchPlaceholder: 'প্যাকেজ, জিবি বা দাম খুঁজুন...',
-          watermarkText: 'الهواتف الذكية',
-          exclusiveOffers: 'গ্রাহকদের জন্য বিশেষ ছাড়',
-          tablesCount: 'তালিকা',
-          colCompany: 'কোম্পানি',
-          colPackage: 'প্যাকেজ',
-          colCalls: 'কল মিনিট',
-          colData: 'ইন্টারনেট',
-          colSocial: 'সোশ্যাল মিডিয়া',
-          colValidity: 'মেয়াদ',
-          colOfficialPrice: 'অফিসিয়াল মূল্য',
-          colOfferPrice: 'অফার মূল্য',
-          colSavings: 'সাশ্রয়',
-          colShare: 'শেয়ার',
-          sar: 'রিয়াল',
-          saveWord: 'ছাড়',
-          shareOfferWhatsApp: 'হোয়াটসঅ্যাপে পাঠান',
-          smartAdvisorTitle: 'স্মার্ট প্যাকেজ তুলনা এবং অনুসন্ধান',
-          maxBudgetLabel: 'সর্বোচ্চ অফার মূল্য',
-          featureFilterLabel: 'প্রয়োজনীয় সুবিধা',
-          unlimitedSocialBtn: 'আনলিমিটেড সোশ্যাল',
-          intlCallsBtn: 'আন্তর্জাতিক কল',
-          sortByLabel: 'সাজান',
-          sortCheapest: 'সবচেয়ে কম দাম',
-          sortHighestSavings: 'সবচেয়ে বেশি ছাড়',
-          sortHighestPackage: 'বড় প্যাকেজ আগে',
-          comparisonResults: 'তুলনার ফলাফল',
-          qrModalTitle: 'অ্যাপ খুলতে ও ইনস্টল করতে QR স্ক্যান করুন',
-          qrStandSubtitle: 'অফার দেখতে এবং অ্যাপটি মোবাইলে ইনস্টল করতে ক্যামেরা দিয়ে স্ক্যান করুন',
-          qrUrlLabel: 'QR কোডের লিঙ্ক:',
-          printQrPoster: 'প্রিন্ট করুন',
-          downloadQrImg: 'QR ছবি সেভ করুন',
-          fullScreenQr: 'বড় করে দেখুন',
-          chooseAppLanguage: 'ভাষা নির্বাচন করুন (6 Languages)',
-          displaySettings: 'ডিসপ্লে ও ইনস্টল সেটিংস',
-          darkModeLabel: 'ডার্ক মোড',
-          showSavingsToggle: 'সাশ্রয় কলাম দেখান',
-          installStatusLabel: 'ইনস্টল বাটন স্ট্যাটাস',
-          appInstalledText: 'ইনস্টল করা হয়েছে (বাটন লুকানো)',
-          appNotInstalledText: 'ইনস্টল বাটন চালু আছে',
-          showInstallBtnAgain: 'আবার দেখান',
-          hideInstallBtnManual: 'হোম স্ক্রিনে সেভ হয়েছে (বাটন লুকান)',
-          installGuideTitle: 'হোম স্ক্রিনে অ্যাপ যোগ করুন',
-          iosStep1: 'ব্রাউজারের Share বাটনে ট্যাপ করুন।',
-          iosStep2: '"Add to Home Screen" নির্বাচন করুন।',
-          confirmShortcutSaved: 'হোম স্ক্রিনে সেভ করেছি (বাটন লুকান)',
-          qrWelcomeTitle: 'ফার্স্ট স্মার্ট ফোনস অফারে স্বাগতম!',
-          qrWelcomeDesc: 'সব কোম্পানির ইন্টারনেট ও কল অফার দেখতে অ্যাপটি ইনস্টল করুন।',
-          installNowBtn: 'এখনই ইনস্টল করুন',
-          updateReady: 'নতুন আপডেট পাওয়া গেছে!',
-          updateNow: 'আপডেট',
-          navOffers: 'কোম্পানি',
-          navCompare: 'তুলনা',
-          navQr: 'QR কোড',
-          navSettings: 'ভাষা ও সেটিংস'
-        },
-        ur: {
-          appTitle: 'ٹیلی کام آفرز - الہواتف الذکیۃ الاولیٰ',
-          appSubtitle: 'بہترین سم، انٹرنیٹ اور انٹرنیشنل کال پیکجز',
-          installApp: 'ایپ انسٹال کریں',
-          qrCodeBtn: 'کیو آر کوڈ',
-          shareBtn: 'شیئر',
-          langLabel: 'زبان',
-          selectOperator: 'ٹیلی کام کمپنی منتخب کریں',
-          allCompanies: 'تمام کمپنیاں',
-          packageCountUnit: 'پیکجز',
-          catAll: 'تمام پیکجز',
-          catCombo: 'کال + انٹرنیٹ',
-          catIntl: 'انٹرنیشنل کالز (فلیکس)',
-          catData: 'صرف انٹرنیٹ ڈیٹا',
-          searchPlaceholder: 'پیکج، جی بی یا قیمت تلاش کریں...',
-          watermarkText: 'الهواتف الذكية',
-          exclusiveOffers: 'صارفین کے لیے خصوصی رعایت',
-          tablesCount: 'فہرست',
-          colCompany: 'کمپنی',
-          colPackage: 'پیکج',
-          colCalls: 'کال منٹس',
-          colData: 'انٹرنیٹ ڈیٹا',
-          colSocial: 'سوشل میڈیا',
-          colValidity: 'مدت',
-          colOfficialPrice: 'سرکاری قیمت',
-          colOfferPrice: 'آفر قیمت',
-          colSavings: 'بچت',
-          colShare: 'شیئر',
-          sar: 'ریال',
-          saveWord: 'بچت',
-          shareOfferWhatsApp: 'واٹس ایپ پر بھیجیں',
-          smartAdvisorTitle: 'سمارٹ پیکج موازنہ اور تلاش',
-          maxBudgetLabel: 'زیادہ سے زیادہ آفر قیمت',
-          featureFilterLabel: 'مطلوبہ خصوصیات',
-          unlimitedSocialBtn: 'لامحدود سوشل میڈیا',
-          intlCallsBtn: 'انٹرنیشنل کالز',
-          sortByLabel: 'ترتیب دیں',
-          sortCheapest: 'سب سے کم آفر قیمت',
-          sortHighestSavings: 'سب سے زیادہ بچت',
-          sortHighestPackage: 'بڑے پیکجز پہلے',
-          comparisonResults: 'موازنہ کے نتائج',
-          qrModalTitle: 'ایپ کھولنے اور انسٹال کرنے کے لیے سکین کریں',
-          qrStandSubtitle: 'آفرز دیکھنے اور ایپ اپنے موبائل میں انسٹال کرنے کے لیے کیمرے سے کوڈ سکین کریں',
-          qrUrlLabel: 'بار کوڈ کا لنک:',
-          printQrPoster: 'پرنٹ کریں',
-          downloadQrImg: 'کیو آر تصویر محفوظ کریں',
-          fullScreenQr: 'بڑا کریں',
-          chooseAppLanguage: 'ایپ کی زبان منتخب کریں',
-          displaySettings: 'ڈسپلے اور انسٹالیشن کی ترتیبات',
-          darkModeLabel: 'ڈارک موڈ',
-          showSavingsToggle: 'بچت کا کالم دکھائیں',
-          installStatusLabel: 'انسٹال بٹن کی حالت',
-          appInstalledText: 'انسٹال ہو چکی ہے (بٹن پوشیدہ ہے)',
-          appNotInstalledText: 'انسٹال بٹن ظاہر ہے',
-          showInstallBtnAgain: 'دوبارہ دکھائیں',
-          hideInstallBtnManual: 'ہوم اسکرین پر محفوظ ہے (بٹن چھپائیں)',
-          installGuideTitle: 'ایپ کو ہوم اسکرین پر شامل کریں',
-          iosStep1: 'براؤزر میں Share بٹن دبائیں۔',
-          iosStep2: '"Add to Home Screen" منتخب کریں۔',
-          confirmShortcutSaved: 'ہوم اسکرین پر محفوظ کر لیا (بٹن چھپائیں)',
-          qrWelcomeTitle: 'الہواتف الذکیۃ آفرز میں خوش آمدید!',
-          qrWelcomeDesc: 'تمام کمپنیوں کی آفرز دیکھنے کے لیے ایپ ابھی اپنے فون میں انسٹال کریں۔',
-          installNowBtn: 'ابھی انسٹال کریں',
-          updateReady: 'نئی اپ ڈیٹ دستیاب ہے!',
-          updateNow: 'اپ ڈیٹ کریں',
-          navOffers: 'کمپنیاں',
-          navCompare: 'موازنہ',
-          navQr: 'کیو آر کوڈ',
-          navSettings: 'زبان اور ترتیبات'
-        },
-        hi: {
-          appTitle: 'टेलीकॉम অফर्स - फर्स्ट स्मार्ट फोन्स',
-          appSubtitle: 'बेहतरीन सिम, डेटा और इंटरनेशनल कॉल पैकेज',
-          installApp: 'ऐप इंस्टॉल करें',
-          qrCodeBtn: 'QR कोड',
-          shareBtn: 'शेयर',
-          langLabel: 'भाषा',
-          selectOperator: 'टेलीकॉम कंपनी चुनें',
-          allCompanies: 'सभी कंपनियां',
-          packageCountUnit: 'पैकेज',
-          catAll: 'सभी पैकेज',
-          catCombo: 'कॉल + इंटरनेट',
-          catIntl: 'इंटरनेशनल कॉल (Flex)',
-          catData: 'केवल डेटा (Internet)',
-          searchPlaceholder: 'पैकेज, GB या कीमत खोजें...',
-          watermarkText: 'الهواتف الذكية',
-          exclusiveOffers: 'ग्राहकों के लिए विशेष छूट',
-          tablesCount: 'सूची',
-          colCompany: 'कंपनी',
-          colPackage: 'पैकेज',
-          colCalls: 'कॉल मिनट',
-          colData: 'डेटा',
-          colSocial: 'सोशल मीडिया',
-          colValidity: 'वैधता',
-          colOfficialPrice: 'आधिकारिक मूल्य',
-          colOfferPrice: 'ऑफर मूल्य',
-          colSavings: 'बचत',
-          colShare: 'शेयर',
-          sar: 'रियाल',
-          saveWord: 'बचत',
-          shareOfferWhatsApp: 'व्हाट्सएप पर भेजें',
-          smartAdvisorTitle: 'स्मार्ट पैकेज तुलना और खोज',
-          maxBudgetLabel: 'अधिकतम ऑफर मूल्य',
-          featureFilterLabel: 'आवश्यक सुविधाएं',
-          unlimitedSocialBtn: 'अनलिमिटेड सोशल',
-          intlCallsBtn: 'इंटरनेशनल कॉल',
-          sortByLabel: 'क्रमबद्ध करें',
-          sortCheapest: 'सबसे कम ऑफर मूल्य',
-          sortHighestSavings: 'सबसे ज़्यादा बचत',
-          sortHighestPackage: 'बड़े पैकेज पहले',
-          comparisonResults: 'तुलना परिणाम',
-          qrModalTitle: 'ऐप खोलने और इंस्टॉल करने के लिए स्कैन करें',
-          qrStandSubtitle: 'ऑफर देखने और ऐप इंस्टॉल करने के लिए अपने फोन कैमरे से QR कोड स्कैन करें',
-          qrUrlLabel: 'QR कोड लिंक:',
-          printQrPoster: 'प्रिंट करें',
-          downloadQrImg: 'QR इमेज सेव करें',
-          fullScreenQr: 'बड़ा देखें',
-          chooseAppLanguage: 'ऐप की भाषा चुनें (6 भाषाएं)',
-          displaySettings: 'डिस्प्ले और इंस्टॉल सेटिंग्स',
-          darkModeLabel: 'डार्क मोड',
-          showSavingsToggle: 'बचत कॉलम दिखाएं',
-          installStatusLabel: 'इंस्टॉल बटन की स्थिति',
-          appInstalledText: 'इंस्टॉल हो चुका है (बटन छिपा हुआ है)',
-          appNotInstalledText: 'इंस्टॉल बटन दिख रहा है',
-          showInstallBtnAgain: 'फिर से दिखाएं',
-          hideInstallBtnManual: 'होम स्क्रीन पर सेव है (बटन छिपाएं)',
-          installGuideTitle: 'होम स्क्रीन पर ऐप जोड़ें',
-          iosStep1: 'ब्राउज़र में Share बटन पर टैप करें।',
-          iosStep2: '"Add to Home Screen" चुनें।',
-          confirmShortcutSaved: 'होम स्क्रीन पर सेव कर लिया (बटन छिपाएं)',
-          qrWelcomeTitle: 'फर्स्ट स्मार्ट फोन्स ऑफर्स में स्वागत है!',
-          qrWelcomeDesc: 'सभी टेलीकॉम ऑफर्स देखने के लिए अभी ऐप इंस्टॉल करें।',
-          installNowBtn: 'अभी इंस्टॉल करें',
-          updateReady: 'नया अपडेट उपलब्ध है!',
-          updateNow: 'अपडेट करें',
-          navOffers: 'कंपनियां',
-          navCompare: 'तुलना',
-          navQr: 'QR कोड',
-          navSettings: 'भाषा और सेटिंग्स'
-        },
-        am: {
-          appTitle: 'የቴሌኮም ቅናሾች - አል-ሀዋቲፍ አል-ዘኪያ',
-          appSubtitle: 'ምርጥ የሲም፣ የኢንተርኔት እና የዓለም አቀፍ ጥሪ ጥቅሎች',
-          installApp: 'መተግበሪያ ጫን',
-          qrCodeBtn: 'QR ኮድ',
-          shareBtn: 'አጋራ',
-          langLabel: 'ቋንቋ',
-          selectOperator: 'የቴሌኮም ኩባንያ ይምረጡ',
-          allCompanies: 'ሁሉም ኩባንያዎች',
-          packageCountUnit: 'ጥቅሎች',
-          catAll: 'ሁሉም ጥቅሎች',
-          catCombo: 'ጥሪ + ዳታ',
-          catIntl: 'ዓለም አቀፍ ጥሪ (Flex)',
-          catData: 'ኢንተርኔት ብቻ (Data)',
-          searchPlaceholder: 'ጥቅል፣ ጊ.ባ ወይም ዋጋ ይፈልጉ...',
-          watermarkText: 'الهواتف الذكية',
-          exclusiveOffers: 'ለደንበኞች ልዩ ቅናሽ',
-          tablesCount: 'ሰንጠረዦች',
-          colCompany: 'ኩባንያ',
-          colPackage: 'ጥቅል',
-          colCalls: 'ጥሪ (ደቂቃ)',
-          colData: 'ዳታ (ኢንተርኔት)',
-          colSocial: 'ሶሻል ሚዲያ',
-          colValidity: 'ጊዜ',
-          colOfficialPrice: 'መደበኛ ዋጋ',
-          colOfferPrice: 'የቅናሽ ዋጋ',
-          colSavings: 'ቅናሽ',
-          colShare: 'አጋራ',
-          sar: 'ሪያል',
-          saveWord: 'ቅናሽ',
-          shareOfferWhatsApp: 'በዋትስአፕ ላክ',
-          smartAdvisorTitle: 'ጥቅሎችን ማወዳደሪያ እና መፈለጊያ',
-          maxBudgetLabel: 'ከፍተኛ የቅናሽ ዋጋ',
-          featureFilterLabel: 'ተፈላጊ አገልግሎቶች',
-          unlimitedSocialBtn: 'ያልተገደበ ሶሻል',
-          intlCallsBtn: 'ዓለም አቀፍ ጥሪ',
-          sortByLabel: 'ደርድር',
-          sortCheapest: 'ዝቅተኛ የቅናሽ ዋጋ',
-          sortHighestSavings: 'ከፍተኛ ቅናሽ ያለው',
-          sortHighestPackage: 'ትላልቅ ጥቅሎች قدام',
-          comparisonResults: 'የማወዳደሪያ ውጤቶች',
-          qrModalTitle: 'መተግበሪያውን ለመክፈት እና ለመጫን QR ይቃኙ',
-          qrStandSubtitle: 'ቅናሾችን ለማየት እና መተግበሪያውን ለመጫን በስልክዎ ካሜራ QR ኮዱን ይቃኙ',
-          qrUrlLabel: 'የመተግበሪያ ሊንክ:',
-          printQrPoster: 'አትም (Print)',
-          downloadQrImg: 'QR ምስል አስቀምጥ',
-          fullScreenQr: 'አሳድግ',
-          chooseAppLanguage: 'ቋንቋ ይምረጡ (6 ቋንቋዎች)',
-          displaySettings: 'የማሳያ እና የመጫኛ ቅንብሮች',
-          darkModeLabel: 'ጨለማ ገጽታ (Dark Mode)',
-          showSavingsToggle: 'የቅናሽ ዓምድ አሳይ',
-          installStatusLabel: 'የመጫኛ ቁልፍ ሁኔታ',
-          appInstalledText: 'ተጭኗል (ቁልፉ ተደብቋል)',
-          appNotInstalledText: 'የመጫኛ ቁልፍ ይታያል',
-          showInstallBtnAgain: 'እንደገና አሳይ',
-          hideInstallBtnManual: 'በዋና ገጽ ተቀምጧል (ቁልፍ ደብቅ)',
-          installGuideTitle: 'መተግበሪያውን ወደ ዋና ገጽ ያክሉ',
-          iosStep1: 'በብራውዘርዎ ውስጥ Share የሚለውን ይጫኑ።',
-          iosStep2: '"Add to Home Screen" የሚለውን ይምረጡ።',
-          confirmShortcutSaved: 'ተቀምጧል (የመጫኛ ቁልፉን ደብቅ)',
-          qrWelcomeTitle: 'እንኳን ወደ አል-ሀዋቲፍ አል-ዘኪያ ቅናሾች በደህና መጡ!',
-          qrWelcomeDesc: 'ሁሉንም የቴሌኮም ቅናሾች ያለ ኢንተርኔት ለማየት መተግበሪያውን አሁኑኑ ይጫኑ።',
-          installNowBtn: 'አሁን ጫን',
-          updateReady: 'አዲስ ማሻሻያ አለ!',
-          updateNow: 'አድስ',
-          navOffers: 'ኩባንያዎች',
-          navCompare: 'ማወዳደሪያ',
-          navQr: 'QR ኮድ',
-          navSettings: 'ቋንቋ እና ቅንብር'
-        }
-      },
+Object.assign(T.en,{need_price:"Enter the package price you need",cmp_these:"Compare these"});
+Object.assign(T.ar,{need_price:"اكتب قيمة الباقة التي تحتاجها",cmp_these:"قارن بينها"});
+Object.assign(T.ur,{need_price:"اپنی مطلوبہ پیکج کی قیمت لکھیں",cmp_these:"ان کا موازنہ کریں"});
+Object.assign(T.bn,{need_price:"আপনার প্রয়োজনীয় প্যাকেজের মূল্য লিখুন",cmp_these:"এগুলো তুলনা করুন"});
+Object.assign(T.hi,{need_price:"जिस पैकेज की कीमत चाहिए वह लिखें",cmp_these:"इनकी तुलना करें"});
+Object.assign(T.am,{need_price:"የሚፈልጉትን የጥቅል ዋጋ ይጻፉ",cmp_these:"እነዚህን አወዳድር"});
 
-      // ================= COMPLETE TELECOM DATA FROM THE 6-PAGE PDF =================
-      companies: [
-        // 1. MOBILY (موبايلي)
-        {
-          id: 'mobily',
-          names: { ar: 'موبايلي', en: 'Mobily', bn: 'মোবাইলি (Mobily)', ur: 'موبائلی (Mobily)', hi: 'मोबाइली (Mobily)', am: 'ሞባይሊ (Mobily)' },
-          tag: 'Mobily 5G',
-          brandHex: '#0085CA',
-          iconBg: 'bg-sky-600',
-          activeCardClass: 'bg-sky-50 dark:bg-sky-950/70 border-sky-500 text-sky-800 dark:text-sky-200 ring-sky-500',
-          bannerGradient: 'bg-gradient-to-r from-sky-600 via-cyan-600 to-blue-700',
-          tableHeaderClass: 'bg-sky-700',
-          svgIcon: `<svg viewBox="0 0 40 40" fill="none" class="w-full h-full"><rect width="40" height="40" rx="10" fill="currentColor" fill-opacity="0.1"/><path d="M9 28V15C9 12.5 11 11 13.5 11C15.5 11 17 12.2 17.8 14C18.6 12.2 20.3 11 22.5 11C25.2 11 27 12.8 27 15.5V28H23V16.5C23 15.3 22.2 14.5 21 14.5C19.8 14.5 19 15.3 19 16.5V28H15V16.5C15 15.3 14.2 14.5 13 14.5C11.8 14.5 11 15.3 11 16.5V28H9Z" fill="white"/><circle cx="31" cy="14" r="3" fill="#38bdf8"/><circle cx="31" cy="24" r="3" fill="white"/></svg>`,
-          tables: [
-            {
-              category: 'combo',
-              title: 'باقات موبايلي ( اتصال + بيانات )',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: 'موبايلي 30', calls: '100 دقيقة', data: '1 جيجا', social: '1 جيجا', official: 35, offer: 35 },
-                { name: 'موبايلي 75', calls: '500 دقيقة', data: '23 جيجا', social: '23 جيجا', official: 86, offer: 75 },
-                { name: 'موبايلي 110', calls: '1500 دقيقة', data: '40 جيجا', social: '65 جيجا', official: 127, offer: 90 },
-                { name: 'موبايلي 150', calls: '3000 دقيقة', data: '55 جيجا', social: 'لا محدود', official: 173, offer: 115 },
-                { name: 'موبايلي 180', calls: 'لا محدود', data: '80 جيجا', social: 'لا محدود', official: 207, offer: 130 },
-                { name: 'موبايلي 220', calls: 'لا محدود', data: '100 جيجا', social: 'لا محدود', official: 253, offer: 150 },
-                { name: 'موبايلي 360', calls: 'لا محدود', data: 'لا محدود', social: 'لا محدود', official: 395, offer: 220 },
-                { name: 'موبايلي 360 / 3 شهور', calls: 'لا محدود', data: 'لا محدود', social: 'لا محدود', official: 1180, offer: 595 },
-                { name: 'data booster', calls: '1000 دقيقة', data: '70 جيجا', social: 'لا محدود', official: 173, offer: 115 },
-                { name: 'data booster 180', calls: '1000 دقيقة', data: '90 جيجا', social: 'لا محدود', official: 207, offer: 130 },
-                { name: 'data booster 220', calls: '1000 دقيقة', data: '114 جيجا', social: 'لا محدود', official: 253, offer: 150 },
-                { name: 'اكستريم', calls: '500 دقيقة', data: '40 جيجا', social: 'لا محدود', official: 230, offer: 140 },
-                { name: 'اكستريم بلس', calls: '1000 دقيقة', data: '80 جيجا', social: 'لا محدود', official: 276, offer: 160 }
-              ]
-            },
-            {
-              category: 'intl',
-              title: 'باقات موبايلي لينك ( اتصال دولي ومحلي + بيانات )',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: 'فليكس بلس 20 / أسبوع', calls: '60 دقيقة', data: '1 جيجا', social: '1 جيجا', official: 23, offer: 25 },
-                { name: 'فليكس بلس 30', calls: '100 دقيقة', data: '1 جيجا', social: '1 جيجا', official: 36, offer: 45 },
-                { name: 'فليكس بلس 65', calls: '450 دقيقة', data: '10 جيجا', social: '15 جيجا', official: 75, offer: 65 },
-                { name: 'فليكس بلس 100', calls: '1100 دقيقة', data: '35 جيجا', social: '35 جيجا', official: 115, offer: 85 },
-                { name: 'فليكس بلس 150', calls: '1700 دقيقة', data: '60 جيجا', social: 'لا محدود', official: 173, offer: 115 },
-                { name: 'فليكس بلس 240 / 56 يوم', calls: '2000 دقيقة', data: '100 جيجا', social: 'لا محدود', official: 276, offer: 160 },
-                { name: 'فليكس بلس 320 / 84 يوم', calls: '2000 دقيقة', data: '135 جيجا', social: 'لا محدود', official: 368, offer: 205 }
-              ]
-            },
-            {
-              category: 'data',
-              title: 'باقات انترنت موبايلي',
-              hasCalls: false, hasData: true, hasSocial: false, hasValidity: false,
-              rows: [
-                { name: '10 جيجا شهر', data: '10 جيجا', official: 109, offer: 80 },
-                { name: '10 جيجا 3 شهور', data: '10 جيجا', official: 190, offer: 120 },
-                { name: '20 جيجا شهر', data: '20 جيجا', official: 156, offer: 145 },
-                { name: '20 جيجا 3 شهور', data: '20 جيجا', official: 253, offer: 120 },
-                { name: '50 جيجا شهرين', data: '50 جيجا', official: 242, offer: 205 },
-                { name: '50 جيجا 3 شهور', data: '50 جيجا', official: 299, offer: 105 },
-                { name: '100 جيجا شهر', data: '100 جيجا', official: 184, offer: 150 },
-                { name: '100 جيجا 3 شهور', data: '100 جيجا', official: 368, offer: 175 },
-                { name: '300 جيجا 3 شهور', data: '300 جيجا', official: 517, offer: 275 },
-                { name: '600 جيجا 6 شهور', data: '600 جيجا', official: 1035, offer: 525 },
-                { name: 'لا محدود شهر', data: 'لا محدود', official: 374, offer: 210 },
-                { name: 'لا محدود 3 شهور', data: 'لا محدود', official: 1122, offer: 565 }
-              ]
-            }
-          ]
-        },
+/* Minimal QR encoder: byte mode, ECC level M, versions 1-10 */
+function qrMatrix(text){
+  const bytes=[];{const s=unescape(encodeURIComponent(text));for(let i=0;i<s.length;i++)bytes.push(s.charCodeAt(i));}
+  const T=[null,[10,[[1,16]]],[16,[[1,28]]],[26,[[1,44]]],[18,[[2,32]]],[24,[[2,43]]],[16,[[4,27]]],[18,[[4,31]]],[22,[[2,38],[2,39]]],[22,[[3,36],[2,37]]],[26,[[4,43],[1,44]]]];
+  let v=1,dc=0,ec=0,groups=null;
+  for(;v<=10;v++){ec=T[v][0];groups=T[v][1];dc=groups.reduce((a,g)=>a+g[0]*g[1],0);
+    if(4+(v<10?8:16)+8*bytes.length<=dc*8)break;}
+  if(v>10)return null;
+  const bits=[];const put=(val,len)=>{for(let i=len-1;i>=0;i--)bits.push((val>>>i)&1);};
+  put(4,4);put(bytes.length,v<10?8:16);bytes.forEach(b=>put(b,8));
+  for(let i=0;i<4&&bits.length<dc*8;i++)bits.push(0);
+  while(bits.length%8)bits.push(0);
+  const data=[];for(let i=0;i<bits.length;i+=8){let b=0;for(let j=0;j<8;j++)b=b<<1|bits[i+j];data.push(b);}
+  for(let p=0;data.length<dc;p++)data.push(p%2?0x11:0xEC);
+  // Reed-Solomon
+  const EXP=new Array(512),LOG=new Array(256);
+  for(let i=0,x=1;i<255;i++){EXP[i]=x;LOG[x]=i;x<<=1;if(x&256)x^=0x11d;}
+  for(let i=255;i<512;i++)EXP[i]=EXP[i-255];
+  const mul=(a,b)=>a&&b?EXP[LOG[a]+LOG[b]]:0;
+  let gen=[1];
+  for(let i=0;i<ec;i++){const ng=new Array(gen.length+1).fill(0);
+    for(let j=0;j<gen.length;j++){ng[j]^=gen[j];ng[j+1]^=mul(gen[j],EXP[i]);}gen=ng;}
+  const rs=blk=>{const r=new Array(ec).fill(0);
+    for(const b of blk){const f=b^r.shift();r.push(0);for(let i=0;i<ec;i++)r[i]^=mul(gen[i+1],f);}return r;};
+  const blocks=[];let pos=0;
+  groups.forEach(([n,len])=>{for(let i=0;i<n;i++){const d=data.slice(pos,pos+len);pos+=len;blocks.push({d,e:rs(d)});}});
+  const out=[];const maxd=Math.max(...blocks.map(b=>b.d.length));
+  for(let i=0;i<maxd;i++)blocks.forEach(b=>{if(i<b.d.length)out.push(b.d[i]);});
+  for(let i=0;i<ec;i++)blocks.forEach(b=>out.push(b.e[i]));
+  // matrix
+  const N=17+4*v;
+  const M=Array.from({length:N},()=>new Array(N).fill(false));
+  const F=Array.from({length:N},()=>new Array(N).fill(false));
+  const setF=(x,y,d)=>{M[y][x]=d;F[y][x]=true;};
+  for(let i=0;i<N;i++){setF(6,i,i%2==0);setF(i,6,i%2==0);}
+  const finder=(cx,cy)=>{for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++){
+    const x=cx+dx,y=cy+dy;if(x<0||y<0||x>=N||y>=N)continue;
+    const d=Math.max(Math.abs(dx),Math.abs(dy));setF(x,y,d!=2&&d!=4);}};
+  finder(3,3);finder(N-4,3);finder(3,N-4);
+  const na=v==1?0:Math.floor(v/7)+2;
+  let ap=[];
+  if(na){const step=Math.ceil((v*4+4)/(na*2-2))*2;ap=[6];
+    for(let p=N-7,k=0;k<na-1;p-=step,k++)ap.splice(1,0,p);}
+  ap.forEach((ax,i)=>ap.forEach((ay,j)=>{
+    if((i==0&&j==0)||(i==0&&j==ap.length-1)||(i==ap.length-1&&j==0))return;
+    for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++)setF(ax+dx,ay+dy,Math.max(Math.abs(dx),Math.abs(dy))!=1);}));
+  const fmt=mask=>{const d=mask;let r=d;for(let i=0;i<10;i++)r=(r<<1)^((r>>>9)*0x537);
+    const b=((d<<10)|r)^0x5412,g=i=>((b>>>i)&1)!=0;
+    for(let i=0;i<=5;i++)setF(8,i,g(i));setF(8,7,g(6));setF(8,8,g(7));setF(7,8,g(8));
+    for(let i=9;i<15;i++)setF(14-i,8,g(i));
+    for(let i=0;i<8;i++)setF(N-1-i,8,g(i));
+    for(let i=8;i<15;i++)setF(8,N-15+i,g(i));
+    setF(8,N-8,true);};
+  fmt(0);
+  if(v>=7){let r=v;for(let i=0;i<12;i++)r=(r<<1)^((r>>>11)*0x1F25);
+    const b=(v<<12)|r;for(let i=0;i<18;i++){const bit=((b>>>i)&1)!=0,a=N-11+i%3,c=Math.floor(i/3);setF(a,c,bit);setF(c,a,bit);}}
+  let k=0;const total=out.length*8;
+  for(let right=N-1;right>=1;right-=2){if(right==6)right=5;
+    for(let vert=0;vert<N;vert++)for(let j=0;j<2;j++){
+      const x=right-j,up=((right+1)&2)==0,y=up?N-1-vert:vert;
+      if(!F[y][x]&&k<total){M[y][x]=((out[k>>>3]>>>(7-(k&7)))&1)!=0;k++;}}}
+  const mf=[(x,y)=>(x+y)%2==0,(x,y)=>y%2==0,(x,y)=>x%3==0,(x,y)=>(x+y)%3==0,
+    (x,y)=>(Math.floor(x/3)+Math.floor(y/2))%2==0,(x,y)=>x*y%2+x*y%3==0,
+    (x,y)=>(x*y%2+x*y%3)%2==0,(x,y)=>((x+y)%2+x*y%3)%2==0];
+  const penalty=G=>{let p=0;
+    for(let t=0;t<2;t++){for(let a=0;a<N;a++){let run=1;
+      for(let b=1;b<N;b++){const c=t?G[b][a]:G[a][b],q=t?G[b-1][a]:G[a][b-1];
+        if(c==q){run++;if(run==5)p+=3;else if(run>5)p++;}else run=1;}
+      for(let b=0;b+10<N;b++){const s=[];for(let i=0;i<11;i++)s.push((t?G[b+i][a]:G[a][b+i])?1:0);
+        const j=s.join('');if(j=='10111010000'||j=='00001011101')p+=40;}}}
+    for(let y=0;y<N-1;y++)for(let x=0;x<N-1;x++){const c=G[y][x];
+      if(c==G[y][x+1]&&c==G[y+1][x]&&c==G[y+1][x+1])p+=3;}
+    let dark=0;G.forEach(r=>r.forEach(c=>{if(c)dark++;}));
+    p+=Math.floor(Math.abs(dark*20-N*N*10)/(N*N))*10;return p;};
+  let best=null,bm=0,bp=1e9;
+  for(let m=0;m<8;m++){
+    const G=M.map((r,y)=>r.map((c,x)=>F[y][x]?c:(c!=mf[m](x,y))));
+    // apply format bits for this mask on copy
+    const save=M.map(r=>r.slice());
+    for(let y=0;y<N;y++)for(let x=0;x<N;x++)M[y][x]=G[y][x];
+    fmt(m);const G2=M.map(r=>r.slice());
+    for(let y=0;y<N;y++)for(let x=0;x<N;x++)M[y][x]=save[y][x];
+    const p=penalty(G2);if(p<bp){bp=p;best=G2;bm=m;}}
+  return best;
+}
+function qrDraw(canvas,text,size){
+  const G=qrMatrix(text);if(!G)return false;
+  const n=G.length,q=4,sc=Math.floor(size/(n+q*2))||1,px=(n+q*2)*sc;
+  canvas.width=canvas.height=px;const c=canvas.getContext('2d');
+  c.fillStyle='#fff';c.fillRect(0,0,px,px);c.fillStyle='#000';
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(G[y][x])c.fillRect((x+q)*sc,(y+q)*sc,sc,sc);
+  return true;
+}
 
-        // 2. SAWA STC (سوا)
-        {
-          id: 'sawa',
-          names: { ar: 'سوا stc', en: 'Sawa (stc)', bn: 'সাওয়া (stc)', ur: 'سوا (stc)', hi: 'सवा (stc)', am: 'ሳዋ (stc)' },
-          tag: 'stc Sawa',
-          brandHex: '#4F008C',
-          iconBg: 'bg-purple-800',
-          activeCardClass: 'bg-purple-50 dark:bg-purple-950/70 border-purple-600 text-purple-900 dark:text-purple-200 ring-purple-600',
-          bannerGradient: 'bg-gradient-to-r from-purple-900 via-fuchsia-900 to-rose-700',
-          tableHeaderClass: 'bg-purple-900',
-          svgIcon: `<svg viewBox="0 0 40 40" fill="none" class="w-full h-full"><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" fill="white" font-weight="900" font-size="16" font-family="sans-serif">stc</text><circle cx="32" cy="12" r="3.5" fill="#FF375E"/></svg>`,
-          tables: [
-            {
-              category: 'combo',
-              title: 'باقات سوا اتصال وانترنت',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: 'سوا بيسك', calls: '100 دقيقة لكل الشبكات', data: '1 جيجا', social: '1 جيجا', official: 35, offer: 35 },
-                { name: 'سوا لايك', calls: '530 دقيقة داخل الشبكة', data: '10 جيجا', social: '15 جيجا', official: 75, offer: 65 },
-                { name: 'سوا لايك بلس', calls: '600 دقيقة لكل الشبكات', data: '20 جيجا', social: '20 جيجا', official: 87, offer: 75 },
-                { name: 'سوا شير', calls: '1150 دقيقة لكل الشبكات', data: '40 جيجا', social: '45 جيجا', official: 124, offer: 95 },
-                { name: 'سوا شير بلس', calls: '1540 دقيقة لكل الشبكات', data: '40 جيجا', social: '55 جيجا', official: 133, offer: 90 },
-                { name: 'سوا 175', calls: '1200 دقيقة لكل الشبكات', data: '85 جيجا', social: 'لا محدود', official: 202, offer: 125 },
-                { name: 'سوا 150', calls: '1180 دقيقة لكل الشبكات', data: '70 جيجا', social: 'لا محدود', official: 173, offer: 115 },
-                { name: 'سوا 120', calls: '1250 دقيقة لكل الشبكات', data: '45 جيجا', social: 'لا محدود سناب وواتساب وفيسبوك', official: 138, offer: 90 },
-                { name: 'سوا بوست', calls: 'لا محدود داخل الشبكة', data: '70 جيجا', social: 'لا محدود', official: 184, offer: 120 },
-                { name: 'سوا بوست بلس', calls: 'لا محدود داخل و 550 للكل', data: '74 جيجا', social: 'لا محدود', official: 196, offer: 125 },
-                { name: 'سوا ستار', calls: 'لا محدود داخل الشبكة', data: '113 جيجا', social: 'لا محدود', official: 253, offer: 150 },
-                { name: 'سوا ستار بلس', calls: '1450 دقيقة لكل الشبكات', data: '127 جيجا', social: 'لا محدود', official: 276, offer: 160 },
-                { name: 'سوا هيرو', calls: 'لا محدود لكل الشبكات', data: 'لا محدود', social: 'لا محدود', official: 414, offer: 230 }
-              ]
-            },
-            {
-              category: 'intl',
-              title: 'باقات سوا فليكس الدولية',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              note: 'الباقات صالحة لمدة 4 أسابيع - الدول المشمولة بالمكالمات الدولية: اليمن * السودان * الفلبين * مصر * بنجلاديش * الهند * باكستان * اثيوبيا * اندونيسيا * الامارات * سيريلانكا * الكويت * النيبال * عمان * البحرين * قطر * سوريا * الاردن * لبنان * الصين',
-              rows: [
-                { name: 'سوا فليكس 25', calls: '65 دقيقة لكل الشبكات ودولي', data: '1 جيجا', social: '-', official: 25, offer: 25 },
-                { name: 'سوا فليكس بيسك', calls: '100 دقيقة لكل الشبكات ودولي', data: '1 جيجا', social: '1 جيجا', official: 41, offer: 40 },
-                { name: 'سوا فليكس 65', calls: '450 دقيقة لكل الشبكات ودولي', data: '10 جيجا', social: '15 جيجا', official: 75, offer: 65 },
-                { name: 'سوا فليكس 75', calls: '600 دقيقة لكل الشبكات ودولي', data: '10 جيجا', social: '20 جيجا', official: 87, offer: 115 },
-                { name: 'سوا فليكس 100', calls: '1100 دقيقة لكل الشبكات ودولي', data: '35 جيجا', social: '36 جيجا', official: 115, offer: 85 },
-                { name: 'سوا فليكس 120', calls: '1300 دقيقة لكل الشبكات ودولي', data: '45 جيجا', social: 'لا محدود', official: 138, offer: 90 },
-                { name: 'سوا فليكس 150', calls: '1500 دقيقة لكل الشبكات ودولي', data: '60 جيجا', social: 'لا محدود', official: 173, offer: 115 },
-                { name: 'سوا فليكس 240', calls: '2000 دقيقة لكل الشبكات ودولي', data: '100 جيجا', social: 'لا محدود', official: 276, offer: 160 },
-                { name: 'سوا فليكس 340 / 3 شهور', calls: '2000 دقيقة لكل الشبكات ودولي', data: '140 جيجا', social: 'لا محدود', official: 391, offer: 215 }
-              ]
-            },
-            {
-              category: 'data',
-              title: 'باقات سوا الانترنت',
-              hasCalls: false, hasData: false, hasSocial: false, hasValidity: true,
-              rows: [
-                { name: '70 جيجا', validity: 'شهر', official: 138, offer: 130 },
-                { name: '120 جيجا', validity: 'شهر', official: 230, offer: 140 },
-                { name: '250 جيجا', validity: '3 أشهر', official: 460, offer: 250 },
-                { name: '300 جيجا', validity: '3 أشهر', official: 575, offer: 305 },
-                { name: '350 جيجا', validity: '3 أشهر', official: 633, offer: 335 },
-                { name: '400 جيجا', validity: '3 أشهر', official: 748, offer: 390 },
-                { name: '600 جيجا', validity: '6 أشهر', official: 1035, offer: 525 },
-                { name: 'ماكس - شهر (لا محدود)', validity: 'شهر', official: 391, offer: 215 },
-                { name: 'ماكس - 3 أشهر (لا محدود)', validity: '3 أشهر', official: 1139, offer: 575 },
-                { name: 'داش كام 20 جيجا', validity: '6 شهور', official: 265, offer: 225 },
-                { name: 'داش كام 30 جيجا', validity: '12 شهر', official: 443, offer: 355 }
-              ]
-            }
-          ]
-        },
+/* ---------- state ---------- */
+const KEY="telecom_offers_v1";
+let S={lang:null,theme:"auto",showCost:true,favs:[],cmp:[]};
+try{const x=JSON.parse(localStorage.getItem(KEY)||"null");if(x)S=Object.assign(S,x);}catch(e){}
+if(!S.lang){const n=(navigator.language||"ar").slice(0,2);S.lang=LANGS.some(l=>l[0]===n)?n:"ar";}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+const t=k=>(T[S.lang]&&T[S.lang][k])||T.en[k]||k;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const coName=c=>c.n[S.lang]||c.n.en;
+const CATS=["cd","fx","dt","vz"];
 
-        // 3. SALAM MOBILE (سلام)
-        {
-          id: 'salam',
-          names: { ar: 'سلام موبايل', en: 'Salam Mobile', bn: 'সালাম (Salam)', ur: 'سلام موبائل', hi: 'सलाम मोबाइल', am: 'ሰላም ሞባይል' },
-          tag: 'Salam 5G',
-          brandHex: '#00B140',
-          iconBg: 'bg-emerald-600',
-          activeCardClass: 'bg-emerald-50 dark:bg-emerald-950/70 border-emerald-500 text-emerald-900 dark:text-emerald-200 ring-emerald-500',
-          bannerGradient: 'bg-gradient-to-r from-emerald-600 via-green-600 to-teal-700',
-          tableHeaderClass: 'bg-emerald-700',
-          svgIcon: `<svg viewBox="0 0 40 40" fill="none" class="w-full h-full"><path d="M12 25C15 29 25 29 28 25M14 16C14 14 16 12 20 12C24 12 26 14 26 16C26 19 14 19 14 22C14 24 16 26 20 26C24 26 26 24 26 22" stroke="white" stroke-width="3.5" stroke-linecap="round"/></svg>`,
-          tables: [
-            {
-              category: 'combo',
-              title: 'باقات سلام اتصال وبيانات',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: 'سولو 74', calls: '450 دقيقة', data: '20 جيجا', social: '20 جيجا', official: 86, offer: 70 },
-                { name: 'سولو 99', calls: '1000 دقيقة', data: '35 جيجا', social: 'لا محدود', official: 113, offer: 85 },
-                { name: 'سولو 149', calls: 'لا محدود', data: '59 جيجا', social: 'لا محدود', official: 172, offer: 115 },
-                { name: 'سولو 179', calls: 'لا محدود', data: '79 جيجا', social: 'لا محدود', official: 207, offer: 130 },
-                { name: 'سولو 199', calls: '1800 دقيقة', data: '80 جيجا', social: 'لا محدود', official: 229, offer: 140 },
-                { name: 'انفنتي + شريحة اضافية', calls: 'لا محدود', data: 'لا محدود', social: 'لا محدود', official: 413, offer: 230 },
-                { name: 'سولو 160 / شهرين', calls: '1000 دقيقة', data: '50 جيجا', social: 'لا محدود', official: 184, offer: 120 },
-                { name: 'سولو 240 / 3 شهور', calls: '1000 دقيقة', data: '90 جيجا', social: 'لا محدود', official: 276, offer: 160 },
-                { name: 'سولو 340 / 6 شهور', calls: '1500 دقيقة', data: '135 جيجا', social: 'لا محدود', official: 391, offer: 215 }
-              ]
-            },
-            {
-              category: 'intl',
-              title: 'باقات سلام فليكس الدولية',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: 'فليكس 85', calls: '500 د. محلي ودولي', data: '12 جيجا', social: '12 جيجا', official: 98, offer: 75 },
-                { name: 'فليكس 110', calls: '1000 د. محلي ودولي', data: '35 جيجا', social: '30 جيجا', official: 127, offer: 90 },
-                { name: 'فليكس 150', calls: '1200 د. محلي ودولي', data: '55 جيجا', social: 'لا محدود', official: 173, offer: 115 },
-                { name: 'فليكس 200', calls: '1500 د. محلي ودولي', data: '65 جيجا', social: 'لا محدود', official: 230, offer: 140 }
-              ]
-            },
-            {
-              category: 'data',
-              title: 'باقات سلام بيانات',
-              hasCalls: false, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: '10 جيجا', data: '10 جيجا', social: '-', official: 80, offer: 90 },
-                { name: '50 جيجا', data: '50 جيجا', social: '-', official: 132, offer: 130 },
-                { name: '100 جيجا', data: '100 جيجا', social: '-', official: 189, offer: 170 },
-                { name: '10 + 10 / شهرين', data: '10 جيجا', social: '10 جيجا', official: 132, offer: 130 },
-                { name: '30 + 30 / 3 شهور', data: '30 جيجا', social: '30 جيجا', official: 224, offer: 180 },
-                { name: '50 + 50 / 3 شهور', data: '50 جيجا', social: '50 جيجا', official: 458, offer: 195 },
-                { name: '100 + 100 / 3 شهور', data: '100 جيجا', social: '100 جيجا', official: 373, offer: 285 },
-                { name: '150 + 150 / 3 شهور', data: '150 جيجا', social: '150 جيجا', official: 201, offer: 370 },
-                { name: '300 جيجا / 3 شهور', data: '300 جيجا', social: '-', official: 343, offer: 410 },
-                { name: 'لا محدود', data: 'لا محدود', social: 'لا محدود', official: 517, offer: 305 }
-              ]
-            }
-          ]
-        },
+/* ---------- icon ---------- */
+function iconSVG(){
+  const arc=r=>{const d=r*.7071;return `<path d="M${256-d} ${330-d}A${r} ${r} 0 0 1 ${256+d} ${330-d}" fill="none" stroke="#fff" stroke-width="34" stroke-linecap="round"/>`;};
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#14b8a6"/></linearGradient></defs><rect width="512" height="512" rx="112" fill="url(#g)"/>${arc(70)}${arc(130)}${arc(190)}<circle cx="256" cy="330" r="28" fill="#fff"/><rect x="170" y="392" width="172" height="30" rx="15" fill="#fff" opacity=".9"/></svg>`;
+}
+$("#logo").innerHTML=iconSVG().replace('id="g"','id="g2"').replace('url(#g)','url(#g2)');
 
-        // 4. FRIENDI MOBILE (فرندي)
-        {
-          id: 'friendi',
-          names: { ar: 'فرندي', en: 'FRiENDi', bn: 'ফ্রেন্ডি (Friendi)', ur: 'فرینڈی (Friendi)', hi: 'फ्रेंडी (Friendi)', am: 'ፍሬንዲ (Friendi)' },
-          tag: 'FRiENDi Mobile',
-          brandHex: '#E30613',
-          iconBg: 'bg-rose-600',
-          activeCardClass: 'bg-rose-50 dark:bg-rose-950/70 border-rose-500 text-rose-900 dark:text-rose-200 ring-rose-500',
-          bannerGradient: 'bg-gradient-to-r from-rose-600 via-red-600 to-orange-600',
-          tableHeaderClass: 'bg-rose-700',
-          svgIcon: `<svg viewBox="0 0 40 40" fill="none" class="w-full h-full"><circle cx="20" cy="14" r="5" fill="white"/><path d="M10 30C10 24 14 21 20 21C26 21 30 24 30 30" stroke="white" stroke-width="3.5" stroke-linecap="round"/><circle cx="29" cy="12" r="3" fill="#fde047"/></svg>`,
-          tables: [
-            {
-              category: 'combo',
-              title: 'باقات فرندي اتصال وبيانات (محلي ودولي)',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: 'باقة 1 جيجا / 14 يوم', calls: '120 دقيقة', data: '1 جيجا / 14 يوم', social: '-', official: 20, offer: 20 },
-                { name: 'باقة 20 جيجا', calls: '250 دقيقة', data: '20 جيجا', social: '30 جيجا', official: 81, offer: 70 },
-                { name: 'باقة 30 جيجا', calls: '500 دقيقة', data: '30 جيجا', social: '40 جيجا', official: 98, offer: 75 },
-                { name: 'باقة 40 جيجا', calls: '700 دقيقة', data: '40 جيجا', social: 'لا محدود', official: 113, offer: 57 },
-                { name: 'باقة 45 جيجا', calls: '1000 دقيقة', data: '45 جيجا', social: 'لا محدود', official: 126, offer: 90 },
-                { name: 'باقة 55 جيجا', calls: 'لا محدود', data: '55 جيجا', social: 'لا محدود', official: 171, offer: 115 },
-                { name: 'باقة 100 جيجا / 3 شهور', calls: '800 دقيقة', data: '100 جيجا / 3 شهور', social: '-', official: 367, offer: 300 },
-                { name: 'دولي 2 جيجا', calls: '150 دقيقة محلي ودولي', data: '2 جيجا', social: '2 جيجا', official: 48, offer: 55 },
-                { name: 'دولي 3 جيجا / 7 أيام', calls: '150 دقيقة محلي ودولي', data: '3 جيجا / 7 أيام', social: '1 جيجا', official: 23, offer: 40 },
-                { name: 'دولي 6 جيجا', calls: '300 دقيقة محلي ودولي', data: '6 جيجا', social: '6 جيجا', official: 69, offer: 65 },
-                { name: 'دولي 35 جيجا', calls: '1000 دقيقة محلي ودولي', data: '35 جيجا', social: '35 جيجا', official: 115, offer: 85 },
-                { name: 'دولي 40 جيجا', calls: '1200 دقيقة محلي ودولي', data: '40 جيجا', social: 'لا محدود', official: 127, offer: 90 },
-                { name: 'دولي 100 جيجا / 3 شهور', calls: '1500 دقيقة محلي ودولي', data: '100 جيجا / 3 شهور', social: 'لا محدود', official: 345, offer: 285 }
-              ]
-            },
-            {
-              category: 'data',
-              title: 'باقات فرندي بيانات',
-              hasCalls: false, hasData: true, hasSocial: false, hasValidity: false,
-              rows: [
-                { name: '50 جيجا / 3 شهور', data: '50 جيجا / 3 شهور', official: 201, offer: 125 },
-                { name: '75 جيجا / 3 شهور', data: '75 جيجا / 3 شهور', official: 293, offer: 245 },
-                { name: '200 جيجا / 3 شهور', data: '200 جيجا / 3 شهور', official: 370, offer: 305 },
-                { name: '300 جيجا / 3 شهور', data: '300 جيجا / 3 شهور', official: 518, offer: 415 },
-                { name: 'لا محدود / شهر', data: 'لا محدود / شهر', official: 374, offer: 305 }
-              ]
-            }
-          ]
-        },
+/* ---------- formatting ---------- */
+const fmtData=d=>{if(d===""||d===0||d==null)return"";if(d==="U")return t("unl");if(d==="1TB")return"1 "+t("tb");return d+" "+t("gb");};
+function fmtSocial(s){if(s===""||s===0||s==null)return"";const m=String(s).match(/^(Uc|Us|U|\d+)(\**)$/);if(!m)return esc(s);
+  const b=m[1]==="U"?t("unl"):m[1]==="Us"?t("usx"):m[1]==="Uc"?t("uc"):m[1]+" "+t("gb");return b+m[2];}
+function fmtCalls(c){if(c==="")return"";const m=String(c).match(/^(U|\d+)([aoil]?)(?:\+(\d+))?(\**)$/);if(!m)return esc(c);
+  let s=(m[1]==="U"?t("unl"):m[1]+" "+t("min"));
+  if(m[2])s+=" · "+t("sc_"+m[2]);
+  if(m[3])s+=" + "+m[3]+" "+t("min")+" "+t("sc_a");
+  return s+m[4];}
+function fmtVal(v){if(!v)return"";const n=parseInt(v),u={d:0,w:2,m:4}[v.slice(-1)];return n+" "+t("u")[u+(n===1?0:1)];}
+const money=n=>n+" "+t("cur");
+const dataNum=d=>d==="U"?99999:d==="1TB"?1000:(+d||0);
+function offerTitle(o){return o.n||(o.d==="U"?t("unl"):fmtData(o.d));}
 
-        // 5. VIRGIN MOBILE (فيرجن)
-        {
-          id: 'virgin',
-          names: { ar: 'فيرجن', en: 'Virgin Mobile', bn: 'ভার্জিন (Virgin)', ur: 'ورجن موبائل', hi: 'वर्जिन मोबाइल', am: 'ቨርጂን ሞባይል' },
-          tag: 'Virgin Mobile',
-          brandHex: '#CC0000',
-          iconBg: 'bg-red-700',
-          activeCardClass: 'bg-red-50 dark:bg-red-950/70 border-red-600 text-red-900 dark:text-red-200 ring-red-600',
-          bannerGradient: 'bg-gradient-to-r from-red-700 via-rose-700 to-red-900',
-          tableHeaderClass: 'bg-red-800',
-          svgIcon: `<svg viewBox="0 0 40 40" fill="none" class="w-full h-full"><path d="M10 12L18 28L30 12" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-          tables: [
-            {
-              category: 'combo',
-              title: 'باقات فيرجن اتصال وبيانات',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: 'فيرجن 1 جيجا', calls: '250 دقيقة', data: '1 جيجا', social: '1 جيجا', official: 52, offer: 55 },
-                { name: 'فيرجن 20 جيجا', calls: '350 دقيقة', data: '20 جيجا', social: '20 جيجا', official: 81, offer: 70 },
-                { name: 'فيرجن 40 جيجا', calls: '750 دقيقة', data: '40 جيجا', social: 'لا محدود', official: 115, offer: 85 },
-                { name: 'فيرجن 45 جيجا', calls: '745 دقيقة', data: '45 جيجا', social: 'لا محدود', official: 124, offer: 90 },
-                { name: 'فيرجن 55 جيجا', calls: 'لا محدود', data: '55 جيجا', social: 'لا محدود', official: 173, offer: 115 },
-                { name: 'فيرجن 80 جيجا', calls: 'لا محدود', data: '80 جيجا', social: 'لا محدود', official: 226, offer: 140 },
-                { name: 'فيرجن لا محدود', calls: 'لا محدود', data: 'لا محدود', social: 'لا محدود', official: 410, offer: 335 },
-                { name: 'فيرجن دولي 6 جيجا', calls: '300 دقيقة محلي ودولي', data: '6 جيجا', social: '6 جيجا', official: 70, offer: 65 },
-                { name: 'فيرجن دولي 35 جيجا', calls: '1000 دقيقة محلي ودولي', data: '35 جيجا', social: '35 جيجا', official: 115, offer: 85 },
-                { name: 'فيرجن دولي 100 جيجا / 3 شهور', calls: '1500 دقيقة محلي ودولي', data: '100 جيجا / 3 شهور', social: 'لا محدود', official: 345, offer: 285 }
-              ]
-            },
-            {
-              category: 'data',
-              title: 'باقات فيرجن بيانات',
-              hasCalls: false, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: '50 جيجا / شهر', data: '50 جيجا / شهر', social: '-', official: 96, offer: 110 },
-                { name: '75 جيجا / شهرين', data: '75 جيجا / شهرين', social: '75 جيجا', official: 225, offer: 215 },
-                { name: '100 جيجا / شهر', data: '100 جيجا / شهر', social: '-', official: 173, offer: 170 },
-                { name: '100 جيجا / 6 شهور', data: '100 جيجا / 6 شهور', social: '-', official: 247, offer: 235 },
-                { name: '125 جيجا / 3 شهور', data: '125 جيجا / 3 شهور', social: '100 جيجا', official: 337, offer: 310 },
-                { name: '300 جيجا / 3 شهور', data: '300 جيجا / 3 شهور', social: '-', official: 518, offer: 460 },
-                { name: '300 جيجا / 6 شهور', data: '300 جيجا / 6 شهور', social: '-', official: 534, offer: 470 },
-                { name: '600 جيجا / 6 شهور', data: '600 جيجا / 6 شهور', social: '-', official: 1011, offer: 865 },
-                { name: 'لا محدود / شهر', data: 'لا محدود / شهر', social: '-', official: 365, offer: 330 }
-              ]
-            }
-          ]
-        },
+/* ---------- flatten ---------- */
+const ALL=[];
+CO.forEach(c=>CATS.forEach(cat=>(c.cats[cat]||[]).forEach((r,i)=>ALL.push({cid:c.id,cat,i,n:r[0],c:r[1],d:r[2],s:r[3],o:r[4],k:r[5],v:r[6]||"",key:c.id+"|"+cat+"|"+i}))));
+const byId=id=>CO.find(c=>c.id===id);
+const isFav=k=>S.favs.includes(k);
 
-        // 6. LEBARA (ليبارا)
-        {
-          id: 'lebara',
-          names: { ar: 'ليبارا', en: 'Lebara', bn: 'লেবারা (Lebara)', ur: 'لیبارا (Lebara)', hi: 'लेबारा (Lebara)', am: 'ሌባራ (Lebara)' },
-          tag: 'Lebara KSA',
-          brandHex: '#009FE3',
-          iconBg: 'bg-blue-600',
-          activeCardClass: 'bg-blue-50 dark:bg-blue-950/70 border-blue-500 text-blue-900 dark:text-blue-200 ring-blue-500',
-          bannerGradient: 'bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-600',
-          tableHeaderClass: 'bg-blue-800',
-          svgIcon: `<svg viewBox="0 0 40 40" fill="none" class="w-full h-full"><path d="M13 10V28H28" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25" cy="15" r="4" fill="#38bdf8"/></svg>`,
-          tables: [
-            {
-              category: 'combo',
-              title: 'باقات ليبارا اتصال وبيانات',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: 'ليبارا 60', calls: '400 دقيقة كل الشبكات', data: '6 جيجا', social: '6 جيجا', official: 69, offer: 70 },
-                { name: 'ليبارا 70', calls: '350 دقيقة كل الشبكات', data: '15 جيجا', social: '20 جيجا', official: 81, offer: 80 },
-                { name: 'ليبارا 90', calls: '600 دقيقة كل الشبكات', data: '35 جيجا', social: '55 جيجا', official: 104, offer: 105 },
-                { name: 'ليبارا 100', calls: '900 دقيقة محلي ودولي', data: '30 جيجا', social: '30 جيجا', official: 115, offer: 110 },
-                { name: 'ليبارا 110', calls: '1100 دقيقة', data: '40 جيجا', social: 'لا محدود', official: 126, offer: 125 },
-                { name: 'ليبارا 114', calls: 'بيانات', data: '50 جيجا', social: 'لا محدود', official: 132, offer: 130 }
-              ]
-            }
-          ]
-        },
+/* ---------- render pieces ---------- */
+const tile=(c,cls)=>{const src=LOGOS[c.id]||(LOGO_DIR?LOGO_DIR+c.id+".png":"");return `<div class="ic ${cls||""}" style="background:linear-gradient(135deg,${c.c},${c.c}cc)"><span>${c.l}</span>${src?`<img src="${src}" alt="" onerror="this.parentNode.removeChild(this)">`:""}</div>`;};
+function offerCard(o,showCo){
+  const c=byId(o.cid),calls=fmtCalls(o.c),soc=fmtSocial(o.s),dat=fmtData(o.d),val=fmtVal(o.v);
+  const chips=[calls&&`<span>📞 <b>${t("calls")}:</b> ${calls}</span>`,dat&&`<span>📶 <b>${t("data")}:</b> ${dat}</span>`,soc&&`<span>💬 <b>${t("social")}:</b> ${soc}</span>`].filter(Boolean).join("");
+  return `<div class="offer wm"><div class="oh">${showCo?tile(c,"sm"):""}<div class="t"><b>${esc(offerTitle(o))}</b><small>${showCo?esc(coName(c))+" · ":""}${t("cat_"+o.cat)}${val?" · 🕒 "+val:""}</small></div><button class="star ${isFav(o.key)?"on":""}" data-act="fav" data-k="${o.key}" aria-label="save">${isFav(o.key)?"★":"☆"}</button></div>${chips?`<div class="fx">${chips}</div>`:""}<div class="pr"><div><span>${t("official")}</span><b>${money(o.o)}</b></div>${S.showCost?`<div class="c"><span>${t("cost")}</span><b>${money(o.k)}</b></div>`:""}</div><div class="acts2"><button class="w" data-act="wa" data-k="${o.key}">${t("wa_share")}</button><button class="${S.cmp.includes(o.key)?"on":""}" data-act="cmp" data-k="${o.key}">⚖ ${t("cmp")}</button></div></div>`;
+}
+function sortList(a,mode){a=a.slice();if(mode==="o")a.sort((x,y)=>x.o-y.o);else if(mode==="d")a.sort((x,y)=>dataNum(y.d)-dataNum(x.d));return a;}
 
-        // 7. RED BULL MOBILE (ريد بل)
-        {
-          id: 'redbull',
-          names: { ar: 'ريد بل', en: 'Red Bull Mobile', bn: 'রেড বুল (Red Bull)', ur: 'ریڈ بل موبائل', hi: 'रेड बुल मोबाइल', am: 'ሬድ ቡል ሞባይል' },
-          tag: 'Red Bull Mobile',
-          brandHex: '#C8102E',
-          iconBg: 'bg-slate-900',
-          activeCardClass: 'bg-slate-200 dark:bg-slate-800 border-rose-600 text-slate-900 dark:text-white ring-rose-600',
-          bannerGradient: 'bg-gradient-to-r from-slate-900 via-rose-800 to-amber-600',
-          tableHeaderClass: 'bg-slate-900',
-          svgIcon: `<svg viewBox="0 0 40 40" fill="none" class="w-full h-full"><circle cx="20" cy="20" r="9" fill="#facc15"/><path d="M9 22L16 17L19 22L12 25Z" fill="#ef4444"/><path d="M31 22L24 17L21 22L28 25Z" fill="#ef4444"/></svg>`,
-          tables: [
-            {
-              category: 'combo',
-              title: 'باقات ريد بل اتصال وبيانات (مزاجي وفليكس)',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: 'مزاجي 80', calls: '500 دقيقة', data: '25 جيجا', social: '35 جيجا', official: 92, offer: 75 },
-                { name: 'مزاجي 95', calls: '800 دقيقة', data: '30 جيجا', social: 'لا محدود', official: 109, offer: 85 },
-                { name: 'مزاجي 120', calls: '1050 دقيقة', data: '50 جيجا', social: 'لا محدود', official: 138, offer: 90 },
-                { name: 'مزاجي 130', calls: '1200 دقيقة', data: '55 جيجا', social: 'لا محدود', official: 150, offer: 100 },
-                { name: 'مزاجي 160 بلس', calls: 'لا محدود', data: '66 جيجا', social: 'لا محدود', official: 184, offer: 120 },
-                { name: 'مزاجي 360 بلس', calls: 'لا محدود', data: 'لا محدود', social: 'لا محدود', official: 414, offer: 230 },
-                { name: 'فليكس 200', calls: '600 محلي ودولي', data: '89 جيجا', social: 'لا محدود', official: 230, offer: 140 },
-                { name: 'فليكس 300 / 90 يوم', calls: '1300 محلي ودولي', data: '100 جيجا', social: 'لا محدود', official: 345, offer: 195 },
-                { name: 'فليكس 350 / 120 يوم', calls: '1450 محلي ودولي', data: '145 جيجا', social: 'لا محدود', official: 403, offer: 225 }
-              ]
-            },
-            {
-              category: 'data',
-              title: 'باقات ريد بل بيانات',
-              hasCalls: false, hasData: false, hasSocial: false, hasValidity: true,
-              rows: [
-                { name: '12 جيجا انترنت + 12 جيجا سوشيال', validity: 'شهر', official: 75, offer: 65 },
-                { name: '30 جيجا انترنت + 30 جيجا سوشيال', validity: 'شهر', official: 98, offer: 75 },
-                { name: '50 جيجا انترنت + 50 جيجا سوشيال', validity: 'شهر', official: 150, offer: 100 },
-                { name: 'لا محدود', validity: 'شهر', official: 374, offer: 210 },
-                { name: '80 جيجا انترنت + 80 جيجا سوشيال', validity: 'شهرين', official: 242, offer: 145 },
-                { name: '200 جيجا', validity: '3 شهور', official: 345, offer: 190 },
-                { name: '250 جيجا انترنت + 100 جيجا سوشيال', validity: '3 شهور', official: 552, offer: 295 }
-              ]
-            }
-          ]
-        },
+/* ---------- views ---------- */
+let VS={hv:"",htol:"10",cmode:"price",pv:"",tol:"10",cat:"all",sort:"n",q:"",max:"",sq:"",smax:"",ssort:"o"};
+function homeBody(){
+  const v=parseFloat(VS.hv);
+  if(!(v>0))return `<div class="grid">${CO.map(c=>{const n=CATS.reduce((a,k)=>a+(c.cats[k]||[]).length,0);return `<div class="co" data-act="open" data-id="${c.id}">${tile(c)}<b>${esc(coName(c))}</b><small>${n} ${t("offers")}</small></div>`;}).join("")}</div>`;
+  const tol=+VS.htol,l=ALL.filter(o=>Math.abs(priceOf(o)-v)<=tol).sort((x,y)=>Math.abs(priceOf(x)-v)-Math.abs(priceOf(y)-v)||dataNum(y.d)-dataNum(x.d)).slice(0,40);
+  if(!l.length)return `<div class="empty">${t("nores")}</div>`;
+  return `<p class="sub">${l.length} ${t("offers")} ${t("near")} ${v} ${t("cur")}</p>${l.map(o=>offerCard(o,true)).join("")}<div class="acts2"><button class="on" data-act="cmpthese">⚖ ${t("cmp_these")}</button></div>`;
+}
+function vHome(){
+  return `<h2>${t("app")}</h2><p class="sub">${t("tag")}</p>
+  <div class="sec" style="padding:12px 14px"><b>${t("need_price")}</b><div class="tools" style="margin:8px 0 2px"><input id="hpv" type="number" inputmode="decimal" placeholder="0" value="${esc(VS.hv)}"><select id="htol">${[["0",t("tol_exact")],["10","± 10"],["20","± 20"],["30","± 30"]].map(x=>`<option value="${x[0]}" ${VS.htol===x[0]?"selected":""}>${x[1]}</option>`).join("")}</select></div></div>
+  <div id="hbody">${homeBody()}</div>`;
+}
+function vCompany(id){
+  const c=byId(id);if(!c)return vHome();
+  const cats=CATS.filter(k=>c.cats[k]);
+  if(VS.cat!=="all"&&!cats.includes(VS.cat))VS.cat="all";
+  let list=ALL.filter(o=>o.cid===id&&(VS.cat==="all"||o.cat===VS.cat));
+  list=sortList(list,VS.sort);
+  const note=c.notes&&(c.notes[S.lang]||c.notes.en);
+  return `<div class="bar"><button class="back" data-act="home">${RTL[S.lang]?"→":"←"}</button>${tile(c,"sm")}<h2>${esc(coName(c))}</h2></div>
+  <div class="chips">${["all",...cats].map(k=>`<button class="chip ${VS.cat===k?"on":""}" data-act="cat" data-v="${k}">${t("cat_"+k)}</button>`).join("")}</div>
+  <div class="tools"><select data-act="sort"><option value="n" ${VS.sort==="n"?"selected":""}>${t("s_n")}</option><option value="o" ${VS.sort==="o"?"selected":""}>${t("s_o")}</option><option value="d" ${VS.sort==="d"?"selected":""}>${t("s_d")}</option></select></div>
+  <div id="list">${list.map(o=>offerCard(o)).join("")}</div>${note?`<div class="note">${esc(note)}</div>`:""}`;
+}
+function searchList(){
+  let l=ALL.filter(o=>{const c=byId(o.cid),q=VS.sq.trim().toLowerCase();
+    if(q){const hay=(coName(c)+" "+c.n.en+" "+offerTitle(o)+" "+o.d+" "+o.o+" "+o.k).toLowerCase();if(!hay.includes(q))return false;}
+    if(VS.smax!==""&&o.o>+VS.smax)return false;return true;});
+  l=sortList(l,VS.ssort);
+  return l.length?l.map(o=>offerCard(o,true)).join(""):`<div class="empty">${t("nores")}</div>`;
+}
+function vSearch(){
+  return `<h2>${t("search")}</h2><div class="tools"><input id="sq" type="search" placeholder="${t("sph")}" value="${esc(VS.sq)}"><input id="smax" type="number" inputmode="numeric" placeholder="${t("budget")}" value="${esc(VS.smax)}" style="max-width:130px"><select id="ssort"><option value="o" ${VS.ssort==="o"?"selected":""}>${t("s_o")}</option><option value="d" ${VS.ssort==="d"?"selected":""}>${t("s_d")}</option></select></div><div id="slist">${searchList()}</div>`;
+}
+function vFavs(){
+  const l=ALL.filter(o=>isFav(o.key));
+  return `<h2>${t("favs")}</h2>${l.length?l.map(o=>offerCard(o,true)).join(""):`<div class="empty">☆<br>${t("fav_empty")}</div>`}`;
+}
+function vSettings(){
+  const th=(k,l)=>`<button class="${S.theme===k?"on":""}" data-act="theme" data-v="${k}">${l}</button>`;
+  return `<h2>${t("settings")}</h2>
+  <div class="sec"><div class="row"><span>${t("theme")}</span><div class="seg">${th("auto",t("th_auto"))}${th("light",t("th_light"))}${th("dark",t("th_dark"))}</div></div>
+  <div class="row"><span>${t("showcost")}</span><button class="sw ${S.showCost?"on":""}" data-act="cost" aria-label="${t("showcost")}"></button></div></div>
+  <div class="sec"><h3>${t("ver")}</h3><div class="row"><span>${t("ver")} <b dir="ltr">${APP_VERSION}</b></span><button class="btn" data-act="check" id="chkBtn">${t("update")}</button></div></div>
+  <div class="sec"><h3>${t("backup")}</h3><div class="row"><button class="btn g" data-act="export">${t("export")}</button><button class="btn g" data-act="import">${t("import")}</button></div><input type="file" id="impFile" accept="application/json,.json" hidden></div>
+  <div class="sec"><h3>${t("pages")}</h3>${["terms","privacy","about","contact"].map(p=>`<button class="lnk" data-act="page" data-v="${p}"><span>${t(p)}</span><span>${RTL[S.lang]?"‹":"›"}</span></button>`).join("")}</div>`;
+}
+function vPage(p){
+  const txt=(PAGES[S.lang]||PAGES.en)[p]||PAGES.en[p];
+  let extra="";
+  if(p==="contact"){const b=[];if(CONTACT.whatsapp)b.push(`<a class="btn" style="text-decoration:none" href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener">${t("wa")}</a>`);
+    if(CONTACT.email)b.push(`<a class="btn g" style="text-decoration:none" href="mailto:${CONTACT.email}">${t("mail")}</a>`);
+    if(b.length)extra=`<div class="acts" style="display:flex">${b.join("")}</div>`;}
+  return `<div class="bar"><button class="back" data-act="settingsGo">${RTL[S.lang]?"→":"←"}</button><h2>${t(p)}</h2></div><div class="sec pg"><p>${esc(txt)}</p>${extra}</div>`;
+}
 
-        // 8. JAWWY (جوي)
-        {
-          id: 'jawwy',
-          names: { ar: 'جوي', en: 'Jawwy', bn: 'জাওয়ি (Jawwy)', ur: 'جوی (Jawwy)', hi: 'जॉवी (Jawwy)', am: 'ጃዊ (Jawwy)' },
-          tag: 'Jawwy from stc',
-          brandHex: '#FF6B00',
-          iconBg: 'bg-orange-500',
-          activeCardClass: 'bg-orange-50 dark:bg-orange-950/70 border-orange-500 text-orange-900 dark:text-orange-200 ring-orange-500',
-          bannerGradient: 'bg-gradient-to-r from-orange-500 via-amber-500 to-rose-500',
-          tableHeaderClass: 'bg-orange-600',
-          svgIcon: `<svg viewBox="0 0 40 40" fill="none" class="w-full h-full"><circle cx="20" cy="14" r="3" fill="white"/><path d="M22 19V25C22 28 19 30 16 29" stroke="white" stroke-width="3.5" stroke-linecap="round"/><circle cx="27" cy="20" r="2.5" fill="#fef08a"/></svg>`,
-          tables: [
-            {
-              category: 'combo',
-              title: 'باقات جوي اتصال وبيانات وفليكس',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              rows: [
-                { name: 'جوي 45', calls: '250 دقيقة', data: '1 جيجا', social: '1 جيجا', official: 52, offer: 55 },
-                { name: 'جوي 70', calls: '350 دقيقة', data: '21 جيجا', social: '20 جيجا', official: 81, offer: 70 },
-                { name: 'جوي 90', calls: '500 دقيقة', data: '33 جيجا', social: 'لا محدود', official: 104, offer: 80 },
-                { name: 'جوي 110', calls: '750 دقيقة', data: '45 جيجا', social: 'لا محدود', official: 127, offer: 90 },
-                { name: 'جوي 150', calls: '1000 دقيقة', data: '71 جيجا', social: 'لا محدود', official: 173, offer: 115 },
-                { name: 'جوي 200', calls: '1300 دقيقة', data: '101 جيجا', social: 'لا محدود', official: 230, offer: 140 },
-                { name: 'فليكس 50', calls: '100 دقيقة دولي ومحلي', data: '1 جيجا', social: '-', official: 58, offer: 60 },
-                { name: 'فليكس 75', calls: '400 دقيقة دولي ومحلي', data: '14 جيجا', social: '11 جيجا', official: 87, offer: 70 },
-                { name: 'فليكس 105', calls: '1010 دقيقة دولي ومحلي', data: '40 جيجا', social: '35 جيجا', official: 121, offer: 90 },
-                { name: 'فليكس 125', calls: '1100 دقيقة دولي ومحلي', data: '47 جيجا', social: 'لا محدود', official: 144, offer: 100 },
-                { name: 'فليكس 155', calls: '1500 دقيقة دولي ومحلي', data: '63 جيجا', social: 'لا محدود', official: 188, offer: 125 },
-                { name: 'فليكس 205 / 60 يوم', calls: '1400 دقيقة دولي ومحلي', data: '80 جيجا', social: 'لا محدود', official: 236, offer: 145 },
-                { name: 'فليكس 300 / 90 يوم', calls: '1600 دقيقة دولي ومحلي', data: '100 جيجا', social: 'لا محدود', official: 345, offer: 195 },
-                { name: 'فليكس 400 / 120 يوم', calls: '3000 دقيقة دولي ومحلي', data: '150 جيجا', social: '150 جيجا', official: 460, offer: 250 },
-                { name: 'داتا 180', calls: 'داتا', data: '120 جيجا', social: '-', official: 207, offer: 90 },
-                { name: 'داتا 240', calls: 'داتا', data: '160 جيجا', social: 'داتا', official: 276, offer: 160 },
-                { name: 'داتا 400', calls: 'داتا', data: '260 جيجا', social: '-', official: 460, offer: 250 }
-              ]
-            }
-          ]
-        },
 
-        // 9. ZAIN (زين)
-        {
-          id: 'zain',
-          names: { ar: 'زين', en: 'Zain', bn: 'জাইন (Zain)', ur: 'زین (Zain)', hi: 'ज़ैन (Zain)', am: 'ዘይን (Zain)' },
-          tag: 'Zain 5G',
-          brandHex: '#00A88F',
-          iconBg: 'bg-teal-600',
-          activeCardClass: 'bg-teal-50 dark:bg-teal-950/70 border-teal-500 text-teal-900 dark:text-teal-200 ring-teal-500',
-          bannerGradient: 'bg-gradient-to-r from-teal-700 via-purple-800 to-fuchsia-800',
-          tableHeaderClass: 'bg-teal-800',
-          svgIcon: `<svg viewBox="0 0 40 40" fill="none" class="w-full h-full"><circle cx="20" cy="20" r="11" stroke="white" stroke-width="3" stroke-dasharray="4 3"/><circle cx="20" cy="20" r="5" fill="#5eead4"/></svg>`,
-          tables: [
-            {
-              category: 'intl',
-              title: 'باقات زين فليكس الدولية',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              note: '* الدول: شبكة زين السودان - باكستان - الهند - اليمن - بنجلاديش - اندونيسيا - الكويت - مصر | ** السوشيال: فيسبوك ويوتيوب وواتساب وتليجرام',
-              rows: [
-                { name: 'فليكس 29', calls: '100 دقيقة *', data: '1 جيجا', social: '1 جيجا **', official: 34, offer: 35 },
-                { name: 'فليكس 69', calls: '300 دقيقة *', data: '10 جيجا', social: '15 جيجا **', official: 80, offer: 70 },
-                { name: 'فليكس 109', calls: '800 دقيقة *', data: '35 جيجا', social: 'لا محدود **', official: 126, offer: 90 },
-                { name: 'فليكس السودان 109', calls: '2000 دقيقة', data: '25 جيجا', social: 'لا محدود **', official: 126, offer: 90 },
-                { name: 'فليكس 139', calls: '1000 دقيقة *', data: '50 جيجا', social: 'لا محدود **', official: 160, offer: 105 },
-                { name: 'فليكس 169', calls: '1250 دقيقة *', data: '60 جيجا', social: 'لا محدود **', official: 190, offer: 125 },
-                { name: 'فليكس 329 / 3 أشهر', calls: '1000 دقيقة *', data: '135 جيجا', social: 'لا محدود **', official: 379, offer: 210 }
-              ]
-            },
-            {
-              category: 'combo',
-              title: 'باقات زين شباب',
-              hasCalls: true, hasData: true, hasSocial: true, hasValidity: false,
-              note: '** السوشيال: واتساب وسناب وتويتر ويوتيوب وجاكو وفيسبوك وانستجرام',
-              rows: [
-                { name: 'شباب 49', calls: '100 دقيقة', data: '2 جيجا', social: '2 جيجا **', official: 49, offer: 40 },
-                { name: 'شباب 79', calls: '500 دقيقة', data: '15 جيجا', social: '15 جيجا **', official: 79, offer: 60 },
-                { name: 'شباب 119', calls: '1500 دقيقة', data: '30 جيجا', social: 'لا محدود **', official: 119, offer: 70 },
-                { name: 'شباب 119 / 12 أسبوع', calls: '4500 دقيقة', data: '90 جيجا', social: 'لا محدود **', official: 357, offer: 90 },
-                { name: 'شباب 169', calls: 'لا محدود', data: '55 جيجا', social: 'لا محدود **', official: 169, offer: 105 },
-                { name: 'شباب 409', calls: 'لا محدود', data: 'لا محدود', social: 'لا محدود **', official: 409, offer: 196 }
-              ]
-            },
-            {
-              category: 'intl',
-              title: 'باقات زين زوار',
-              hasCalls: true, hasData: true, hasSocial: false, hasValidity: false,
-              note: '* الدول: اليمن - الامارات - نيجيريا - بنجلاديش - اندونيسيا - باكستان - الهند - مصر - الكويت - السودان - ماليزيا - الصين - تايلاند - استراليا - فرنسا - العراق - امريكا - كازاخستان - ليبيا - الجزائر | ** مكالمات لا محدودة مع الزوار',
-              rows: [
-                { name: 'زوار 40 / أسبوعين', calls: '60 دقيقة *', data: '6 جيجا', official: 40, offer: 40 },
-                { name: 'زوار 60 / أسبوعين', calls: '150 دقيقة *', data: '25 جيجا', official: 60, offer: 60 },
-                { name: 'زوار 85 / 3 أسابيع', calls: '250 دقيقة **', data: '30 جيجا', official: 85, offer: 70 },
-                { name: 'زوار 120 / 4 أسابيع', calls: '350 دقيقة **', data: '48 جيجا وتواصل لا محدود', official: 120, offer: 90 },
-                { name: 'زوار 160 / 4 أسابيع', calls: '500 دقيقة **', data: '68 جيجا وتواصل لا محدود', official: 160, offer: 105 }
-              ]
-            },
-            {
-              category: 'data',
-              title: 'باقات زين بيانات',
-              hasCalls: false, hasData: true, hasSocial: true, hasValidity: false,
-              note: '** السوشيال: يوتيوب وفيسبوك',
-              rows: [
-                { name: '30 جيجا / شهر', data: '30 جيجا', social: '50 جيجا **', official: 114, offer: 85 },
-                { name: '30 جيجا / 3 أشهر', data: '30 جيجا', social: '30 جيجا **', official: 202, offer: 125 },
-                { name: '80 جيجا / شهرين', data: '75 جيجا', social: '75 جيجا **', official: 229, offer: 140 },
-                { name: '105 جيجا / شهر', data: '105 جيجا', social: '-', official: 184, offer: 120 },
-                { name: '125 جيجا / 3 أشهر', data: '125 جيجا', social: '100 جيجا **', official: 344, offer: 190 },
-                { name: '150 جيجا / 3 أشهر', data: '150 جيجا', social: '150 جيجا **', official: 459, offer: 250 },
-                { name: '300 جيجا / 3 أشهر', data: '300 جيجا', social: '-', official: 518, offer: 280 },
-                { name: '300 بلس / 3 أشهر / 1 تيرا', data: '1 تيرا', social: '-', official: 518, offer: 280 },
-                { name: 'لا محدود / شهر', data: 'لا محدود', social: '-', official: 374, offer: 210 },
-                { name: 'لا محدود / 3 أشهر', data: 'لا محدود', social: '-', official: 1149, offer: 580 },
-                { name: 'لا محدود / 6 أشهر', data: 'لا محدود', social: '-', official: 2299, offer: 1130 }
-              ]
-            }
-          ]
-        }
-      ]
+function callsNum(c){const m=String(c).match(/^(U|\d+)/);return m?(m[1]==="U"?99999:+m[1]):0;}
+function vManual(){
+  const sel=S.cmp.map(k=>ALL.find(o=>o.key===k)).filter(Boolean);
+  if(!VS.cc)VS.cc=CO[0].id;
+  const pk=ALL.filter(o=>o.cid===VS.cc);
+  const pick=`<div class="tools"><select data-act="cco">${CO.map(c=>`<option value="${c.id}" ${c.id===VS.cc?"selected":""}>${esc(coName(c))}</option>`).join("")}</select><select id="cpk">${pk.map(o=>`<option value="${o.key}">${esc(offerTitle(o))} · ${fmtData(o.d)||""} · ${o.o}</option>`).join("")}</select><button class="btn" data-act="cmpadd" style="flex:none">${t("add")}</button></div>`;
+  if(!sel.length)return `${pick}<div class="empty">⚖<br>${t("cmp_empty")}</div>`;
+  const P=o=>S.showCost?o.k:o.o,pg=o=>{const d=dataNum(o.d);return d&&d<1000?P(o)/d:null;};
+  const best=(fn,dir)=>{const v=sel.map(fn).filter(x=>x!=null&&x>0);return v.length>1?(dir>0?Math.max(...v):Math.min(...v)):null;};
+  const bp=best(P,-1),bd=best(o=>dataNum(o.d),1),bc=best(o=>callsNum(o.c),1),bg=best(pg,-1);
+  const row=(lab,fn,cls)=>`<tr><td>${lab}</td>${sel.map(o=>`<td class="${cls?cls(o):""}">${fn(o)||"–"}</td>`).join("")}</tr>`;
+  const tbl=`<div class="cmpw wm"><table class="cmp"><tr><th></th>${sel.map(o=>{const c=byId(o.cid);return `<th>${tile(c,"sm")}${esc(coName(c))}<br><small>${esc(offerTitle(o))}</small><br><button class="rm" data-act="cmp" data-k="${o.key}">✕</button></th>`;}).join("")}</tr>
+  ${row(t("calls"),o=>fmtCalls(o.c),o=>bc!=null&&callsNum(o.c)===bc?"best":"")}
+  ${row(t("data"),o=>fmtData(o.d),o=>bd!=null&&dataNum(o.d)===bd?"best":"")}
+  ${row(t("social"),o=>fmtSocial(o.s))}
+  ${row(t("valid"),o=>fmtVal(o.v))}
+  ${row(t("official"),o=>money(o.o))}
+  ${S.showCost?row(t("cost"),o=>money(o.k),o=>bp!=null&&o.k===bp?"best":""):""}
+  ${row(t("pergb"),o=>{const g=pg(o);return g?g.toFixed(2)+" "+t("cur"):"";},o=>{const g=pg(o);return bg!=null&&g&&Math.abs(g-bg)<1e-9?"best":"";})}
+  </table></div><p class="sub" style="margin-top:8px">${t("cmp_hint")}</p><div class="acts2"><button data-act="cmpclear">${t("cmp_clear")}</button></div>`;
+  return `${pick}${tbl}`;
+}
+const priceOf=o=>S.showCost?o.k:o.o;
+function priceResults(){
+  const v=parseFloat(VS.pv);if(!(v>0))return `<div class="empty">💰<br>${t("price_ph")}</div>`;
+  const tol=+VS.tol;
+  const l=ALL.filter(o=>Math.abs(priceOf(o)-v)<=tol).sort((x,y)=>Math.abs(priceOf(x)-v)-Math.abs(priceOf(y)-v)||dataNum(y.d)-dataNum(x.d)).slice(0,40);
+  if(!l.length)return `<div class="empty">${t("nores")}</div>`;
+  const pg=o=>{const d=dataNum(o.d);return d&&d<1000?priceOf(o)/d:null;};
+  const mx=fn=>Math.max(...l.map(fn)),mn=fn=>{const x=l.map(fn).filter(z=>z);return x.length?Math.min(...x):null;};
+  const bd=mx(o=>dataNum(o.d)),bc=mx(o=>callsNum(o.c)),bg=mn(pg);
+  const rows=l.map(o=>{const c=byId(o.cid),g=pg(o);return `<tr><td>${tile(c,"sm")}<b>${esc(coName(c))}</b><br><small>${esc(offerTitle(o))}</small></td>
+   <td class="${callsNum(o.c)===bc&&l.length>1?"best":""}">${fmtCalls(o.c)||"–"}</td><td class="${dataNum(o.d)===bd&&l.length>1?"best":""}">${fmtData(o.d)||"–"}</td><td>${fmtSocial(o.s)||"–"}</td><td>${fmtVal(o.v)||"–"}</td><td>${money(o.o)}</td>${S.showCost?`<td><b>${money(o.k)}</b></td>`:""}<td class="${g&&bg!=null&&Math.abs(g-bg)<1e-9&&l.length>1?"best":""}">${g?g.toFixed(2)+" "+t("cur"):"–"}</td></tr>`;}).join("");
+  return `<p class="sub">${l.length} ${t("offers")} ${t("near")} ${v} ${t("cur")}</p><div class="cmpw wm"><table class="cmp"><tr><th>${t("pick_pk")}</th><th>${t("calls")}</th><th>${t("data")}</th><th>${t("social")}</th><th>${t("valid")}</th><th>${t("official")}</th>${S.showCost?`<th>${t("cost")}</th>`:""}<th>${t("pergb")}</th></tr>${rows}</table></div><p class="sub" style="margin-top:8px">${t("cmp_hint")}</p>`;
+}
+function vPrice(){
+  return `<div class="tools"><input id="pv" type="number" inputmode="decimal" placeholder="${t("price_ph")}" value="${esc(VS.pv)}"><select id="ptol">${[["0",t("tol_exact")],["10","± 10"],["20","± 20"],["30","± 30"]].map(x=>`<option value="${x[0]}" ${VS.tol===x[0]?"selected":""}>${x[1]}</option>`).join("")}</select></div><div id="pres">${priceResults()}</div>`;
+}
+function vCompare(){
+  const m=VS.cmode==="manual";
+  return `<h2>${t("cmp")}</h2><div class="chips"><button class="chip ${m?"":"on"}" data-act="cmode" data-v="price">${t("cmp_byprice")}</button><button class="chip ${m?"on":""}" data-act="cmode" data-v="manual">${t("cmp_manual")}</button></div>${m?vManual():vPrice()}`;
+}
+function waText(o){
+  const c=byId(o.cid),L=[`📱 ${t("brand")}`,`${coName(c)} - ${offerTitle(o)}`];
+  const calls=fmtCalls(o.c),dat=fmtData(o.d),soc=fmtSocial(o.s),val=fmtVal(o.v);
+  if(calls)L.push(`📞 ${t("calls")}: ${calls}`);if(dat)L.push(`📶 ${t("data")}: ${dat}`);if(soc)L.push(`💬 ${t("social")}: ${soc}`);if(val)L.push(`🕒 ${val}`);
+  L.push(`💰 ${t(S.showCost?"cost":"official")}: ${money(S.showCost?o.k:o.o)}`);
+  L.push(cleanUrl());return L.join("\n");
+}
+function openWA(o){const a=document.createElement("a");a.href="https://wa.me/?text="+encodeURIComponent(waText(o));a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();}
+
+/* ---------- router ---------- */
+function route(){
+  const h=location.hash.slice(1)||"home",[a,b]=h.split("/");
+  let html,tab=a;
+  if(a==="c"){html=vCompany(b);tab="home";}
+  else if(a==="p"){html=vPage(b);tab="settings";}
+  else if(a==="search")html=vSearch();
+  else if(a==="favs"){html=vFavs();tab="";}
+  else if(a==="compare")html=vCompare();
+  else if(a==="settings")html=vSettings();
+  else{html=vHome();tab="home";}
+  $("#view").innerHTML=html;
+  $("#nav").innerHTML=[["home","🏠",t("home")],["search","🔍",t("search")],["compare","⚖️",t("cmp")],["settings","⚙️",t("settings")]].map(x=>`<button class="${tab===x[0]?"on":""}" data-act="nav" data-v="${x[0]}"><i>${x[1]}</i>${x[2]}</button>`).join("");
+  window.scrollTo(0,0);
+}
+const go=h=>{if(location.hash==="#"+h)route();else location.hash=h;};
+window.addEventListener("hashchange",route);
+
+/* ---------- theme / lang ---------- */
+const mq=window.matchMedia("(prefers-color-scheme: dark)");
+function applyTheme(){const eff=S.theme==="auto"?(mq.matches?"dark":"light"):S.theme;
+  document.documentElement.setAttribute("data-theme",eff);
+  const m=document.querySelector('meta[name=theme-color]');if(m)m.content=eff==="dark"?"#14201e":"#0f766e";}
+if(mq.addEventListener)mq.addEventListener("change",applyTheme);else if(mq.addListener)mq.addListener(applyTheme);
+function setWM(){const s=`<svg xmlns="http://www.w3.org/2000/svg" width="220" height="120"><text x="110" y="64" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#7f8f8a" fill-opacity=".22" transform="rotate(-22 110 60)">${esc(t("brand"))}</text></svg>`;
+  document.documentElement.style.setProperty("--wm",`url("data:image/svg+xml;utf8,${encodeURIComponent(s)}")`);}
+function renderLangBar(){$("#langbar").innerHTML=LANGS.map(l=>`<button class="${l[0]===S.lang?"on":""}" data-act="setlang" data-v="${l[0]}">${l[1]}</button>`).join("");}
+function applyLang(){setWM();renderLangBar();const d=document.documentElement;d.lang=S.lang;d.dir=RTL[S.lang]?"rtl":"ltr";
+  document.title=t("app");$("#appTitle").textContent=t("app");$("#instTxt").textContent=t("install");
+  $("#bnMsg").textContent=t("newver");$("#bnYes").textContent=t("updnow");$("#bnNo").textContent=t("later");}
+
+/* ---------- modal / toast ---------- */
+function modal(html){closeModal();const d=document.createElement("div");d.className="ov";d.id="ov";
+  d.innerHTML=`<div class="md">${html}</div>`;d.addEventListener("click",e=>{if(e.target===d)closeModal();});document.body.appendChild(d);}
+function closeModal(){const o=$("#ov");if(o)o.remove();}
+let tt;function toast(m){const e=$("#toast");e.textContent=m;e.style.display="block";clearTimeout(tt);tt=setTimeout(()=>e.style.display="none",2200);}
+
+/* ---------- install ---------- */
+let deferred=null;
+const installed=()=>matchMedia("(display-mode: standalone)").matches||navigator.standalone===true||localStorage.getItem("toff_installed")==="1";
+function syncInstall(){$("#instBtn").style.display=installed()?"none":"";}
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;syncInstall();});
+window.addEventListener("appinstalled",()=>{try{localStorage.setItem("toff_installed","1");}catch(e){}deferred=null;syncInstall();});
+function doInstall(){
+  if(deferred){deferred.prompt();Promise.resolve(deferred.userChoice).catch(function(){}).then(function(){deferred=null;});return;}
+  modal(`<h3>${t("install")}</h3><p>${t("ios")}</p><p>${t("and")}</p><div class="acts"><button class="btn g" data-act="qr">▦ QR</button><button class="btn" data-act="close">${t("close")}</button></div>`);
+}
+
+/* ---------- QR / share ---------- */
+function cleanUrl(){return location.href.split("#")[0];}
+function showQR(){
+  const u=cleanUrl(),local=!/^https:/.test(u)||/localhost|127\.0\.0\.1|192\.168\./.test(u);
+  modal(`<h3>${t("qr_title")}</h3><canvas id="qrc"></canvas><p>${t("qr_hint")}</p>${local?`<p style="color:var(--gold)">${t("qr_warn")}</p>`:""}<p style="margin-bottom:0">${t("link")}</p><input id="qrurl" value="${esc(u)}"><div class="acts"><button class="btn g" data-act="copy">${t("copy")}</button><button class="btn" data-act="close">${t("close")}</button></div>`);
+  const draw=()=>{const ok=qrDraw($("#qrc"),$("#qrurl").value,260);if(!ok){const c=$("#qrc");c.width=c.height=1;toast(t("nolink"));}};
+  draw();$("#qrurl").addEventListener("input",draw);
+}
+function shareApp(){
+  const u=cleanUrl(),d={title:t("app"),text:t("share_text"),url:u};
+  if(navigator.share){navigator.share(d).catch(function(e){if(!(e&&e.name==="AbortError"))copyText(u);});return;}
+  copyText(u);
+}
+function copyText(x){(navigator.clipboard?navigator.clipboard.writeText(x):Promise.reject()).then(()=>toast(t("copied")),()=>{
+  const i=document.createElement("input");i.value=x;document.body.appendChild(i);i.select();try{i.setSelectionRange(0,9999);document.execCommand("copy");toast(t("copied"));}catch(e){}i.remove();});}
+
+/* ---------- backup ---------- */
+function exportBackup(){
+  const b=new Blob([JSON.stringify({app:"telecom-offers",v:1,lang:S.lang,theme:S.theme,showCost:S.showCost,favs:S.favs,cmp:S.cmp},null,1)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="telecom-offers-backup.json";document.body.appendChild(a);a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000);
+}
+function importBackup(f){
+  const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(x.app!=="telecom-offers")throw 0;
+    if(LANGS.some(l=>l[0]===x.lang))S.lang=x.lang;if(["auto","light","dark"].includes(x.theme))S.theme=x.theme;
+    S.showCost=x.showCost!==false;S.favs=Array.isArray(x.favs)?x.favs.filter(k=>ALL.some(o=>o.key===k)):[];S.cmp=Array.isArray(x.cmp)?x.cmp.filter(k=>ALL.some(o=>o.key===k)).slice(0,4):[];
+    save();applyTheme();applyLang();route();toast(t("imported"));}catch(e){toast(t("bad"));}};r.readAsText(f);
+}
+
+/* ---------- updates ---------- */
+const newer=(a,b)=>{const x=a.split(".").map(Number),y=b.split(".").map(Number);for(let i=0;i<3;i++){if((x[i]||0)>(y[i]||0))return true;if((x[i]||0)<(y[i]||0))return false;}return false;};
+let latest=null;
+function checkUpdate(manual){
+  const btn=$("#chkBtn");if(manual&&btn)btn.textContent=t("checking");
+  const fin=function(){if(manual&&$("#chkBtn"))$("#chkBtn").textContent=t("update");};
+  try{const x=new XMLHttpRequest(),u=cleanUrl();
+    x.open("GET",u+(u.indexOf("?")>-1?"&":"?")+"_="+Date.now());
+    x.onreadystatechange=function(){if(x.readyState!==4)return;
+      const m=(x.responseText||"").match(/APP_VERSION\s*=\s*"([\d.]+)"/);
+      if(m&&newer(m[1],APP_VERSION)){latest=m[1];$("#banner").style.display="flex";if(manual)toast(t("newver"));}
+      else if(manual)toast(t("uptodate"));
+      fin();};
+    x.send();}
+  catch(e){if(manual)toast(t("uptodate"));fin();}
+}
+function applyUpdate(){
+  const go2=function(){location.replace(cleanUrl().split("?")[0]+"?v="+(latest||Date.now())+location.hash);};
+  const tasks=[];
+  try{if("serviceWorker"in navigator)tasks.push(navigator.serviceWorker.getRegistrations().then(function(rs){return Promise.all(rs.map(function(r){return r.unregister();}));}));
+    if(window.caches)tasks.push(caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k);}));}));}catch(e){}
+  Promise.all(tasks).then(go2,go2);
+}
+
+/* ---------- manifest + icons (embedded, created once) ---------- */
+function buildManifest(){
+  try{
+    const svg="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(iconSVG()),img=new Image();
+    img.onload=()=>{
+      const png=s=>{const c=document.createElement("canvas");c.width=c.height=s;c.getContext("2d").drawImage(img,0,0,s,s);return c.toDataURL("image/png");};
+      const p192=png(192),p512=png(512),p180=png(180);
+      const ai=document.createElement("link");ai.rel="apple-touch-icon";ai.href=p180;document.head.appendChild(ai);
+      const fi=document.createElement("link");fi.rel="icon";fi.type="image/png";fi.href=p192;document.head.appendChild(fi);
+      const base=cleanUrl().split("?")[0];
+      const man={name:"باقات الاتصالات - الهواتف الذكية الأولى",short_name:"الهواتف الذكية الأولى",start_url:base,scope:base.replace(/[^/]*$/,""),display:"standalone",background_color:"#f3f7f6",theme_color:"#0f766e",
+        icons:[{src:p192,sizes:"192x192",type:"image/png",purpose:"any"},{src:p512,sizes:"512x512",type:"image/png",purpose:"any"},{src:p512,sizes:"512x512",type:"image/png",purpose:"maskable"}]};
+      const ml=document.createElement("link");ml.rel="manifest";ml.href=URL.createObjectURL(new Blob([JSON.stringify(man)],{type:"application/manifest+json"}));document.head.appendChild(ml);
     };
-  },
+    img.src=svg;
+  }catch(e){}
+}
 
-  computed: {
-    currentLangObj() {
-      return this.languages.find(l => l.code === this.currentLang) || this.languages[0];
-    },
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+  const el=e.target.closest("[data-act]");if(!el)return;const a=el.dataset.act,v=el.dataset.v;
+  if(a==="home")go("home");
+  else if(a==="nav")go(v);
+  else if(a==="open"){VS.cat="all";VS.sort="n";go("c/"+el.dataset.id);}
+  else if(a==="cat"){VS.cat=v;route();}
+  else if(a==="fav"){const k=el.dataset.k,i=S.favs.indexOf(k);if(i<0)S.favs.push(k);else S.favs.splice(i,1);save();
+    if(location.hash==="#favs")route();else{el.classList.toggle("on",i<0);el.textContent=i<0?"★":"☆";}}
+  else if(a==="theme"){S.theme=v;save();applyTheme();route();}
+  else if(a==="cost"){S.showCost=!S.showCost;save();route();}
+  else if(a==="setlang"){S.lang=v;save();closeModal();applyLang();route();}
+  else if(a==="favsGo")go("favs");
+  else if(a==="cmode"){VS.cmode=v;route();}
+  else if(a==="cmpthese"){VS.pv=VS.hv;VS.tol=VS.htol;VS.cmode="price";go("compare");}
+  else if(a==="wa"){const o=ALL.find(x=>x.key===el.dataset.k);if(o)openWA(o);}
+  else if(a==="cmp"){const k=el.dataset.k,i=S.cmp.indexOf(k);
+    if(i>=0)S.cmp.splice(i,1);else if(S.cmp.length>=4){toast(t("cmp_max"));return;}else S.cmp.push(k);
+    save();if(location.hash.slice(1)==="compare")route();else el.classList.toggle("on",i<0);}
+  else if(a==="cmpadd"){const k=$("#cpk")&&$("#cpk").value;if(k&&!S.cmp.includes(k)){if(S.cmp.length>=4){toast(t("cmp_max"));return;}S.cmp.push(k);save();route();}}
+  else if(a==="cmpclear"){S.cmp=[];save();route();}
+  else if(a==="qr")showQR();
+  else if(a==="share")shareApp();
+  else if(a==="install")doInstall();
+  else if(a==="copy")copyText($("#qrurl")?$("#qrurl").value:cleanUrl());
+  else if(a==="close")closeModal();
+  else if(a==="export")exportBackup();
+  else if(a==="import")$("#impFile").click();
+  else if(a==="page")go("p/"+v);
+  else if(a==="settingsGo")go("settings");
+  else if(a==="check")checkUpdate(true);
+  else if(a==="doUpdate")applyUpdate();
+  else if(a==="bnLater")$("#banner").style.display="none";
+});
+document.addEventListener("change",e=>{
+  if(e.target.id==="impFile"&&e.target.files[0])importBackup(e.target.files[0]);
+  if(e.target.dataset&&e.target.dataset.act==="sort"){VS.sort=e.target.value;route();}
+  if(e.target.dataset&&e.target.dataset.act==="cco"){VS.cc=e.target.value;route();}
+  if(e.target.id==="htol"){VS.htol=e.target.value;$("#hbody").innerHTML=homeBody();}
+  if(e.target.id==="ptol"){VS.tol=e.target.value;$("#pres").innerHTML=priceResults();}
+  if(e.target.id==="ssort"){VS.ssort=e.target.value;$("#slist").innerHTML=searchList();}
+});
+document.addEventListener("input",e=>{
+  if(e.target.id==="sq"){VS.sq=e.target.value;$("#slist").innerHTML=searchList();}
+  if(e.target.id==="hpv"){VS.hv=e.target.value;$("#hbody").innerHTML=homeBody();}
+  if(e.target.id==="pv"){VS.pv=e.target.value;$("#pres").innerHTML=priceResults();}
+  if(e.target.id==="smax"){VS.smax=e.target.value;$("#slist").innerHTML=searchList();}
+});
 
-    filteredCompanies() {
-      const q = this.searchQuery.trim().toLowerCase();
-      return this.companies
-        .filter(c => this.selectedCompany === 'all' || c.id === this.selectedCompany)
-        .map(comp => {
-          const filteredTables = comp.tables
-            .filter(tbl => this.selectedCategory === 'all' || tbl.category === this.selectedCategory)
-            .map(tbl => {
-              const rows = tbl.rows.filter(r => {
-                if (!q) return true;
-                const combined = `${r.name} ${r.calls || ''} ${r.data || ''} ${r.social || ''} ${r.offer} ${r.official}`.toLowerCase();
-                return combined.includes(q);
-              });
-              return { ...tbl, rows };
-            })
-            .filter(tbl => tbl.rows.length > 0);
-          return { ...comp, tables: filteredTables };
-        })
-        .filter(comp => comp.tables.length > 0);
-    },
+/* ---------- start ---------- */
+applyTheme();applyLang();syncInstall();route();
+window.addEventListener("load",()=>{
+  setTimeout(buildManifest,600);
+  if("serviceWorker"in navigator&&/^https?:/.test(location.protocol)){navigator.serviceWorker.register("sw.js").catch(()=>{});}
+  setTimeout(()=>checkUpdate(false),2500);
+});
 
-    totalVisiblePackages() {
-      let count = 0;
-      this.filteredCompanies.forEach(c => {
-        c.tables.forEach(t => { count += t.rows.length; });
-      });
-      return count;
-    },
-
-    flatFilteredOffers() {
-      const list = [];
-      this.companies.forEach(comp => {
-        comp.tables.forEach((tbl, tIdx) => {
-          tbl.rows.forEach((row, rIdx) => {
-            const effectiveOffer = this.getEffectiveOfferPrice(comp.id, tIdx, rIdx, row.offer);
-            if (effectiveOffer > this.maxPriceFilter) return;
-            if (this.onlyUnlimitedSocial && !this.isUnlimited(row.social)) return;
-            if (this.onlyIntlCalls && !(tbl.category === 'intl' || (row.calls && row.calls.includes('دولي')))) return;
-
-            list.push({
-              comp,
-              tbl,
-              row,
-              effectiveOffer,
-              savings: row.official - effectiveOffer
-            });
-          });
-        });
-      });
-
-      if (this.sortMode === 'priceAsc') {
-        list.sort((a, b) => a.effectiveOffer - b.effectiveOffer);
-      } else if (this.sortMode === 'savingsDesc') {
-        list.sort((a, b) => b.savings - a.savings);
-      } else {
-        list.sort((a, b) => b.effectiveOffer - a.effectiveOffer);
-      }
-      return list;
-    }
-  },
-
-  methods: {
-    t(key) {
-      const dict = this.translations[this.currentLang] || this.translations.ar;
-      return dict[key] || this.translations.ar[key] || key;
-    },
-
-    getCompanyName(comp) {
-      return comp.names[this.currentLang] || comp.names.ar;
-    },
-
-    setLanguage(code) {
-      this.currentLang = code;
-      localStorage.setItem('smartphones_lang', code);
-      document.documentElement.lang = code;
-      document.documentElement.dir = this.currentLangObj.dir;
-    },
-
-    toggleDarkMode() {
-      this.isDark = !this.isDark;
-      document.documentElement.classList.toggle('dark', this.isDark);
-      localStorage.setItem('smartphones_theme', this.isDark ? 'dark' : 'light');
-    },
-
-    isUnlimited(val) {
-      return val && String(val).includes('لا محدود');
-    },
-
-    getEffectiveOfferPrice(compId, tIdx, rIdx, defaultOffer) {
-      const key = `${compId}_${tIdx}_${rIdx}`;
-      return this.customPrices[key] !== undefined ? Number(this.customPrices[key]) : defaultOffer;
-    },
-
-    // Smart Multi-Language Dynamic Term Translator for Package Details
-    translateDynamic(text) {
-      if (!text || this.currentLang === 'ar') return text;
-      let s = String(text);
-
-      const maps = {
-        en: [
-          ['لا محدود سناب وواتساب وفيسبوك', 'Unlimited (Snap, WhatsApp, FB)'],
-          ['وتواصل لا محدود', '+ Unlimited Social'],
-          ['تواصل لا محدود', 'Unlimited Social'],
-          ['لا محدود لكل الشبكات', 'Unlimited All Networks'],
-          ['لا محدود داخل و 550 للكل', 'Unlimited On-net + 550 All'],
-          ['لا محدود داخل الشبكة', 'Unlimited On-net'],
-          ['لا محدود', 'Unlimited'],
-          ['لكل الشبكات ودولي', 'Local & Intl'],
-          ['كل الشبكات', 'All Networks'],
-          ['داخل الشبكة', 'On-net'],
-          ['دقيقة محلي ودولي', 'Min Local & Intl'],
-          ['دقيقة دولي ومحلي', 'Min Local & Intl'],
-          ['د. محلي ودولي', 'Min Local & Intl'],
-          ['محلي ودولي', 'Local & Intl'],
-          ['دقيقة', 'Min'],
-          ['جيجا', 'GB'],
-          ['تيرا', 'TB'],
-          ['انترنت', 'Internet'],
-          ['سوشيال', 'Social'],
-          ['بيانات', 'Data'],
-          ['داتا', 'Data'],
-          ['شهرين', '2 Months'],
-          ['شهور', 'Months'],
-          ['أشهر', 'Months'],
-          ['شهر', 'Month'],
-          ['أسبوعين', '2 Weeks'],
-          ['أسابيع', 'Weeks'],
-          ['أسبوع', 'Week'],
-          ['أيام', 'Days'],
-          ['يوم', 'Days'],
-          ['موبايلي', 'Mobily'],
-          ['سوا', 'Sawa'],
-          ['فليكس بلس', 'Flex Plus'],
-          ['فليكس', 'Flex'],
-          ['سولو', 'Solo'],
-          ['مزاجي', 'Mazaji'],
-          ['شباب', 'Shabab'],
-          ['زوار', 'Visitors'],
-          ['جوي', 'Jawwy'],
-          ['ليبارا', 'Lebara'],
-          ['فرندي', 'Friendi'],
-          ['فيرجن', 'Virgin'],
-          ['اكستريم بلس', 'Extreme Plus'],
-          ['اكستريم', 'Extreme'],
-          ['داش كام', 'Dash Cam'],
-          ['شريحة اضافية', 'Extra SIM'],
-          ['انفنتي', 'Infinity']
-        ],
-        bn: [
-          ['لا محدود', 'আনলিমিটেড (Unlimited)'],
-          ['لكل الشبكات ودولي', 'সব নেটওয়ার্ক ও আন্তর্জাতিক'],
-          ['كل الشبكات', 'সব নেটওয়ার্ক'],
-          ['داخل الشبكة', 'একই নেটওয়ার্ক'],
-          ['محلي ودولي', 'লোকাল ও আন্তর্জাতিক'],
-          ['دولي ومحلي', 'লোকাল ও আন্তর্জাতিক'],
-          ['د. محلي ودولي', 'মিনিট (লোকাল ও আন্তর্জাতিক)'],
-          ['دقيقة', 'মিনিট'],
-          ['جيجا', 'GB'],
-          ['تيرا', 'TB'],
-          ['انترنت', 'ইন্টারনেট'],
-          ['سوشيال', 'সোশ্যাল'],
-          ['بيانات', 'ডাটা'],
-          ['داتا', 'ডাটা'],
-          ['شهرين', '২ মাস'],
-          ['شهور', 'মাস'],
-          ['أشهر', 'মাস'],
-          ['شهر', 'মাস'],
-          ['أسبوعين', '২ সপ্তাহ'],
-          ['أسابيع', 'সপ্তাহ'],
-          ['أسبوع', 'সপ্তাহ'],
-          ['أيام', 'দিন'],
-          ['يوم', 'দিন'],
-          ['موبايلي', 'Mobily'],
-          ['سوا', 'Sawa'],
-          ['فليكس', 'Flex'],
-          ['سولو', 'Solo'],
-          ['مزاجي', 'Mazaji'],
-          ['شباب', 'Shabab'],
-          ['زوار', 'Zowar'],
-          ['جوي', 'Jawwy'],
-          ['ليبارا', 'Lebara']
-        ],
-        ur: [
-          ['لا محدود', 'لامحدود (Unlimited)'],
-          ['لكل الشبكات ودولي', 'تمام نیٹ ورکس اور انٹرنیشنل'],
-          ['كل الشبكات', 'تمام نیٹ ورکس'],
-          ['داخل الشبكة', 'ہم نیٹ ورک'],
-          ['محلي ودولي', 'لوکل اور انٹرنیشنل'],
-          ['دولي ومحلي', 'لوکل اور انٹرنیشنل'],
-          ['دقيقة', 'منٹ'],
-          ['جيجا', 'جی بی (GB)'],
-          ['تيرا', 'ٹیرا بائٹ (TB)'],
-          ['شهرين', '2 ماہ'],
-          ['شهور', 'ماہ'],
-          ['أشهر', 'ماہ'],
-          ['شهر', 'ماہ'],
-          ['أسبوعين', '2 ہفتے'],
-          ['أسابيع', 'ہفتے'],
-          ['أسبوع', 'ہفتہ'],
-          ['أيام', 'دن'],
-          ['يوم', 'دن']
-        ],
-        hi: [
-          ['لا محدود', 'अनलिमिटेड (Unlimited)'],
-          ['لكل الشبكات ودولي', 'सभी नेटवर्क और इंटरनेशनल'],
-          ['كل الشبكات', 'सभी नेटवर्क'],
-          ['داخل الشبكة', 'लोकल नेटवर्क'],
-          ['محلي ودولي', 'लोकल और इंटरनेशनल'],
-          ['دولي ومحلي', 'लोकल और इंटरनेशनल'],
-          ['د. محلي ودولي', 'मिनट लोकल और इंटरनेशनल'],
-          ['دقيقة', 'मिनट'],
-          ['جيجا', 'GB'],
-          ['تيرا', 'TB'],
-          ['انترنت', 'इंटरनेट'],
-          ['سوشيال', 'सोशल'],
-          ['بيانات', 'डेटा'],
-          ['داتا', 'डेटा'],
-          ['شهرين', '2 महीने'],
-          ['شهور', 'महीने'],
-          ['أشهر', 'महीने'],
-          ['شهر', 'महीना'],
-          ['أسبوعين', '2 सप्ताह'],
-          ['أسابيع', 'सप्ताह'],
-          ['أسبوع', 'सप्ताह'],
-          ['أيام', 'दिन'],
-          ['يوم', 'दिन'],
-          ['موبايلي', 'Mobily'],
-          ['سوا', 'Sawa'],
-          ['فليكس', 'Flex'],
-          ['سولو', 'Solo'],
-          ['مزاجي', 'Mazaji'],
-          ['شباب', 'Shabab'],
-          ['زوار', 'Zowar'],
-          ['جوي', 'Jawwy'],
-          ['ليبارا', 'Lebara']
-        ],
-        am: [
-          ['لا محدود', 'ያልተገደበ (Unlimited)'],
-          ['لكل الشبكات ودولي', 'ሁሉም ኔትወርክ እና ዓለም አቀፍ'],
-          ['كل الشبكات', 'ሁሉም ኔትወርክ'],
-          ['داخل الشبكة', 'የውስጥ ኔትወርክ'],
-          ['محلي ودولي', 'የውስጥ እና ዓለም አቀፍ'],
-          ['دولي ومحلي', 'የውስጥ እና ዓለም አቀፍ'],
-          ['د. محلي ودولي', 'ደቂቃ (የውስጥ እና ዓለም አቀፍ)'],
-          ['دقيقة', 'ደቂቃ'],
-          ['جيجا', 'GB'],
-          ['تيرا', 'TB'],
-          ['انترنت', 'ኢንተርኔት'],
-          ['سوشيال', 'ሶሻል'],
-          ['بيانات', 'ዳታ'],
-          ['داتا', 'ዳታ'],
-          ['شهرين', '2 ወር'],
-          ['شهور', 'ወራት'],
-          ['أشهر', 'ወራት'],
-          ['شهر', 'ወር'],
-          ['أسبوعين', '2 ሳምንት'],
-          ['أسابيع', 'ሳምንታት'],
-          ['أسبوع', 'ሳምንት'],
-          ['أيام', 'ቀናት'],
-          ['يوم', 'ቀን'],
-          ['موبايلي', 'Mobily'],
-          ['سوا', 'Sawa'],
-          ['فليكس', 'Flex'],
-          ['سولو', 'Solo'],
-          ['مزاجي', 'Mazaji'],
-          ['شباب', 'Shabab'],
-          ['زوار', 'Zowar'],
-          ['جوي', 'Jawwy'],
-          ['ليبارا', 'Lebara']
-        ]
-      };
-
-      const rules = maps[this.currentLang];
-      if (!rules) return s;
-      for (const [arTerm, targetTerm] of rules) {
-        s = s.split(arTerm).join(targetTerm);
-      }
-      return s;
-    },
-
-    // QR Code Rendering
-    openQrModal() {
-      this.showQrModal = true;
-      this.$nextTick(() => {
-        this.renderAllQrCodes();
-      });
-    },
-
-    renderAllQrCodes() {
-      const url = this.qrTargetUrl || window.location.href;
-      ['mainQrCanvas', 'modalQrCanvas'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el && window.QRious) {
-          new QRious({
-            element: el,
-            value: url,
-            size: 260,
-            level: 'H',
-            background: '#ffffff',
-            foreground: '#0f172a'
-          });
-        }
-      });
-    },
-
-    copyQrLink() {
-      navigator.clipboard?.writeText(this.qrTargetUrl);
-    },
-
-    printQrStand() {
-      window.print();
-    },
-
-    downloadQrImage() {
-      const canvas = document.getElementById('mainQrCanvas');
-      if (!canvas) return;
-      const link = document.createElement('a');
-      link.download = 'QR-SmartPhones-Offers.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    },
-
-    // Share App or Single Package
-    async shareApp() {
-      const shareData = {
-        title: this.t('appTitle'),
-        text: `${this.t('appTitle')} - ${this.t('appSubtitle')}`,
-        url: window.location.href
-      };
-      if (navigator.share) {
-        try { await navigator.share(shareData); } catch (e) {}
-      } else {
-        navigator.clipboard?.writeText(window.location.href);
-      }
-    },
-
-    shareSingleOffer(comp, tbl, row, tIdx, rIdx) {
-      const price = this.getEffectiveOfferPrice(comp.id, tIdx, rIdx, row.offer);
-      const text = `🔥 *${this.t('appTitle')}* 🔥\n` +
-        `🏢 ${this.t('colCompany')}: *${this.getCompanyName(comp)}*\n` +
-        `📦 ${this.t('colPackage')}: *${this.translateDynamic(row.name)}*\n` +
-        (row.calls ? `📞 ${this.t('colCalls')}: ${this.translateDynamic(row.calls)}\n` : '') +
-        (row.data ? `🌐 ${this.t('colData')}: ${this.translateDynamic(row.data)}\n` : '') +
-        (row.social ? `📱 ${this.t('colSocial')}: ${this.translateDynamic(row.social)}\n` : '') +
-        `💰 ${this.t('colOfficialPrice')}: ~${row.official}~ ${this.t('sar')}\n` +
-        `✅ *${this.t('colOfferPrice')}: ${price} ${this.t('sar')}*\n` +
-        `🔗 ${window.location.href}`;
-      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-    },
-
-    // Smart Install & Shortcut Detection Logic (يختفي زر التثبيت برمجياً بعد التثبيت أو الحفظ)
-    checkInstalledState() {
-      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-      const savedFlag = localStorage.getItem('smartphones_pwa_installed') === 'true';
-      this.isAppInstalled = isStandalone || savedFlag;
-    },
-
-    async triggerInstallPrompt() {
-      if (this.deferredPrompt) {
-        this.deferredPrompt.prompt();
-        const { outcome } = await this.deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          this.markAsShortcutSaved();
-        }
-        this.deferredPrompt = null;
-      } else {
-        // Show iOS / Manual Add to Home Screen instructions
-        this.showInstallHelpModal = true;
-      }
-    },
-
-    markAsShortcutSaved() {
-      this.isAppInstalled = true;
-      this.showInstallHelpModal = false;
-      this.scannedFromQr = false;
-      localStorage.setItem('smartphones_pwa_installed', 'true');
-    },
-
-    resetInstallButton() {
-      this.isAppInstalled = false;
-      localStorage.removeItem('smartphones_pwa_installed');
-    },
-
-    // Setup Embedded Manifest & Service Worker
-    initPwaArchitecture() {
-      // 1. Dynamic Web Manifest
-      const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="110" fill="#0f172a"/><circle cx="256" cy="256" r="190" fill="#f59e0b" opacity="0.15"/><path d="M160 120h140l60 60v212c0 16-14 30-30 30H160c-16 0-30-14-30-30V150c0-16 14-30 30-30z" fill="#f59e0b"/><rect x="180" y="230" width="130" height="110" rx="18" fill="#0f172a"/></svg>`;
-      const iconUrl = 'data:image/svg+xml;base64,' + btoa(svgIcon);
-
-      const manifest = {
-        name: 'عروض الاتصالات - الهواتف الذكية الأولى',
-        short_name: 'الهواتف الذكية',
-        description: 'عروض باقات الاتصالات والإنترنت - الهواتف الذكية الأولى',
-        start_url: window.location.href.split('?')[0],
-        display: 'standalone',
-        background_color: '#0f172a',
-        theme_color: '#0f172a',
-        orientation: 'portrait',
-        icons: [
-          { src: iconUrl, sizes: '192x192', type: 'image/svg+xml', purpose: 'any maskable' },
-          { src: iconUrl, sizes: '512x512', type: 'image/svg+xml', purpose: 'any maskable' }
-        ]
-      };
-
-      const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
-      const manifestLink = document.createElement('link');
-      manifestLink.rel = 'manifest';
-      manifestLink.href = URL.createObjectURL(manifestBlob);
-      document.head.appendChild(manifestLink);
-
-      // 2. Service Worker Registration for Offline Caching
-      if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-        const swCode = `
-          const CACHE_NAME = 'smartphones-offers-v1';
-          self.addEventListener('install', e => {
-            self.skipWaiting();
-          });
-          self.addEventListener('activate', e => {
-            e.waitUntil(clients.claim());
-          });
-          self.addEventListener('fetch', e => {
-            e.respondWith(
-              fetch(e.request).catch(() => caches.match(e.request))
-            );
-          });
-        `;
-        const swBlob = new Blob([swCode], { type: 'application/javascript' });
-        navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
-      }
-    },
-
-    applyUpdate() {
-      window.location.reload();
-    }
-  },
-
-  mounted() {
-    // Apply saved theme & language direction
-    document.documentElement.classList.toggle('dark', this.isDark);
-    document.documentElement.lang = this.currentLang;
-    document.documentElement.dir = this.currentLangObj.dir;
-
-    // Check if opened via QR code scan
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('from') === 'qr') {
-      this.scannedFromQr = true;
-    }
-
-    // Check installation state
-    this.checkInstalledState();
-    window.matchMedia('(display-mode: standalone)').addEventListener('change', () => {
-      this.checkInstalledState();
-    });
-
-    // Listen for native PWA install prompt
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      this.deferredPrompt = e;
-    });
-
-    // Automatically hide install button once installed
-    window.addEventListener('appinstalled', () => {
-      this.markAsShortcutSaved();
-    });
-
-    // Initialize Manifest, Service Worker & QR Code
-    this.initPwaArchitecture();
-    this.$nextTick(() => {
-      this.renderAllQrCodes();
-    });
-  }
-}).mount('#app');
 </script>
 </body>
 </html>
