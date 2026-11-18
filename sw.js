@@ -1,6 +1,14 @@
-/* Optional: place next to index.html for offline use. Bump CACHE when you update the app. */
-const CACHE="telecom-offers-1.4.0";
-self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(["./"])).catch(()=>{}));});
-self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
-self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;
-  e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(x=>x.put(e.request,c)).catch(()=>{});return r;}).catch(()=>caches.match(e.request).then(r=>r||caches.match("./"))));});
+/* Service worker - version comes from sw.js?v=... (set once in index.html) */
+var V=(self.location.search.match(/v=([\d.]+)/)||[0,"0"])[1];
+var CACHE="telecom-offers-"+V;
+var CORE=["./","index.html","config.js?v="+V,"app.js?v="+V,"manifest.json","icons/icon-192.png","icons/icon-512.png","data/offers.json"];
+self.addEventListener("install",function(e){self.skipWaiting();
+  e.waitUntil(caches.open(CACHE).then(function(c){return Promise.all(CORE.map(function(u){return c.add(u).catch(function(){});}));}));});
+self.addEventListener("activate",function(e){
+  e.waitUntil(caches.keys().then(function(ks){return Promise.all(ks.filter(function(k){return k!==CACHE;}).map(function(k){return caches.delete(k);}));}).then(function(){return self.clients.claim();}));});
+self.addEventListener("fetch",function(e){
+  var r=e.request;if(r.method!=="GET"||new URL(r.url).origin!==self.location.origin)return;
+  var img=/\.(png|jpg|jpeg|svg|webp)$/.test(new URL(r.url).pathname);
+  if(img){e.respondWith(caches.match(r).then(function(m){return m||fetch(r).then(function(n){var c=n.clone();caches.open(CACHE).then(function(x){x.put(r,c);});return n;});}));return;}
+  e.respondWith(fetch(r).then(function(n){var c=n.clone();caches.open(CACHE).then(function(x){x.put(r,c);});return n;}).catch(function(){return caches.match(r).then(function(m){return m||caches.match("./");});}));
+});
